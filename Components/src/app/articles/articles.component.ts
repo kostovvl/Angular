@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
-import {Article} from '../models/articles.model';
-import {ArticleData} from '../data/data'; 
+import { Component, OnInit } from '@angular/core';
+import {ArticleData} from '../data/data';
+import {Article} from '../model/article.model';
 
 @Component({
   selector: 'app-articles',
@@ -12,9 +12,9 @@ export class ArticlesComponent implements OnInit {
   articles: Article[];
   articleData: ArticleData;
 
-  constructor() {
-    this.articleData = new ArticleData;
-   }
+  constructor() { 
+    this.articleData = new ArticleData();
+  }
 
   ngOnInit(): void {
     this.articles = this.articleData.getData();

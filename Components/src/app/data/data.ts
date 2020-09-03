@@ -1,17 +1,20 @@
-import { Article } from "../models/articles.model";
-import { data } from "./seed";
+import {Article} from '../model/article.model';
+import { data } from './seed';
 
 export class ArticleData{
+
+    public articles: Article[] = [];
+
     getData() : Article[] {
 
-        let articles : Article[] = [];
+        const dummyData = data;
 
-        data.forEach(articleDatum => {
-            const curr = new Article(articleDatum.title, articleDatum.description, 
-                articleDatum.author, articleDatum.imageUrl);
-            articles.push(curr);
+        data.forEach(dummyArticle => {
+            const currentArticle = new Article(dummyArticle.title, 
+                dummyArticle.description, dummyArticle.author, dummyArticle.imageUrl);
+                this.articles.push(currentArticle);
         })
 
-        return articles;
+        return this.articles;
     }
 }
