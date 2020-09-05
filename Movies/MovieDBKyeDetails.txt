@@ -1,0 +1,4 @@
+website: https://www.themoviedb.org
+username: kostovvl
+pass: 1234
+key: 3954e7ab993e8e5f832230b29248785b
