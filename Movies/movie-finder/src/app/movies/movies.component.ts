@@ -18,11 +18,11 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
      this.movieService.getPopular().subscribe(data => {
-       this.popularMovies = data['results'].slice(0, 6);
+       this.popularMovies = data.slice(0, 6);
      });
 
      this.movieService.getInTheaters().subscribe(data => {
-      this.topRatedMovies = data['results'].slice(0, 6);
+      this.topRatedMovies = data.slice(0, 6);
     });
 
     }

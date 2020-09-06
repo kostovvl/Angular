@@ -15,7 +15,7 @@ export class MovieComponent implements OnInit {
   constructor()  {}
 
   ngOnInit(): void {
-    this.IMAGE_URL = 'http://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
+    this.IMAGE_URL = 'http://image.tmdb.org/t/p/w500/' + this.movie.imageURL;
   }
 
   onClick() {

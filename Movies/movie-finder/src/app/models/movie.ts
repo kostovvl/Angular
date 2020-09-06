@@ -1,8 +1,8 @@
 interface Movie {
     id: number,
-    poster_path: string,
+    imageURL: string,
     title: string,
-    release_date: string
+    releaseDate: string
 }
 
 export default Movie;

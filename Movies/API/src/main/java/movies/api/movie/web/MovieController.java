@@ -2,6 +2,7 @@ package movies.api.movie.web;
 import movies.api.movie.domain.Movie;
 import movies.api.movie.domain.MovieDto;
 import movies.api.movie.service.MovieService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,11 +18,13 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/popular")
     public List<MovieDto> getPopularMovies() {
         return this.movieService.getPopularMovies();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/top_rated")
     public List<MovieDto> getTopRated() {
         return this.movieService.getTopRated();
