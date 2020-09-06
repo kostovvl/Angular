@@ -1,0 +1,21 @@
+<!-- Trqbwa da vkaram dva reda kydeto da se vizualizirat decata, popular i In theater -->
+
+
+
+<div class="text-center"  *ngIf="clickedId != null">
+    <h4>{{clickedId}}</h4>
+</div>
+
+<div class="row">
+    <div class="col-lg-2" *ngFor="let movie of popularMovies">
+        <app-movie [movie] = "movie" (eventEmitter) = "printNumber($event)">
+        </app-movie>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2" *ngFor = "let movie of topRatedMovies">
+        <app-movie [movie] = "movie"  (eventEmitter) = "printNumber($event)">
+        </app-movie>
+    </div>
+</div>
