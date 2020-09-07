@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-jumbotron',
@@ -7,10 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class JumbotronComponent implements OnInit {
 
-
   constructor() { }
+
   ngOnInit(): void {
   }
-
 
 }

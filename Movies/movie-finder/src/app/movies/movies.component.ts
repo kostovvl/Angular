@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../service/movies.service';
-import Movie from '../models/Movie';
-import { Observable } from 'rxjs';
+import { MovieService } from '../service/movie.service';
+import Movie from '../model/movie';
 
 @Component({
   selector: 'app-movies',
@@ -10,26 +9,25 @@ import { Observable } from 'rxjs';
 })
 export class MoviesComponent implements OnInit {
 
- popularMovies: Movie[];
- topRatedMovies: Movie[];
- clickedId: string = null;
+  popular: Movie[];
+  topRated: Movie[];
+  iD: number = null;
 
-  constructor(private movieService : MoviesService) { }
+  constructor(public movieService: MovieService) {
+    
+   }
 
   ngOnInit(): void {
-     this.movieService.getPopular().subscribe(data => {
-       this.popularMovies = data.slice(0, 6);
-     });
+    this.movieService.getPopular().subscribe(data => {
+      this.popular = data.slice(0, 6);
+    })
+    this.movieService.getTopRated().subscribe(data => {
+      this.topRated = data.slice(0, 6);
+    })
+  }
 
-     this.movieService.getInTheaters().subscribe(data => {
-      this.topRatedMovies = data.slice(0, 6);
-    });
-
-    }
-
-    printNumber(event) {
-      this.clickedId = event;
-      console.log(event);
-    }
+  showId(event) {
+    this.iD = event;
+  }
 
 }

@@ -1,12 +1,10 @@
 <div class="card mb-3">
-  <div>
     <h5 class="card-header">{{movie.title}}</h5>
-    <img style="height: 200px; width: 100%; display: block;" [src]="IMAGE_URL" alt="Card image">
+    <img style="height: 200px; width: 100%; display: block;" [src]="fullImageUrl" alt="Card image">
     <div class="card-body">
       <p class="card-text">{{movie.releaseDate}}</p>
     </div>
-    </div>
     <div class="card-footer text-muted">
-        <button type="button" class="btn btn-primary" (click) = onClick() >Primary</button>
+        <button type="button" class="btn btn-primary" (click) = getId() >Get Id</button>
     </div>
-    </div>
+  </div>

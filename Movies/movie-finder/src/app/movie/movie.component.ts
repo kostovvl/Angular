@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import Movie from '../models/Movie';
+import Movie from '../model/movie';
 
 @Component({
   selector: 'app-movie',
@@ -8,19 +8,21 @@ import Movie from '../models/Movie';
 })
 export class MovieComponent implements OnInit {
 
-  @Input('movie') movie: Movie
-  IMAGE_URL: string;
-  @Output('eventEmitter') eventEmitter: EventEmitter<number> = new EventEmitter<number>();
+  @Input('movie') movie: Movie;
+  fullImageUrl: string;
+  @Output('eventEmitter')
+  eventEmitter: EventEmitter<number>;
 
-  constructor()  {}
-
-  ngOnInit(): void {
-    this.IMAGE_URL = 'http://image.tmdb.org/t/p/w500/' + this.movie.imageURL;
+  constructor() { 
+    this.eventEmitter = new EventEmitter<number>();
   }
 
-  onClick() {
-    const iD = this.movie.id;
-     this.eventEmitter.emit(iD);
+  ngOnInit(): void {
+    this.fullImageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.imageURL;
+  }
+
+  getId() {
+    this.eventEmitter.emit(this.movie.id);
   }
 
 }

@@ -7,10 +7,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageComponent } from './page/page.component';
 import { FooterComponent } from './footer/footer.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
-import { MovieComponent } from './movie/movie.component';
-import { MoviesComponent } from './movies/movies.component';
-import {MoviesService} from './service/movies.service';
+import {MovieService} from '../app/service/movie.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MoviesComponent } from './movies/movies.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +19,15 @@ import { HttpClientModule } from '@angular/common/http';
     PageComponent,
     FooterComponent,
     JumbotronComponent,
-    MovieComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [MoviesService],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
