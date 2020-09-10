@@ -1,5 +1,6 @@
 package movies.api.movie.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import movies.api.movie.domain.MovieDto;
 import movies.api.movie.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,7 @@ public class MovieService {
                 .map(m -> this.mapper.map(m, MovieDto.class))
                 .collect(Collectors.toList());
     }
-
+    
     public List<MovieDto> getTopRated() {
         return this.movieRepository.findAllByCategoryName("Top Rated")
                 .stream()

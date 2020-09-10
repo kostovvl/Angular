@@ -1,8 +1,10 @@
 package movies.api.movie.domain;
 
 import movies.api.category.domain.Category;
+import movies.api.genres.domain.Genre;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -13,12 +15,13 @@ public class Movie {
     private String releaseDate;
     public String imageURL;
     public Category category;
+    public String description;
+    private List<Genre> genres;
 
     public Movie() {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -62,5 +65,24 @@ public class Movie {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Column(name = "description", columnDefinition = "text")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ManyToMany(mappedBy = "movies", targetEntity = Genre.class,
+    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 }
