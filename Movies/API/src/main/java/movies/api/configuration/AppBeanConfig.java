@@ -27,6 +27,8 @@ public class AppBeanConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/popular").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/top_rated").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/now_playing").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/upcoming").allowedOrigins("http://localhost:4200");
             }
         };
     }

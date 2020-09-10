@@ -34,6 +34,7 @@ public class InitializeData implements CommandLineRunner {
     private final String POPULAR_URL = "https://api.themoviedb.org/3/movie/popular";
     private final String TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated";
     private final String NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing";
+    private final String UPCOMING = "https://api.themoviedb.org/3/movie/upcoming";
     private final String ALL_GENRES = "https://api.themoviedb.org/3/genre/movie/list";
 
     private final String API_KEY = "?api_key=3954e7ab993e8e5f832230b29248785b";
@@ -80,6 +81,15 @@ public class InitializeData implements CommandLineRunner {
         // Seed Database with movies with category Theatre from movies DB
         this.restTemplate.getForObject((TOP_RATED_URL + API_KEY), AllMovies.class).getResults()
                 .forEach(movie -> seedToDb(movie, "Top Rated", genres));
+
+
+    // Seed Database with movies with category Popular from movies DB
+              this.restTemplate.getForObject((NOW_PLAYING + API_KEY), AllMovies.class).getResults()
+                      .forEach(movie -> seedToDb(movie, "Now Playing", genres));
+
+    // Seed Database with movies with category Theatre from movies DB
+        this.restTemplate.getForObject((UPCOMING + API_KEY), AllMovies.class).getResults()
+                .forEach(movie -> seedToDb(movie, "Upcoming", genres));
 
 
         //Seed movies to the genres

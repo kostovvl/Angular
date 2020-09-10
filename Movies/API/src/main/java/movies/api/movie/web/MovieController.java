@@ -1,6 +1,5 @@
 package movies.api.movie.web;
-import movies.api.movie.domain.Movie;
-import movies.api.movie.domain.MovieDto;
+import movies.api.movie.domain.MovieBaseDto;
 import movies.api.movie.service.MovieService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +19,26 @@ public class MovieController {
 
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/popular")
-    public List<MovieDto> getPopularMovies() {
-        return this.movieService.getPopularMovies();
+    public List<MovieBaseDto> getPopularMovies() {
+        return this.movieService.getMovies("Popular");
     }
 
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/top_rated")
-    public List<MovieDto> getTopRated() {
-        return this.movieService.getTopRated();
+    public List<MovieBaseDto> getTopRated() {
+        return this.movieService.getMovies("Top Rated");
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping("/now_playing")
+    public List<MovieBaseDto> getNowPlaying() {
+        return this.movieService.getMovies("Now Playing");
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping("/upcoming")
+    public List<MovieBaseDto> getUpcoming() {
+        return this.movieService.getMovies("Upcoming");
+    }
 
 }
