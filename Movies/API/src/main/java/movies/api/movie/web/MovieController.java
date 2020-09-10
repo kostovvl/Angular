@@ -1,9 +1,8 @@
 package movies.api.movie.web;
 import movies.api.movie.domain.MovieBaseDto;
+import movies.api.movie.domain.MovieDetailsDto;
 import movies.api.movie.service.MovieService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +38,12 @@ public class MovieController {
     @GetMapping("/upcoming")
     public List<MovieBaseDto> getUpcoming() {
         return this.movieService.getMovies("Upcoming");
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping("/details/{id}")
+    public MovieDetailsDto getDetails(@PathVariable(name = "id") long id) {
+        return this.movieService.getDetails(id);
     }
 
 }

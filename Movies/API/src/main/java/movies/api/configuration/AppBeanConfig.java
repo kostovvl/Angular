@@ -29,6 +29,7 @@ public class AppBeanConfig {
                 registry.addMapping("/top_rated").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/now_playing").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/upcoming").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/details/*").allowedOrigins("http://localhost:4200");
             }
         };
     }

@@ -11,6 +11,8 @@ export class MoviesComponent implements OnInit {
 
   popular: Movie[];
   topRated: Movie[];
+  nowPlaying: Movie[];
+  upcoming: Movie[];
   iD: number = null;
 
   constructor(public movieService: MovieService) {
@@ -24,6 +26,13 @@ export class MoviesComponent implements OnInit {
     this.movieService.getTopRated().subscribe(data => {
       this.topRated = data.slice(0, 6);
     })
+    this.movieService.getNowPlaying().subscribe(data => {
+      this.nowPlaying = data.slice(0, 6);
+    })
+    this.movieService.getUpcoming().subscribe(data => {
+      this.upcoming = data.slice(0, 6);
+    })
+
   }
 
   showId(event) {

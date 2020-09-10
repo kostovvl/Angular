@@ -1,29 +1,22 @@
 package movies.api.movie.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import movies.api.category.domain.Category;
 import movies.api.genres.domain.Genre;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "movies")
-public class Movie {
+public class MovieDetailsDto {
 
     public Long id;
     public String title;
     private String releaseDate;
     public String imageURL;
-    public Category category;
     public String description;
-    @JsonIgnore()
-    private List<Genre> genres;
+    private List<String> genresTitles;
 
-    public Movie() {
+    public MovieDetailsDto() {
     }
 
-    @Id
     public Long getId() {
         return id;
     }
@@ -32,7 +25,6 @@ public class Movie {
         this.id = id;
     }
 
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -41,7 +33,6 @@ public class Movie {
         this.title = title;
     }
 
-    @Column(name = "release_date")
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -50,7 +41,6 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
-    @Column(name = "image_Url")
     public String getImageURL() {
         return imageURL;
     }
@@ -59,17 +49,7 @@ public class Movie {
         this.imageURL = imageURL;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    @Column(name = "description", columnDefinition = "text")
     public String getDescription() {
         return description;
     }
@@ -78,13 +58,11 @@ public class Movie {
         this.description = description;
     }
 
-    @ManyToMany(mappedBy = "movies", targetEntity = Genre.class,
-    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    public List<Genre> getGenres() {
-        return genres;
+    public List<String> getGenresTitles() {
+        return genresTitles;
     }
 
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
+    public void setGenresTitles(List<String> genresTitles) {
+        this.genresTitles = genresTitles;
     }
 }

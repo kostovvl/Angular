@@ -21,8 +21,4 @@ export class MovieComponent implements OnInit {
     this.fullImageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.imageURL;
   }
 
-  getId() {
-    this.eventEmitter.emit(this.movie.id);
-  }
-
 }

@@ -1,7 +1,9 @@
 package movies.api.movie.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import movies.api.genres.domain.Genre;
 import movies.api.movie.domain.MovieBaseDto;
+import movies.api.movie.domain.MovieDetailsDto;
 import movies.api.movie.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,15 @@ public class MovieService {
                 .stream()
                 .map(m -> this.mapper.map(m, MovieBaseDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public MovieDetailsDto getDetails(Long id) {
+        return  this.movieRepository.findById(id).
+                map(r -> {
+                    MovieDetailsDto result = this.mapper.map(r, MovieDetailsDto.class);
+                    result.setGenresTitles(r.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
+                    return  result;
+                }).orElse(null);
     }
 
 

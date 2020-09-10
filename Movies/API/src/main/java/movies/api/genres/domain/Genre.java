@@ -1,5 +1,6 @@
 package movies.api.genres.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import movies.api.movie.domain.Movie;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Genre {
 
     public Long id;
     public String name;
+    @JsonIgnore()
     public List<Movie> movies;
 
     public Genre() {

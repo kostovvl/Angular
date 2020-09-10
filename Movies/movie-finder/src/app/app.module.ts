@@ -11,6 +11,7 @@ import {MovieService} from '../app/service/movie.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MovieComponent } from './movie/movie.component';
     FooterComponent,
     JumbotronComponent,
     MoviesComponent,
-    MovieComponent
+    MovieComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
