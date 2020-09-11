@@ -15,7 +15,7 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.moivesService.getPopularMovies().subscribe(data => {
-      this.popularMovies = data;
+      this.popularMovies = data.slice(0, 6);
     })
   }
 

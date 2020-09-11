@@ -1,5 +1,6 @@
 <div class="card mb-3">
-    <img style="height: 200px; width: 100%; display: block;" [src]="'http://image.tmdb.org/t/p/w500' + movie.imageURL" alt="Card image">
+    <img style="height: 200px; width: 100%; display: block;" 
+    [src]="'http://image.tmdb.org/t/p/w500' + movie.imageURL" alt="Card image">
     <div class="card-body">
       <p class="card-text">Title: {{movie.title}}</p>
     </div>
@@ -7,6 +8,7 @@
         <p class="card-text">Release date: {{movie.releaseDate}}</p>
     </div>
     <div class="card-footer text-muted">
-        <button type="button" class="btn btn-primary" routerLink = "/movies/{{movie.id}}" >Details</button>
+        <button type="button" class="btn btn-primary" 
+        routerLink = "/movies/{{movie.id}}" >Details</button>
     </div>
   </div>
