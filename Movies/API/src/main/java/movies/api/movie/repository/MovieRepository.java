@@ -12,8 +12,8 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     List<Movie>findAllByCategoryName(String categoryName);
-
-
     List<Movie> findAll();
+    @Query("select m from Movie as m where m.title like %:title%")
+    List<Movie> customTitleSearch(String title);
 
 }

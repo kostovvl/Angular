@@ -8,6 +8,7 @@ import movies.api.movie.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,14 @@ public class MovieService {
                     result.setGenresTitles(r.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
                     return  result;
                 }).orElse(null);
+    }
+
+    public List<MovieBaseDto> getByTitleSearch(String title) {
+        List<MovieBaseDto> result;
+       result = this.movieRepository.customTitleSearch(title)
+                .stream().map(m -> this.mapper.map(m, MovieBaseDto.class))
+                .collect(Collectors.toList());
+        return result;
     }
 
 

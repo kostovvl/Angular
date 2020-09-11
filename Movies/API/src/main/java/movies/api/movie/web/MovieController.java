@@ -46,4 +46,10 @@ public class MovieController {
         return this.movieService.getDetails(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping("/search/{title}")
+    public List<MovieBaseDto> getDetails(@PathVariable(name = "title") String title) {
+        return this.movieService.getByTitleSearch(title);
+    }
+
 }
