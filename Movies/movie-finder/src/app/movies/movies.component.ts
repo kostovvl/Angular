@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../service/movie.service';
-import Movie from '../model/movie';
+import Movie from '../model/movie.model';
+import { MoviesService } from '../service/movies.service';
 
 @Component({
   selector: 'app-movies',
@@ -9,34 +9,14 @@ import Movie from '../model/movie';
 })
 export class MoviesComponent implements OnInit {
 
-  popular: Movie[];
-  topRated: Movie[];
-  nowPlaying: Movie[];
-  upcoming: Movie[];
-  iD: number = null;
+  constructor(private moivesService: MoviesService) { }
 
-  constructor(public movieService: MovieService) {
-    
-   }
+  popularMovies : Movie[];
 
   ngOnInit(): void {
-    this.movieService.getPopular().subscribe(data => {
-      this.popular = data.slice(0, 6);
+    this.moivesService.getPopularMovies().subscribe(data => {
+      this.popularMovies = data;
     })
-    this.movieService.getTopRated().subscribe(data => {
-      this.topRated = data.slice(0, 6);
-    })
-    this.movieService.getNowPlaying().subscribe(data => {
-      this.nowPlaying = data.slice(0, 6);
-    })
-    this.movieService.getUpcoming().subscribe(data => {
-      this.upcoming = data.slice(0, 6);
-    })
-
-  }
-
-  showId(event) {
-    this.iD = event;
   }
 
 }

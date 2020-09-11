@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import Movie from '../model/movie';
+import { Component, OnInit, Input } from '@angular/core';
+import Movie from '../model/movie.model';
 
 @Component({
   selector: 'app-movie',
@@ -8,17 +8,14 @@ import Movie from '../model/movie';
 })
 export class MovieComponent implements OnInit {
 
-  @Input('movie') movie: Movie;
-  fullImageUrl: string;
-  @Output('eventEmitter')
-  eventEmitter: EventEmitter<number>;
+  @Input('movie')movie: Movie;
+  
 
-  constructor() { 
-    this.eventEmitter = new EventEmitter<number>();
-  }
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
-    this.fullImageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.imageURL;
   }
 
 }

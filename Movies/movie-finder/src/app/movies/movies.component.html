@@ -1,33 +1,6 @@
-
-<div *ngIf="iD">
-    <h4 class="text-center" >{{iD}}</h4>
-</div>
-
-<h3>Popular</h3>
+<h4>Popular</h4>
 <div class = "row" >
-    <div class = "col-lg-2" *ngFor="let movie of popular" >
-        <app-movie [movie] = movie (eventEmitter) = showId($event) ></app-movie>
+    <div class = "col" *ngFor="let movie of popularMovies" >
+        <app-movie [movie] = movie ></app-movie>
     </div>
 </div>
-
-<h3>Top Rated</h3>
-<div class = "row" >
-    <div class = "col-lg-2" *ngFor="let movie of topRated" >
-        <app-movie [movie] = movie (eventEmitter) = showId($event)></app-movie>
-    </div>
-</div>
-
-<h3>Now Playing</h3>
-<div class = "row" >
-    <div class = "col-lg-2" *ngFor="let movie of nowPlaying" >
-        <app-movie [movie] = movie (eventEmitter) = showId($event) ></app-movie>
-    </div>
-</div>
-
-<h3>Upcoming</h3>
-<div class = "row" >
-    <div class = "col-lg-2" *ngFor="let movie of upcoming" >
-        <app-movie [movie] = movie (eventEmitter) = showId($event)></app-movie>
-    </div>
-</div>
-
