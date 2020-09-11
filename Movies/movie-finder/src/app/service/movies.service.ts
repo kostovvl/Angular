@@ -7,6 +7,7 @@ import MovieDetails from '../model/movie.details';
 
 const POULAR_URL = 'http://localhost:8080/popular'
 const DETAILS_URL = 'http://localhost:8080/details/'
+const SEARCH_URL = 'http://localhost:8080/search/'
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class MoviesService {
 
   getDetails(id: number) {
     return this.httpClient.get<MovieDetails>(DETAILS_URL + id);
+  }
+
+  getByTitle(title: string) {
+    return this.httpClient.get<Movie[]>(SEARCH_URL + title.search);
   }
 }

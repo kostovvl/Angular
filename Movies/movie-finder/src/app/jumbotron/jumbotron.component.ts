@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Movie from '../model/movie.model';
+import { MoviesService } from '../service/movies.service';
 
 @Component({
   selector: 'app-jumbotron',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JumbotronComponent implements OnInit {
 
-  constructor() { }
+  foundMovies: Movie[];
+  length: number = null;
+
+  constructor(private moivesService: MoviesService) { }
 
   ngOnInit(): void {
+  }
+
+  search(title: string) {
+    this.moivesService.getByTitle(title).subscribe(
+      data => {
+        this.foundMovies = data;
+        this.length = this.foundMovies.length;
+      }
+    )
   }
 
 }

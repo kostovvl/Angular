@@ -12,6 +12,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesService } from './service/movies.service';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     MoviesComponent,
     MovieComponent,
     MovieDetailsComponent,
-    JumbotronComponent
+    JumbotronComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent]
