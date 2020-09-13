@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.pattern('^[\\d]{9}$')]],
       possition: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['']
+      confirmPassword: [''],
+      imageUrl: ['', [Validators.required, Validators.pattern('^(http:|https:)[^\n]+(\.jpg|\.png)$')]]
     }, {
   
       validator: ConfirmedValidator('password', 'confirmPassword')
