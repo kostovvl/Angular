@@ -12,7 +12,10 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesService } from './service/movies.service';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { UsersService } from './service/users.service';
 
 @NgModule({
   declarations: [
@@ -24,14 +27,18 @@ import { FormsModule } from '@angular/forms';
     MovieComponent,
     MovieDetailsComponent,
     JumbotronComponent,
+    RegisterPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, 
+    UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
