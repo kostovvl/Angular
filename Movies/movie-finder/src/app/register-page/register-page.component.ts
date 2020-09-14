@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../service/users.service';
 import { ConfirmedValidator } from './password-matcher';
-import { Observable } from 'rxjs';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-register-page',
@@ -16,7 +16,8 @@ export class RegisterPageComponent implements OnInit {
   possitions: string[];
 
   constructor(private fb: FormBuilder,
-    private userService: UsersService) { 
+    private userService: UsersService, 
+    private router: Router) { 
     this.numberPrefixes = ['+359', '+340', '+254'];
     this.possitions = ['Developer', 'Manager', 'QA']
   }
@@ -43,7 +44,8 @@ export class RegisterPageComponent implements OnInit {
   submit() {
    if (this.form.valid) {
     let result$ = this.userService.register(this.form);
-     this.form.reset();
+      this.form.reset();
+      this.router.navigate(['login'])
    }
   }
 

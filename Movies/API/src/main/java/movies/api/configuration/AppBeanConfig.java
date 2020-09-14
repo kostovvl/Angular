@@ -31,6 +31,7 @@ public class AppBeanConfig {
                 registry.addMapping("/upcoming").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/details/*").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/search/*").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/users/*").allowedOrigins("http://localhost:4200");
             }
         };
     }
