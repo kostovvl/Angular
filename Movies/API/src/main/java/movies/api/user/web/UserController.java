@@ -17,6 +17,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/register")
     public UserDto register(@RequestBody UserDto userDto) {
+
         return this.userEntityService.register(userDto);
     }
 

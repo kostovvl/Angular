@@ -11,8 +11,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   register(form) {
-    let resulrt$ = this.http.post<Object>(REGISTER_URL, form.value);
-    console.log(resulrt$)
+    let resulrt$ = this.http.post<any>(REGISTER_URL, form.value);
     return resulrt$;
   }
 

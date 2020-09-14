@@ -38,11 +38,11 @@
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-building"></i> </span>
             </div>
-            <select class="form-control" formControlName = "possition"  >
-              <option value="{{pos}}" *ngFor = "let pos of possitions">{{pos}}</option>
+            <select class="form-control" formControlName = "position"  >
+              <option value="{{pos}}" *ngFor = "let pos of positions">{{pos}}</option>
             </select>
           </div>
-          <div class="alert alert-danger" *ngIf="f.possition.errors?.required && f.possition.touched" >
+          <div class="alert alert-danger" *ngIf="f.position.errors?.required && f.position.touched" >
             Possition is required
         </div>
           <div class="form-group input-group">

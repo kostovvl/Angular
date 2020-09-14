@@ -13,13 +13,13 @@ export class RegisterPageComponent implements OnInit {
 
   form;
   numberPrefixes: string[];
-  possitions: string[];
+  positions: string[];
 
   constructor(private fb: FormBuilder,
     private userService: UsersService, 
     private router: Router) { 
     this.numberPrefixes = ['+359', '+340', '+254'];
-    this.possitions = ['Developer', 'Manager', 'QA']
+    this.positions = ['Developer', 'Manager', 'QA']
   }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class RegisterPageComponent implements OnInit {
       email: ['', [Validators.required]],
       phonePrefix: [''],
       phoneNumber: ['', [Validators.required]],
-      possition: ['', [Validators.required]],
+      position: ['', [Validators.required]],
       password: ['', [Validators.required]],
       passwordConfirm: ['']
     }, {
@@ -43,7 +43,11 @@ export class RegisterPageComponent implements OnInit {
 
   submit() {
    if (this.form.valid) {
-    let result$ = this.userService.register(this.form);
+    let result$ = this.userService.register(this.form).subscribe(
+      data => {
+        console.log(data)
+      }
+    );
       this.form.reset();
       this.router.navigate(['login'])
    }

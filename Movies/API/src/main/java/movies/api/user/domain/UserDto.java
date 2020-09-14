@@ -6,7 +6,7 @@ public class UserDto {
     public String email;
     public String phonePrefix;
     public String phoneNumber;
-    public String possition;
+    public String position;
     public String password;
 
     public UserDto() {
@@ -44,12 +44,12 @@ public class UserDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPossition() {
-        return possition;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPossition(String possition) {
-        this.possition = possition;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getPassword() {
