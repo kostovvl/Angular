@@ -4,3 +4,25 @@
         <app-movie [movie] = movie ></app-movie>
     </div>
 </div>
+
+<h4>Top Rated</h4>
+<div class = "row" >
+    <div class = "col-lg-2" *ngFor="let movie of topRatedMovies" >
+        <app-movie [movie] = movie ></app-movie>
+    </div>
+</div>
+
+<h4>Now Playing</h4>
+<div class = "row" >
+    <div class = "col-lg-2" *ngFor="let movie of nowPlayingMovies" >
+        <app-movie [movie] = movie ></app-movie>
+    </div>
+</div>
+
+
+<h4>Upcoming</h4>
+<div class = "row" >
+    <div class = "col-lg-2" *ngFor="let movie of upcomingMovies" >
+        <app-movie [movie] = movie ></app-movie>
+    </div>
+</div>
