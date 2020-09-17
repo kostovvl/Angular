@@ -3,9 +3,13 @@ package angular.furnitureapi.furniture.service;
 import angular.furnitureapi.furniture.domain.Furniture;
 import angular.furnitureapi.furniture.domain.FurnitureDto;
 import angular.furnitureapi.furniture.repository.FurnitureRepository;
+import angular.furnitureapi.user.domain.userEntity.UserEntity;
+import angular.furnitureapi.user.domain.userEntity.UserEntityDto;
+import angular.furnitureapi.user.service.UserEntityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,15 +17,24 @@ import java.util.stream.Collectors;
 public class FurnitureService {
 
     private final FurnitureRepository furnitureRepository;
+    private final UserEntityService userEntityService;
     private final ModelMapper mapper;
 
-    public FurnitureService(FurnitureRepository furnitureRepository, ModelMapper mapper) {
+    public FurnitureService(FurnitureRepository furnitureRepository, UserEntityService userEntityService, ModelMapper mapper) {
         this.furnitureRepository = furnitureRepository;
+        this.userEntityService = userEntityService;
         this.mapper = mapper;
     }
 
+    @Transactional
     public FurnitureDto createNew(FurnitureDto furnitureDto) {
+
         Furniture furniture = this.mapper.map(furnitureDto, Furniture.class);
+        UserEntity user = this.userEntityService.getById((long) 1);
+        furniture.setCreator(user);
+        List<Furniture> existingFurniture = user.getFurniture();
+        existingFurniture.add(furniture);
+        user.setFurniture(existingFurniture);
 
         return this.mapper.map(this.furnitureRepository.saveAndFlush(furniture), FurnitureDto.class);
     }
@@ -42,7 +55,16 @@ public class FurnitureService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void deleteFurniture(long id) {
+
+        UserEntity user = this.userEntityService.getById((long) 1);
+
+        List<Furniture> existing = this.furnitureRepository.findByCreatorId((long) 1);
+
+        existing = existing.stream().filter(f -> f.id != id).collect(Collectors.toList());
+        user.setFurniture(existing);
+
         this.furnitureRepository.deleteById(id);
     }
 }

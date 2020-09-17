@@ -19,7 +19,7 @@ public class FurnitureController {
     }
 
     @PostMapping("/create")
-    public FurnitureDto createNewFurniture (@RequestBody FurnitureDto furnitureDto) {
+    public FurnitureDto createNewFurniture(@RequestBody FurnitureDto furnitureDto) {
         return this.furnitureService.createNew(furnitureDto);
     }
 
@@ -30,23 +30,19 @@ public class FurnitureController {
 
     @GetMapping("/details/{id}")
     public FurnitureDto getDetails(@PathVariable(name = "id") long id) {
-      return   this.furnitureService.findById(id);
+        return this.furnitureService.findById(id);
     }
 
     @GetMapping("/mine")
     public List<FurnitureDto> getMine() {
-        long id = 1; // get from session;
+        long id = 1; // get from Principal;
         return this.furnitureService.getMine(id);
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteFurniture(@PathVariable(name = "id") long id) {
-        try {
-            furnitureService.deleteFurniture(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/delete/{id}")
+    public void deleteFurniture(@PathVariable(name = "id") long id) {
+
+       this.furnitureService.deleteFurniture(id);
     }
 
 }

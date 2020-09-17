@@ -1,6 +1,7 @@
 package angular.furnitureapi.furniture.domain;
 
 import angular.furnitureapi.user.domain.userEntity.UserEntity;
+import angular.furnitureapi.user.domain.userEntity.UserEntityDto;
 
 public class FurnitureDto {
 
@@ -12,7 +13,7 @@ public class FurnitureDto {
     public double price;
     public String image;
     public String material;
-    public UserEntity creator;
+    public UserEntityDto creator;
 
     public FurnitureDto() {
     }
@@ -81,11 +82,11 @@ public class FurnitureDto {
         this.material = material;
     }
 
-    public UserEntity getCreator() {
+    public UserEntityDto getCreator() {
         return creator;
     }
 
-    public void setCreator(UserEntity creator) {
+    public void setCreator(UserEntityDto creator) {
         this.creator = creator;
     }
 }

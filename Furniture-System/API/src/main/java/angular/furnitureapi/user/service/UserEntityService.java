@@ -33,4 +33,8 @@ public class UserEntityService {
         return this.mapper.map(this.userEntityRepository.saveAndFlush(userEntity), UserEntityDto.class);
     }
 
+    public UserEntity getById(long id) {
+        return this.userEntityRepository.getOne(id);
+    }
+
 }

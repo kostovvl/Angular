@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,6 +13,11 @@ import { CollapseDirective } from './navigation/collapse.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './authentication/auth.service';
+import { FurnitureService } from './furniture/furniture.service';
+import { CreateFurnitureComponent } from './furniture/create-furniture/create-furniture.component';
+import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
+import { DetailsFurnitureComponent } from './furniture/details-furniture/details-furniture.component';
+import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +27,22 @@ import { AuthService } from './authentication/auth.service';
     SignupComponent,
     HomeComponent,
     DropdownDirective,
-    CollapseDirective
+    CollapseDirective,
+    CreateFurnitureComponent,
+    AllFurnitureComponent,
+    DetailsFurnitureComponent,
+    MyFurnitureComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
   providers: [ 
-    AuthService
+    AuthService,
+    FurnitureService
   ],
   bootstrap: [AppComponent]
 })
