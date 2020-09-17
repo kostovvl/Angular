@@ -5,6 +5,8 @@ import angular.furnitureapi.user.domain.userRole.UserEntityRole;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -13,7 +15,7 @@ public class UserEntity {
     public String username;
     public String email;
     public String password;
-    public List<UserEntityRole> roles;
+    public Set<UserEntityRole> roles;
     public List<Furniture> furniture;
 
     public UserEntity() {
@@ -56,13 +58,14 @@ public class UserEntity {
         this.password = password;
     }
 
+
     @OneToMany(mappedBy = "user", targetEntity = UserEntityRole.class,
-    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    public List<UserEntityRole> getRoles() {
+            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public Set<UserEntityRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<UserEntityRole> roles) {
+    public void setRoles(Set<UserEntityRole> roles) {
         this.roles = roles;
     }
 
