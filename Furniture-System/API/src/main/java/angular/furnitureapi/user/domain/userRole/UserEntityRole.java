@@ -15,6 +15,10 @@ public class UserEntityRole {
     public UserEntityRole() {
     }
 
+    public UserEntityRole(String role) {
+        this.role = role;
+    }
+
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
