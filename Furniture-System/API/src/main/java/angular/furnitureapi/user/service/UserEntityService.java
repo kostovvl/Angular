@@ -6,9 +6,9 @@ import angular.furnitureapi.user.domain.userRole.UserEntityRole;
 import angular.furnitureapi.user.repository.UserEntityRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -16,12 +16,14 @@ public class UserEntityService {
 
     private final UserEntityRepository userEntityRepository;
     private final ModelMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserEntityService(UserEntityRepository userEntityRepository, ModelMapper mapper) {
+    public UserEntityService(UserEntityRepository userEntityRepository, ModelMapper mapper, PasswordEncoder passwordEncoder) {
         this.userEntityRepository = userEntityRepository;
         this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserEntityDto register(UserEntityDto newUser) {
@@ -29,6 +31,7 @@ public class UserEntityService {
         UserEntityRole roleUser = new UserEntityRole("ROLE_USER");
         roleUser.setUser(userEntity);
         userEntity.setRoles(Set.of(roleUser));
+        userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));
 
         return this.mapper.map(this.userEntityRepository.saveAndFlush(userEntity), UserEntityDto.class);
     }

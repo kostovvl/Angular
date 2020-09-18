@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  private readonly loginUrl = 'http://localhost:5000/auth/login';
+  private readonly loginUrl = 'http://localhost:8080/auth/login';
   private readonly registerUrl = 'http://localhost:8080/auth/register';
 
   constructor(
