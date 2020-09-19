@@ -53,6 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
+    //JWT generation
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
@@ -69,8 +70,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
-        String body = "{\"user\" : \"" +  ((User) auth.getPrincipal()).getUsername() + "\"}, " +
-                "{\"roles\" : [" + String.join(". ", roles) + "]}, {\"token\" :  " + token + "}";
+        String body = "[{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\"}, " +
+                "{\"roles\":[" + String.join(". ", roles) + "]}, {\"token\": \"" + token + "\"}]";
 
         res.getWriter().write(body);
         res.getWriter().flush();
