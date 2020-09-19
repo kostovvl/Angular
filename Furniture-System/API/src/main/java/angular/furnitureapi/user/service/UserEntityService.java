@@ -28,7 +28,7 @@ public class UserEntityService {
 
     public UserEntityDto register(UserEntityDto newUser) {
         UserEntity userEntity = this.mapper.map(newUser, UserEntity.class);
-        UserEntityRole roleUser = new UserEntityRole("ROLE_USER");
+        UserEntityRole roleUser = new UserEntityRole("USER");
         roleUser.setUser(userEntity);
         userEntity.setRoles(Set.of(roleUser));
         userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));

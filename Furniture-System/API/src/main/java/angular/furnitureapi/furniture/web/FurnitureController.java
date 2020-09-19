@@ -2,7 +2,7 @@ package angular.furnitureapi.furniture.web;
 
 import angular.furnitureapi.furniture.domain.FurnitureDto;
 import angular.furnitureapi.furniture.service.FurnitureService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
