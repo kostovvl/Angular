@@ -17,7 +17,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +70,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
         String body = "{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\", " +
-                "\"roles\":[" + String.join(". ", roles) + "], \"token\": \"" + token + "\"}";
+                "\"roles\":[" + String.join(", ", roles) + "], \"token\": \"" + token + "\"}";
 
         res.getWriter().write(body);
         res.getWriter().flush();

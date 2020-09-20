@@ -62,7 +62,19 @@ public class FurnitureService {
 
         UserEntity user = this.userEntityService.getById(this.userEntityService.getUserId(username));
 
-        List<Furniture> existing = this.furnitureRepository.findByCreatorId((long) 1);
+        List<Furniture> existing = this.furnitureRepository.findByCreatorId(user.getId());
+
+        existing = existing.stream().filter(f -> f.id != id).collect(Collectors.toList());
+        user.setFurniture(existing);
+
+        this.furnitureRepository.deleteById(id);
+    }
+
+    public void deleteFurnitureAdmin(long id) {
+
+        UserEntity user = this.userEntityService.getById(this.userEntityService.getUserIdForAdmin(id));
+
+        List<Furniture> existing = this.furnitureRepository.findByCreatorId(user.getId());
 
         existing = existing.stream().filter(f -> f.id != id).collect(Collectors.toList());
         user.setFurniture(existing);

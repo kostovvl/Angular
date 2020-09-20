@@ -8,6 +8,7 @@ const all_url = 'http://localhost:8080/furniture/all'
 const details_url = 'http://localhost:8080/furniture/details/'
 const my_furniture_url = 'http://localhost:8080/furniture/mine'
 const delete_url = 'http://localhost:8080/furniture/delete/'
+const delete_url_admin = 'http://localhost:8080/admin/delete/'
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export class FurnitureService {
 
   delete(id : string): Observable<any> {
     return this.http.delete<any>(delete_url + id);
+  }
+
+  deleteAdmin(id: string) : Observable<any> {
+    return this.http.delete<any>(delete_url_admin + id);
   }
 }
 

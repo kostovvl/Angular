@@ -5,6 +5,7 @@ import angular.furnitureapi.furniture.service.FurnitureService;
 import angular.furnitureapi.user.service.UserEntityService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class FurnitureController {
         return this.furnitureService.getMine(principal.getName());
     }
 
+    @Transactional
     @DeleteMapping("/delete/{id}")
     public void deleteFurniture(@PathVariable(name = "id") long id, Principal principal) {
 

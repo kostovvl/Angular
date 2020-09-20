@@ -30,7 +30,6 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('token', data['token'])
         localStorage.setItem('user', data['user'])
         localStorage.setItem('roles', data['roles'])
-        console.log(localStorage.getItem('token'));
         this.router.navigate([ '/home' ])
       });
   }

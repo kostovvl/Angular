@@ -10,13 +10,14 @@
               <div class="card text-white bg-primary">
                   <div class="card-body">
                       <blockquote class="card-blockquote">
-                          <img src="{{f.image}}" />
+                          <img src={{f.image}} />
                           <p>{{f.description}}</p>
                           <footer>Someone famous in
                               <cite title="Source Title">Material: {{f.material}}</cite>
                           </footer>
                           <div class="pull-right">
                               <a routerLink = "/furniture/details/{{f.id}}" class="btn btn-info">Details</a>
+                              <a *ngIf="authService.isAdmin()" (click) = deleteAdmin(f.id) class="btn btn-danger">Delete Item</a>
                           </div>
                       </blockquote>
                   </div>

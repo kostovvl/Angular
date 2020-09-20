@@ -29,4 +29,8 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  isAdmin() {
+    return localStorage.getItem('roles').includes('ADMIN');
+  }
 }

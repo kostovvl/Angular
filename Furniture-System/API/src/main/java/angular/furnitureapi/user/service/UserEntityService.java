@@ -44,4 +44,8 @@ public class UserEntityService {
         return this.userEntityRepository.findByUsername(username).orElse(null).getId();
     }
 
+    public long getUserIdForAdmin(long id) {
+        return this.userEntityRepository.customQuery(id).orElse(null).getId();
+    }
+
 }
