@@ -27,10 +27,12 @@ public class FurnitureService {
     }
 
     @Transactional
-    public FurnitureDto createNew(FurnitureDto furnitureDto) {
+    public FurnitureDto createNew(FurnitureDto furnitureDto, String username) {
+
+        long id = this.userEntityService.getUserId(username);
 
         Furniture furniture = this.mapper.map(furnitureDto, Furniture.class);
-        UserEntity user = this.userEntityService.getById((long) 1);
+        UserEntity user = this.userEntityService.getById(id);
         furniture.setCreator(user);
         List<Furniture> existingFurniture = user.getFurniture();
         existingFurniture.add(furniture);
@@ -49,16 +51,16 @@ public class FurnitureService {
         return this.mapper.map(this.furnitureRepository.findById(id), FurnitureDto.class);
     }
 
-    public List<FurnitureDto> getMine(long id) {
-        return this.furnitureRepository.findByCreatorId(id)
+    public List<FurnitureDto> getMine(String username) {
+        return this.furnitureRepository.findByCreatorUsername(username)
                 .stream().map(f -> this.mapper.map(f, FurnitureDto.class))
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void deleteFurniture(long id) {
+    public void deleteFurniture(long id, String username) {
 
-        UserEntity user = this.userEntityService.getById((long) 1);
+        UserEntity user = this.userEntityService.getById(this.userEntityService.getUserId(username));
 
         List<Furniture> existing = this.furnitureRepository.findByCreatorId((long) 1);
 

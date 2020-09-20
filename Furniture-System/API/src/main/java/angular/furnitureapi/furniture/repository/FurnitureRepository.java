@@ -13,6 +13,8 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     Furniture findById(long id);
 
+    List<Furniture> findByCreatorUsername(String username);
+
     List<Furniture> findByCreatorId(long id);
 
 }

@@ -31,7 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .map(u -> this.mapper.map(u, UserEntity.class))
                 .orElseThrow(() -> new UsernameNotFoundException("shit"));
 
-
         String userNameDetail = userEntity.getUsername();
         String passwordDetail = userEntity.getPassword();
         List<GrantedAuthority> roles = userEntity.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getRole()))

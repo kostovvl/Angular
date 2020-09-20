@@ -2,9 +2,10 @@ package angular.furnitureapi.furniture.web;
 
 import angular.furnitureapi.furniture.domain.FurnitureDto;
 import angular.furnitureapi.furniture.service.FurnitureService;
-import org.springframework.security.access.prepost.PreAuthorize;
+import angular.furnitureapi.user.service.UserEntityService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,8 @@ public class FurnitureController {
     }
 
     @PostMapping("/create")
-    public FurnitureDto createNewFurniture(@RequestBody FurnitureDto furnitureDto) {
-        return this.furnitureService.createNew(furnitureDto);
+    public FurnitureDto createNewFurniture(@RequestBody FurnitureDto furnitureDto, Principal principal) {
+        return this.furnitureService.createNew(furnitureDto, principal.getName());
     }
 
     @GetMapping("/all")
@@ -34,15 +35,14 @@ public class FurnitureController {
     }
 
     @GetMapping("/mine")
-    public List<FurnitureDto> getMine() {
-        long id = 1; // get from Principal;
-        return this.furnitureService.getMine(id);
+    public List<FurnitureDto> getMine(Principal principal) {
+        return this.furnitureService.getMine(principal.getName());
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFurniture(@PathVariable(name = "id") long id) {
+    public void deleteFurniture(@PathVariable(name = "id") long id, Principal principal) {
 
-       this.furnitureService.deleteFurniture(id);
+       this.furnitureService.deleteFurniture(id, principal.getName());
     }
 
 }

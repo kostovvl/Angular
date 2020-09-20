@@ -40,4 +40,8 @@ public class UserEntityService {
         return this.userEntityRepository.getOne(id);
     }
 
+    public long getUserId(String username) {
+        return this.userEntityRepository.findByUsername(username).orElse(null).getId();
+    }
+
 }
