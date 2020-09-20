@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { CreateFurnitureComponent } from './furniture/create-furniture/create-fu
 import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
 import { DetailsFurnitureComponent } from './furniture/details-furniture/details-furniture.component';
 import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.comp
     CreateFurnitureComponent,
     AllFurnitureComponent,
     DetailsFurnitureComponent,
-    MyFurnitureComponent
+    MyFurnitureComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.comp
   ],
   providers: [ 
     AuthService,
-    FurnitureService
+    FurnitureService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

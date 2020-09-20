@@ -9,16 +9,17 @@ import { CreateFurnitureComponent } from './furniture/create-furniture/create-fu
 import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
 import { DetailsFurnitureComponent } from './furniture/details-furniture/details-furniture.component';
 import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
+import { AuthGuard } from './authentication/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'furniture/create', component: CreateFurnitureComponent },
-  { path: 'furniture/all', component: AllFurnitureComponent },
-  { path: 'furniture/details/:id', component: DetailsFurnitureComponent },
-  { path: 'furniture/user', component: MyFurnitureComponent }
+  { path: 'furniture/create', component: CreateFurnitureComponent, canActivate: [AuthGuard]},
+  { path: 'furniture/all', component: AllFurnitureComponent, canActivate: [AuthGuard] },
+  { path: 'furniture/details/:id', component: DetailsFurnitureComponent, canActivate: [AuthGuard] },
+  { path: 'furniture/user', component: MyFurnitureComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({

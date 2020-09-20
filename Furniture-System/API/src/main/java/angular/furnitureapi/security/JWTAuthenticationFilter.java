@@ -61,7 +61,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException {
         List<String> roles = new ArrayList<>();
         for (GrantedAuthority authority : ((User) auth.getPrincipal()).getAuthorities()) {
-            roles.add(authority.getAuthority());
+            roles.add("\"" + authority.getAuthority() + "\"");
         }
 
 
@@ -70,8 +70,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
-        String body = "[{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\"}, " +
-                "{\"roles\":[" + String.join(". ", roles) + "]}, {\"token\": \"" + token + "\"}]";
+        String body = "{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\", " +
+                "\"roles\":[" + String.join(". ", roles) + "], \"token\": \"" + token + "\"}";
 
         res.getWriter().write(body);
         res.getWriter().flush();
