@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static angular.furnitureapi.security.SecurityConstraints.EXPIRATION_TIME;
-import static angular.furnitureapi.security.SecurityConstraints.SECRET;
+import static angular.furnitureapi.security.SecurityConstraints.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -31,7 +30,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
 
-        setFilterProcessesUrl("/auth/login");
+        setFilterProcessesUrl(LOG_IN_URL);
     }
 
     @Override

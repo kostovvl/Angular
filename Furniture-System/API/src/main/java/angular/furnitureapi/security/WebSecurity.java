@@ -19,7 +19,7 @@ import static angular.furnitureapi.security.SecurityConstraints.SIGN_UP_URL;
 
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true) //if you want to pre-authorize specific method
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
