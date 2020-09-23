@@ -1,13 +1,13 @@
 package angular.furnitureapi.init;
 
-import angular.furnitureapi.user.domain.userEntity.UserEntity;
-import angular.furnitureapi.user.domain.userRole.UserEntityRole;
+import angular.furnitureapi.user.domain.UserEntity;
+import angular.furnitureapi.user.domain.UserEntityRole;
 import angular.furnitureapi.user.repository.UserEntityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -16,6 +16,7 @@ public class InitializeAdmin implements CommandLineRunner {
     private final UserEntityRepository userEntityRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public InitializeAdmin(UserEntityRepository userEntityRepository, PasswordEncoder passwordEncoder) {
         this.userEntityRepository = userEntityRepository;
         this.passwordEncoder = passwordEncoder;
@@ -29,13 +30,14 @@ public class InitializeAdmin implements CommandLineRunner {
         }
 
         UserEntity admin = new UserEntity();
-        UserEntityRole roleAdmin = new UserEntityRole("ADMIN");
         UserEntityRole roleUser = new UserEntityRole("USER");
-
+        UserEntityRole roleAdmin = new UserEntityRole("ADMIN");
         admin.setUsername("Vlado");
+        admin.setEmail("vlado@vlado.com");
         admin.setPassword(this.passwordEncoder.encode("123456"));
-        roleAdmin.setUser(admin);
+
         roleUser.setUser(admin);
+        roleAdmin.setUser(admin);
         admin.setRoles(Set.of(roleUser, roleAdmin));
 
         this.userEntityRepository.saveAndFlush(admin);

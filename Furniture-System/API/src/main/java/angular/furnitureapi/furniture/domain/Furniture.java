@@ -1,20 +1,21 @@
 package angular.furnitureapi.furniture.domain;
 
-import angular.furnitureapi.user.domain.userEntity.UserEntity;
+import angular.furnitureapi.user.domain.UserEntity;
+import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 
-@Entity
+@Entity()
 @Table(name = "furniture")
 public class Furniture {
 
     public long id;
     public String make;
     public String model;
-    public String year;
+    public int year;
     public String description;
     public double price;
-    public String image;
+    public String imageUrl;
     public String material;
     public UserEntity creator;
 
@@ -50,15 +51,15 @@ public class Furniture {
     }
 
     @Column(name = "year")
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    @Column(name = "descpription", columnDefinition = "text")
+    @Column(name = "description", columnDefinition = "text")
     public String getDescription() {
         return description;
     }
@@ -76,13 +77,13 @@ public class Furniture {
         this.price = price;
     }
 
-    @Column(name = "image")
-    public String getImage() {
-        return image;
+    @Column(name = "imageUrl")
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Column(name = "material")

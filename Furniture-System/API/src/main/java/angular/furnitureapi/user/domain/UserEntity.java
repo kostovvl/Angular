@@ -1,7 +1,6 @@
-package angular.furnitureapi.user.domain.userEntity;
+package angular.furnitureapi.user.domain;
 
 import angular.furnitureapi.furniture.domain.Furniture;
-import angular.furnitureapi.user.domain.userRole.UserEntityRole;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +20,7 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
@@ -39,7 +38,6 @@ public class UserEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-
     @Column(name = "email")
     public String getEmail() {
         return email;
@@ -58,9 +56,8 @@ public class UserEntity {
         this.password = password;
     }
 
-
     @OneToMany(mappedBy = "user", targetEntity = UserEntityRole.class,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Set<UserEntityRole> getRoles() {
         return roles;
     }

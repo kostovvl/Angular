@@ -1,11 +1,9 @@
-package angular.furnitureapi.user.domain.userRole;
-
-import angular.furnitureapi.user.domain.userEntity.UserEntity;
+package angular.furnitureapi.user.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "user_entity_roles")
+@Table()
+@Entity(name = "user_roles")
 public class UserEntityRole {
 
     public long id;
@@ -19,12 +17,12 @@ public class UserEntityRole {
         this.role = role;
     }
 
-    @Id()
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
-
 
     public void setId(long id) {
         this.id = id;
