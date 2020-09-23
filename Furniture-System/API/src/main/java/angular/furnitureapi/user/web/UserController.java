@@ -3,6 +3,8 @@ package angular.furnitureapi.user.web;
 import angular.furnitureapi.user.domain.UserEntityDto;
 import angular.furnitureapi.user.service.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public UserEntityDto signUp(@RequestBody UserEntityDto newUser) {
-        return this.userEntityService.signUp(newUser);
+    public ResponseEntity<?> signUp(@RequestBody UserEntityDto newUser) {
+        if (this.userEntityService.userExists(newUser)) {
+
+            return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(this.userEntityService.signUp(newUser), HttpStatus.OK);
+        }
+
     }
 
 }

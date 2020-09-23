@@ -45,4 +45,8 @@ public class UserEntityService {
     public Long getUserId(String username) {
         return this.userEntityRepository.findByUsername(username).orElse(null).getId();
     }
+
+    public boolean userExists(UserEntityDto userEntityDto) {
+        return this.userEntityRepository.findByUsername(userEntityDto.getUsername()).orElse(null) != null;
+    }
 }
