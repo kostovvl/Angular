@@ -21,6 +21,6 @@ public class AdminController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(name = "id") long id) {
         this.furnitureService.deleteAdmin(id);
-        return new ResponseEntity<String>("Success", HttpStatus.OK);
+        return new ResponseEntity<String>( HttpStatus.OK);
     }
 }

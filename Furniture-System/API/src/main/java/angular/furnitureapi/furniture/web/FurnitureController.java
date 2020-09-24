@@ -47,7 +47,7 @@ public class FurnitureController {
                                     @PathVariable(name = "username") String username, Principal principal) {
         try  {
             this.furnitureService.delete(id, username, principal);
-            return new ResponseEntity<>("Success", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (UnsupportedOperationException e) {
             return new ResponseEntity<>("You are not authorised for this operation", HttpStatus.UNAUTHORIZED);
