@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,11 +17,6 @@ import { AuthService } from './authentication/auth.service';
 import { JwtInterceptorService } from './authentication/interceptors/jwt-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastrInterceptorService } from './authentication/interceptors/toastr-interceptor.service';
-import { CreateComponent } from './furniture/create/create.component';
-import { AllComponent } from './furniture/all/all.component';
-import { DetailsComponent } from './furniture/details/details.component';
-import { FurnitureService } from './furniture/furniture.service';
-import { MyComponent } from './furniture/my/my.component';
 
 @NgModule({
   declarations: [
@@ -32,16 +27,13 @@ import { MyComponent } from './furniture/my/my.component';
     HomeComponent,
     DropdownDirective,
     CollapseDirective,
-    CreateComponent,
-    AllComponent,
-    DetailsComponent,
-    MyComponent
+   
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
+    
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
@@ -49,8 +41,7 @@ import { MyComponent } from './furniture/my/my.component';
   providers: [ 
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ToastrInterceptorService, multi: true},
-    FurnitureService
+    { provide: HTTP_INTERCEPTORS, useClass: ToastrInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

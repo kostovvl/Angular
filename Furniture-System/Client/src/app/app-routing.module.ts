@@ -17,10 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'furniture/create', component: CreateComponent, canActivate: [AuthGuard]},
-  { path: 'furniture/all', component: AllComponent }, 
-  { path: 'furniture/details/:id', component: DetailsComponent},
-  { path: 'furniture/user', component: MyComponent, canActivate: [AuthGuard] }
+  { path: 'furniture', loadChildren: './furniture/furniture.module#FurnitureModule', canActivate: [AuthGuard] }
 ]
 
 @NgModule({
