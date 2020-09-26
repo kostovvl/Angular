@@ -49,7 +49,7 @@ public class UserEntity extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "creator", targetEntity = Post.class,
-    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Post> getPosts() {
         return posts;
     }
@@ -59,7 +59,7 @@ public class UserEntity extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "creator", targetEntity = Comment.class,
-    fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
         return comments;
     }
