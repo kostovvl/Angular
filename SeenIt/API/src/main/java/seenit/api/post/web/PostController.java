@@ -39,7 +39,7 @@ public class PostController {
         try {
             return new ResponseEntity<>(this.postService.getAllByUser(userId, principal.getName()), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
     }
 
@@ -48,7 +48,7 @@ public class PostController {
         try {
             return new ResponseEntity<>(this.postService.details(postId) ,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
     }
 
@@ -58,7 +58,7 @@ public class PostController {
             this.postService.deletePost(postId, principal.getName());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
     }
 
