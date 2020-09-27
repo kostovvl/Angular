@@ -73,7 +73,7 @@ public class CommentService {
 
     public List<CommentDto> getAllByUser(long userId, String name) {
 
-        UserEntity userEntity = this.userEntityRepository.findByUsername(name).orElse(null);
+        UserEntity userEntity = this.userEntityRepository.findById(userId).orElse(null); 
         if (!userEntity.getUsername().equals(name)) {
             throw new UnsupportedOperationException("Shit");
         }
