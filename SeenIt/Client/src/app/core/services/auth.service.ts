@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly BASE_URL = `https://baas.kinvey.com/user/${APP_KEY}`;
+
+  
 
   constructor(
     private http: HttpClient
