@@ -24,11 +24,7 @@ export class CommentService {
   }
 
   postComment(body: Object) {
-    return this.http.post(POST_URL, body, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.post(POST_URL, body);
   }
 
   deleteComment(id: string) {

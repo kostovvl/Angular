@@ -21,9 +21,7 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
     this.route.url.subscribe((segmentArr: UrlSegment[]) => {
       if (segmentArr.length === 1) {
-        this.allPosts$ = this.postService.getAll()
-        this.allPosts$.subscribe(data => console.log(data));
-         
+        this.allPosts$ = this.postService.getAll() 
       } else {
        this.allPosts$ = this.postService.getUserPosts()
       }
@@ -48,7 +46,7 @@ export class PostListComponent implements OnInit {
   deletePost(id: string) {
     this.postService.deletePost(id)
       .subscribe(() => {
-        this.router.navigate(['/posts']);
+        this.allPosts$ = this.postService.getAll()
       })
   }
 }

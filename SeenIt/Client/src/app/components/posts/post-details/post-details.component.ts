@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { PostService } from 'src/app/core/services/post.service';
 import { CommentService } from 'src/app/core/services/comment.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-details',
@@ -12,7 +13,7 @@ import { CommentService } from 'src/app/core/services/comment.service';
 export class PostDetailsComponent implements OnInit {
   @ViewChild('f') createCommentForm: NgForm;
   post: Object;
-  comments: Object[];
+  comments$: Observable<Object>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,18 +27,14 @@ export class PostDetailsComponent implements OnInit {
     this.postService.getDetails(id)
       .subscribe((data) => {
         this.post = data;
-        this.commentService.getAllForPost(this.post['_id'])
-          .subscribe((data) => {
-            this.comments = data;
-          });
+       this.comments$ = this.commentService.getAllForPost(this.post['id'])
+         
       });
   }
 
   loadComments() {
-    this.commentService.getAllForPost(this.post['_id'])
-      .subscribe((data) => {
-        this.comments = data;
-      });
+    this.comments$ =  this.commentService.getAllForPost(this.post['id'])
+  
   }
 
   deleteComment(id: string) {
@@ -49,19 +46,20 @@ export class PostDetailsComponent implements OnInit {
 
   postComment() {
     const body = this.createCommentForm.value;
-    body['postId'] = this.post['_id'];
-    body['author'] = localStorage.getItem('username');
+    body['postId'] = this.post['id'];
+    body['creatorId'] = localStorage.getItem('userId');
 
     this.commentService
       .postComment(this.createCommentForm.value)
-      .subscribe(() => {
+      .subscribe((data) => {
+        console.log(data);
         this.createCommentForm.reset();
         this.loadComments();
       })
   }
 
   isAuthor() {
-    return this.post['_acl']['creator'] === localStorage.getItem('userId');
+    return this.post['creatorId'] === localStorage.getItem('userId');
   }
 
   deletePost(id: string) {

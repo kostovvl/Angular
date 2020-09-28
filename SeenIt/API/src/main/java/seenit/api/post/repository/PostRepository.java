@@ -10,7 +10,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
 
-    List<Post> getAllByCreatorUsername(String username);
+    List<Post> getAllByCreatorId(long id);
 
 
 

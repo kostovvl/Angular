@@ -33,11 +33,11 @@ export class PostService {
   }
 
   getById(id: string) {
-    return this.http.get<Object>(DETAILS_URL);
+    return this.http.get<Object>(DETAILS_URL + id);
   }
 
   getDetails(id: string) {
-    return this.http.get<Object>(DETAILS_URL);
+    return this.http.get<Object>(DETAILS_URL + id);
   }
 
   // editPost(body: Object, id: string) {
@@ -49,12 +49,12 @@ export class PostService {
   // }
 
   deletePost(id: string) {
-    return this.http.delete(DELETE_URL);
+    return this.http.delete(DELETE_URL + id);
   }
 
   getUserPosts() {
-    const username = localStorage.getItem('username');
+    const userId = localStorage.getItem('userId');
     return this.http
-      .get<Object[]>(USER_POSTS_URL + username);
+      .get<Object[]>(USER_POSTS_URL + userId);
   }
 }

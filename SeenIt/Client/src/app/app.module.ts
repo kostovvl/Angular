@@ -18,6 +18,7 @@ import { PostDetailsComponent } from './components/posts/post-details/post-detai
 import { PostEditComponent } from './components/posts/post-edit/post-edit.component';
 import { PostListComponent } from './components/posts/post-list/post-list.component';
 import { JwtInterceptorService } from './core/interceptors/jwt-interceptor';
+import { CommentComponent } from './components/comments/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { JwtInterceptorService } from './core/interceptors/jwt-interceptor';
     HeaderComponent,
     FooterComponent,
     ContentComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
