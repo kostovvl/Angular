@@ -1,7 +1,8 @@
-<p>{{commentInfo['content']}}</p>
+<p>{{commentInfo.body}}</p>
       <div class="info">
-        submitted by {{commentInfo['author']}} |
-        <button *ngIf="isAuthor()" (click)="deleteComment(commentInfo['_id'])" class="deleteLink">
+        submitted by Make functionality for author name |
+        <button *ngIf="isAuthor()" (click)="deleteComment(commentInfo['id'])" class="deleteLink">
           delete
         </button>
       </div>
+    

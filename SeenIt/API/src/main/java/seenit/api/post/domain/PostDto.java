@@ -1,9 +1,4 @@
 package seenit.api.post.domain;
-
-
-import seenit.api.user.domain.UserEntityView;
-
-
 public class PostDto {
 
     public long id;

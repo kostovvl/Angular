@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class PostDetailsComponent implements OnInit {
   @ViewChild('f') createCommentForm: NgForm;
   post: Object;
+  author: string;
   comments$: Observable<Object>;
 
   constructor(

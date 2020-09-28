@@ -39,7 +39,7 @@ public class PostService {
         Set<Post> userPosts = userEntity.getPosts();
         userPosts.add(newPost);
 
-        newPost.setCreator(userEntity);
+        newPost.setCreatorId(userEntity);
 
         PostDto result = this.mapper.map(this.postRepository.saveAndFlush(newPost), PostDto.class);
         result.setCreatorId(userEntity.getId());
@@ -52,7 +52,7 @@ public class PostService {
                 .stream()
                 .map(p -> {
                     PostDto result = this.mapper.map(p, PostDto.class);
-                    result.setCreatorId(p.getCreator().getId());
+                    result.setCreatorId(p.getCreatorId().getId());
                     return result;
                 }).collect(Collectors.toList());
     }
@@ -64,11 +64,11 @@ public class PostService {
             throw new UnsupportedOperationException();
         }
 
-        return this.postRepository.getAllByCreatorId(userId)
+        return this.postRepository.getAllByCreatorIdId(userId)
                 .stream()
                 .map(p -> {
                     PostDto result = this.mapper.map(p, PostDto.class);
-                    result.setCreatorId(p.getCreator().getId());
+                    result.setCreatorId(p.getCreatorId().getId());
                     return result;
                 }).collect(Collectors.toList());
 
@@ -78,7 +78,7 @@ public class PostService {
         return this.postRepository.findById(postId)
                 .map(p -> {
                     PostDto result = this.mapper.map(p, PostDto.class);
-                    result.setCreatorId(p.getCreator().getId());
+                    result.setCreatorId(p.getCreatorId().getId());
                     return result;
                 }).orElse(null);
     }

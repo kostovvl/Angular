@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
+import Comment from 'src/app/components/common/models/comment.model'
 
 @Component({
   selector: 'app-comment',
@@ -7,11 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CommentComponent implements OnInit {
 
-  @Input() commentInfo: Object;
+  @Input() commentInfo: Comment;
+  @Input() author: string;
+  @Output() deleteEvent: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  isAuthor() {
+    const authorId = this.commentInfo.creatorId;
+    const loggedId = localStorage.getItem('userId');
+    let result = authorId == loggedId;
+    return result;
+  }
+
+  deleteComment(id : number) {
+    return this.deleteEvent.emit(id);
   }
 
 }

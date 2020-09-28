@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class Comment extends BaseEntity {
 
     public String body;
-    public Post post;
-    private UserEntity creator;
+    public Post postId;
+    private UserEntity creatorId;
 
     public Comment() {
     }
@@ -26,23 +26,25 @@ public class Comment extends BaseEntity {
         this.body = body;
     }
 
+
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "id")
-    public Post getPost() {
-        return post;
+    public Post getPostId() {
+        return postId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostId(Post postId) {
+        this.postId = postId;
     }
+
 
     @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    public UserEntity getCreator() {
-        return creator;
+    public UserEntity getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator(UserEntity creator) {
-        this.creator = creator;
+    public void setCreatorId(UserEntity creatorId) {
+        this.creatorId = creatorId;
     }
 }

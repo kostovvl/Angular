@@ -14,7 +14,7 @@ public class Post extends BaseEntity {
     public String title;
     public String body;
     public String imageUrl;
-    public UserEntity creator;
+    public UserEntity creatorId;
     public Set<Comment> comments;
 
     public Post() {
@@ -49,15 +49,15 @@ public class Post extends BaseEntity {
 
     @ManyToOne()
     @JoinColumn(name = "creator_id", referencedColumnName = "id")
-    public UserEntity getCreator() {
-        return creator;
+    public UserEntity getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator(UserEntity creator) {
-        this.creator = creator;
+    public void setCreatorId(UserEntity creatorId) {
+        this.creatorId = creatorId;
     }
 
-    @OneToMany(mappedBy = "post", targetEntity = Comment.class,
+    @OneToMany(mappedBy = "postId", targetEntity = Comment.class,
     fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
         return comments;

@@ -21,8 +21,7 @@ export class PostCreateComponent implements OnInit {
 
   createPost() {
     const body = this.creatPostForm.value;
-    body['author'] = localStorage.getItem('username');
-
+    
     this.postService.createPost(body)
       .subscribe(() => {
         this.router.navigate([ '/posts' ]);

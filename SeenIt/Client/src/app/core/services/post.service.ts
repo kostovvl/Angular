@@ -17,19 +17,11 @@ export class PostService {
   ) { }
 
   getAll() {
-    return this.http.get<Object[]>(ALL_URL, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.get<Object[]>(ALL_URL);
   }
 
   createPost(body: Object) {
-    return this.http.post(CREATE_URL, body, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.post(CREATE_URL, body);
   }
 
   getById(id: string) {

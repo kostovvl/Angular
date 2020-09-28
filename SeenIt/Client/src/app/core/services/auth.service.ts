@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const SIGN_UP_URL = 'http://localhost:8080/auth/register';
 const SIGN_IN_URL = 'http://localhost:8080/auth/login'

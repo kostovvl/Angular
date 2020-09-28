@@ -48,7 +48,7 @@ public class UserEntity extends BaseEntity {
         this.roles = roles;
     }
 
-    @OneToMany(mappedBy = "creator", targetEntity = Post.class,
+    @OneToMany(mappedBy = "creatorId", targetEntity = Post.class,
     fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Post> getPosts() {
         return posts;
@@ -58,7 +58,7 @@ public class UserEntity extends BaseEntity {
         this.posts = posts;
     }
 
-    @OneToMany(mappedBy = "creator", targetEntity = Comment.class,
+    @OneToMany(mappedBy = "creatorId", targetEntity = Comment.class,
     fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
         return comments;

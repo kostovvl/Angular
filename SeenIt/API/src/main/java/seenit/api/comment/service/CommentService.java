@@ -7,7 +7,6 @@ import seenit.api.comment.domain.Comment;
 import seenit.api.comment.domain.CommentDto;
 import seenit.api.comment.repository.CommentRepository;
 import seenit.api.post.domain.Post;
-import seenit.api.post.domain.PostDto;
 import seenit.api.post.repository.PostRepository;
 import seenit.api.user.domain.UserEntity;
 import seenit.api.user.repository.UserEntityRepository;
@@ -42,8 +41,8 @@ public class CommentService {
         Post post = this.postRepository.findById(commentDto.getPostId()).orElse(null);
 
         Comment comment = this.mapper.map(commentDto, Comment.class);
-        comment.setCreator(userEntity);
-        comment.setPost(post);
+        comment.setCreatorId(userEntity);
+        comment.setPostId(post);
 
         Set<Comment> userComments = userEntity.getComments();
         userComments.add(comment);
@@ -61,12 +60,12 @@ public class CommentService {
     }
 
     public List<CommentDto> getAllByPost(long postId) {
-        return this.commentRepository.findByPostId(postId)
+        return this.commentRepository.findByPostIdId(postId)
                 .stream()
                 .map(c -> {
                     CommentDto result = this.mapper.map(c, CommentDto.class);
-                    result.setPostId(c.getPost().getId());
-                    result.setCreatorId(c.getCreator().getId());
+                    result.setPostId(c.getPostId().getId());
+                    result.setCreatorId(c.getCreatorId().getId());
                     return result;
                 }).collect(Collectors.toList());
     }
@@ -78,25 +77,25 @@ public class CommentService {
             throw new UnsupportedOperationException("Shit");
         }
 
-        return this.commentRepository.findByCreatorId(userId)
+        return this.commentRepository.findByCreatorIdId(userId)
                 .stream()
                 .map(c -> {
                     CommentDto result = this.mapper.map(c, CommentDto.class);
-                    result.setPostId(c.getPost().getId());
-                    result.setCreatorId(c.getCreator().getId());
+                    result.setPostId(c.getPostId().getId());
+                    result.setCreatorId(c.getCreatorId().getId());
                     return result;
                 }).collect(Collectors.toList());
     }
 
     public void delete(long commentId, String name) {
         Comment comment = this.commentRepository.findById(commentId).orElse(null);
-        UserEntity creator = this.userEntityRepository.findById(comment.getCreator().getId()).orElse(null);
+        UserEntity creator = this.userEntityRepository.findById(comment.getCreatorId().getId()).orElse(null);
 
         if (!creator.getUsername().equals(name)) {
             throw new UnsupportedOperationException("Shit");
         }
 
-        Post post = this.postRepository.findById(comment.getPost().getId()).orElse(null);
+        Post post = this.postRepository.findById(comment.getPostId().getId()).orElse(null);
 
         Set<Comment> creatorComments = creator.getComments();
         creatorComments = creatorComments.stream()
