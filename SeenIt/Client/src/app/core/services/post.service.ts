@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { APP_KEY } from '../kinvey.tokens';
+
+const ALL_URL = 'http://localhost:8080/posts/all'
+const CREATE_URL = 'http://localhost:8080/posts/create'
+const DETAILS_URL = 'http://localhost:8080/posts/details/';
+const DELETE_URL = 'http://localhost:8080/posts/delete/';
+const USER_POSTS_URL = 'http://localhost:8080/posts/user/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private readonly BASE_URL = `https://baas.kinvey.com/appdata/${APP_KEY}`;
-  private readonly ALL_POSTS = `${this.BASE_URL}/posts?query={}&sort={"_kmd.ect": -1}`;
-  private readonly CREATE_POST = `${this.BASE_URL}/posts`;
-
+  
   constructor(
     private http: HttpClient
   ) { }
 
   getAll() {
-    return this.http.get<Object[]>(this.ALL_POSTS, {
+    return this.http.get<Object[]>(ALL_URL, {
       headers: new HttpHeaders({
         'Authorization': `Kinvey ${localStorage.getItem('token')}`
       })
@@ -23,7 +25,7 @@ export class PostService {
   }
 
   createPost(body: Object) {
-    return this.http.post(this.CREATE_POST, body, {
+    return this.http.post(CREATE_URL, body, {
       headers: new HttpHeaders({
         'Authorization': `Kinvey ${localStorage.getItem('token')}`
       })
@@ -31,43 +33,28 @@ export class PostService {
   }
 
   getById(id: string) {
-    return this.http.get<Object>(this.CREATE_POST + `/${id}`, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.get<Object>(DETAILS_URL);
   }
 
   getDetails(id: string) {
-    return this.http.get<Object>(this.CREATE_POST + `/${id}`, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.get<Object>(DETAILS_URL);
   }
 
-  editPost(body: Object, id: string) {
-    return this.http.put(this.CREATE_POST + `/${id}`, body, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
-  }
+  // editPost(body: Object, id: string) {
+  //   return this.http.put(this.CREATE_POST + `/${id}`, body, {
+  //     headers: new HttpHeaders({
+  //       'Authorization': `Kinvey ${localStorage.getItem('token')}`
+  //     })
+  //   });
+  // }
 
   deletePost(id: string) {
-    return this.http.delete(this.CREATE_POST + `/${id}`, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.delete(DELETE_URL);
   }
 
   getUserPosts() {
+    const username = localStorage.getItem('username');
     return this.http
-      .get<Object[]>(`${this.BASE_URL}/posts?query={"author":"${localStorage.getItem('username')}"}&sort={"_kmd.ect": -1}`, {
-        headers: new HttpHeaders({
-          'Authorization': `Kinvey ${localStorage.getItem('token')}`
-        })
-      });
+      .get<Object[]>(USER_POSTS_URL + username);
   }
 }

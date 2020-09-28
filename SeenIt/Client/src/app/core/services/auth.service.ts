@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const SIGN_UP_URL = 'http://localhost:8080/auth/register';
+const SIGN_IN_URL = 'http://localhost:8080/auth/login'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  
 
   constructor(
     private http: HttpClient
@@ -19,30 +19,22 @@ export class AuthService {
   }
 
   signUp(body: Object) {
-    return this.http.post(this.BASE_URL, body,
-      {
-        headers: new HttpHeaders({
-          'Authorization': `Basic ${btoa(`${APP_KEY}:${APP_SECRET}`)}`,
-          'Content-Type': 'application/json'
-        })
-      });
+    return this.http.post(SIGN_UP_URL, body);
   }
 
   signIn(body: Object) {
-    return this.http.post(`${this.BASE_URL}/login`, body, {
-      headers: new HttpHeaders({
-        'Authorization': `Basic ${btoa(`${APP_KEY}:${APP_SECRET}`)}`,
-        'Content-Type': 'application/json'
-      })
+    return this.http.post(SIGN_IN_URL, body).subscribe((data) => {
+      this.saveUserInfo(data);
     });
   }
 
   logout() {
-    return this.http.post(`${this.BASE_URL}/_logout`, {}, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${this.token}`
-      })
-    });
+    localStorage.clear();
+    // return this.http.post(`${this.BASE_URL}/_logout`, {}, {
+    //   headers: new HttpHeaders({
+    //     'Authorization': `Kinvey ${this.token}`
+    //   })
+    // });
   }
 
   isAuthenticated() {
@@ -50,8 +42,9 @@ export class AuthService {
   }
 
   saveUserInfo(res: Object) {
-    localStorage.setItem('username', res['username']);
-    localStorage.setItem('token', res['_kmd']['authtoken']);
-    localStorage.setItem('userId', res['_id']);
+    localStorage.setItem('username', res['user']);
+    localStorage.setItem('userId', res['id']);
+    localStorage.setItem('roles', res['roles'])
+    localStorage.setItem('token', res['token']);
   }
 }

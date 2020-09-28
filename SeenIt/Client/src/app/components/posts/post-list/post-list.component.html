@@ -1,12 +1,11 @@
 <section id="viewCatalog">
   <div class="posts">
-    <ng-template [ngIf]="allPosts">
-      <article *ngFor="let post of allPosts; let i = index;" class="post">
+      <article *ngFor="let post of allPosts$ | async; let i = index;" class="post">
         <div class="col rank">
           <span>{{i}}</span>
         </div>
         <div class="col thumbnail">
-          <a href="{{post['url']}}">
+          <a href="www.google.com">
             <img src="{{post['imageUrl']}}">
           </a>
         </div>
@@ -18,22 +17,21 @@
           </div>
           <div class="details">
             <div class="info">
-              submitted by {{post['author']}}
+              submitted by Vlado
             </div>
             <div class="controls">
               <ul>
-                <li class="action"><a [routerLink]="[ '/posts/details', post['_id'] ]" class="commentsLink">comments</a>
+                <li class="action"><a [routerLink]="[ '/posts/details', post['id'] ]" class="commentsLink">comments</a>
                 </li>
-                <ng-template [ngIf]="isAuthor(post)">
-                  <li class="action"><a [routerLink]="[ '/posts/edit', post['_id'] ]" href="#">edit</a></li>
-                  <li class="action"><button (click)="deletePost(post['_id'])">delete</button></li>
-                </ng-template>
+                <div *ngIf="isAuthor(post['creatorId'])">
+                  <li class="action"><a [routerLink]="[ '/posts/edit', post['id'] ]" href="#">edit</a></li>
+                  <li class="action"><button (click)="deletePost(post['id'])">delete</button></li>
+                </div>
               </ul>
             </div>
 
           </div>
         </div>
       </article>
-    </ng-template>
   </div>
 </section>

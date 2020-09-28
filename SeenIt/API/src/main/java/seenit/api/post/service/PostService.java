@@ -57,14 +57,14 @@ public class PostService {
                 }).collect(Collectors.toList());
     }
 
-    public List<PostDto> getAllByUser(long userId, String username) {
+    public List<PostDto> getAllByUser(String username, String usernamePrincipal) {
         UserEntity userEntity = this.userEntityRepository.findByUsername(username).orElse(null);
 
-        if (userId != userEntity.getId()) {
+        if (usernamePrincipal.equals(userEntity.getUsername())) {
             throw new UnsupportedOperationException();
         }
 
-        return this.postRepository.getAllByCreatorId(userId)
+        return this.postRepository.getAllByCreatorUsername(username)
                 .stream()
                 .map(p -> {
                     PostDto result = this.mapper.map(p, PostDto.class);

@@ -44,4 +44,8 @@ public class UserEntityService {
 
         return this.mapper.map(response, UserEntityDTO.class);
     }
+
+    public long getIdByUsername(String username) {
+        return this.userEntityRepository.findByUsername(username).orElse(null).getId();
+    }
 }

@@ -26,13 +26,13 @@ export class PostEditComponent implements OnInit {
       });
   }
 
-  editPost() {
-    const body = this.editPostForm.value;
-    body['author'] = localStorage.getItem('username');
+  // editPost() {
+  //   const body = this.editPostForm.value;
+  //   body['author'] = localStorage.getItem('username');
 
-    this.postService.editPost(body, this.post['_id'])
-      .subscribe(() => {
-        this.router.navigate([ '/posts' ]);
-      })
-  }
+  //   this.postService.editPost(body, this.post['_id'])
+  //     .subscribe(() => {
+  //       this.router.navigate([ '/posts' ]);
+  //     })
+  // }
 }

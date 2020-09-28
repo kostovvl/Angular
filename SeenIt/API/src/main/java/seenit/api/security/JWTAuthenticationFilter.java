@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import seenit.api.user.domain.UserEntity;
+import seenit.api.user.service.UserEntityService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +27,11 @@ import static seenit.api.security.SecurityConstraints.*;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
+    private final UserEntityService userEntityService;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UserEntityService userEntityService) {
         this.authenticationManager = authenticationManager;
+        this.userEntityService = userEntityService;
 
         setFilterProcessesUrl(LOG_IN_URL);
     }
@@ -68,7 +71,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
-        String body = "{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\", " +
+        String username = ((User) auth.getPrincipal()).getUsername();
+
+        String body = "{\"user\":\"" +  username + "\", " +
+                "\"id\": "+ this.userEntityService.getIdByUsername(username)  + ", " +
                 "\"roles\":[" + String.join(", ", roles) + "], \"token\": \"" + token + "\"}";
 
         res.getWriter().write(body);

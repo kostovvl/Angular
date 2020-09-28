@@ -34,10 +34,10 @@ public class PostController {
         return new ResponseEntity<>(this.postService.getAllPosts(), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getAllByUser(@PathVariable(name = "userId") long userId, Principal principal) {
+    @GetMapping("/user/{username}")
+    public ResponseEntity<?> getAllByUser(@PathVariable(name = "username") String username, Principal principal) {
         try {
-            return new ResponseEntity<>(this.postService.getAllByUser(userId, principal.getName()), HttpStatus.OK);
+            return new ResponseEntity<>(this.postService.getAllByUser(username, principal.getName()), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
