@@ -9,7 +9,6 @@ import Comment from 'src/app/components/common/models/comment.model'
 export class CommentComponent implements OnInit {
 
   @Input() commentInfo: Comment;
-  @Input() author: string;
   @Output() deleteEvent: EventEmitter<number> = new EventEmitter();
 
   constructor() { }

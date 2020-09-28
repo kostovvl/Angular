@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PostService } from 'src/app/core/services/post.service';
+import Post from 'src/app/components/common/models/post.model';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { PostService } from 'src/app/core/services/post.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  allPosts$: Observable<Object>;
+  allPosts$: Observable<Post[]>;
 
   constructor(
     private postService: PostService,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Post from 'src/app/components/common/models/post.model';
 
 const ALL_URL = 'http://localhost:8080/posts/all'
 const CREATE_URL = 'http://localhost:8080/posts/create'
@@ -17,7 +18,7 @@ export class PostService {
   ) { }
 
   getAll() {
-    return this.http.get<Object[]>(ALL_URL);
+    return this.http.get<Post[]>(ALL_URL);
   }
 
   createPost(body: Object) {
@@ -25,11 +26,11 @@ export class PostService {
   }
 
   getById(id: string) {
-    return this.http.get<Object>(DETAILS_URL + id);
+    return this.http.get<Post>(DETAILS_URL + id);
   }
 
   getDetails(id: string) {
-    return this.http.get<Object>(DETAILS_URL + id);
+    return this.http.get<Post>(DETAILS_URL + id);
   }
 
   // editPost(body: Object, id: string) {
@@ -47,6 +48,6 @@ export class PostService {
   getUserPosts() {
     const userId = localStorage.getItem('userId');
     return this.http
-      .get<Object[]>(USER_POSTS_URL + userId);
+      .get<Post[]>(USER_POSTS_URL + userId);
   }
 }

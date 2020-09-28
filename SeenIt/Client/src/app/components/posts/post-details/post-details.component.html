@@ -43,7 +43,7 @@
   </div>
   <app-comment *ngFor="let commentInfo of comments$ | async"
   [commentInfo] = "commentInfo"
-  [author] = ""
+
   (deleteEvent) =  deleteComment($event)
   ></app-comment>
 </section>

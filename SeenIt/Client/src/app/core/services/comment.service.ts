@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import Comment from 'src/app/components/common/models/comment.model';
 
  const POST_URL = 'http://localhost:8080/comments/create';
  const DELETE_URL = `http://localhost:8080/comments/delete/`;
@@ -16,11 +17,7 @@ export class CommentService {
   ) { }
 
   getAllForPost(postId: string) {
-    return this.http.get<Object[]>(ALL_FOR_POST + postId, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    })
+    return this.http.get<Comment[]>(ALL_FOR_POST + postId)
   }
 
   postComment(body: Object) {
@@ -28,10 +25,6 @@ export class CommentService {
   }
 
   deleteComment(id: string) {
-    return this.http.delete(DELETE_URL + id, {
-      headers: new HttpHeaders({
-        'Authorization': `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.delete(DELETE_URL + id);
   }
 }

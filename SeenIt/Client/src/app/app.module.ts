@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -13,26 +13,17 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { ContentComponent } from './components/common/content/content.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
-import { PostCreateComponent } from './components/posts/post-create/post-create.component';
-import { PostDetailsComponent } from './components/posts/post-details/post-details.component';
-import { PostEditComponent } from './components/posts/post-edit/post-edit.component';
-import { PostListComponent } from './components/posts/post-list/post-list.component';
-import { JwtInterceptorService } from './core/interceptors/jwt-interceptor';
-import { CommentComponent } from './components/comments/comment/comment.component';
+import { PostsModule } from './components/posts/posts/posts.module';
+import { CoreModule } from './core/core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    PostListComponent,
-    PostCreateComponent,
-    PostEditComponent,
-    PostDetailsComponent,
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +31,11 @@ import { CommentComponent } from './components/comments/comment/comment.componen
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    PostsModule,
+    CoreModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
