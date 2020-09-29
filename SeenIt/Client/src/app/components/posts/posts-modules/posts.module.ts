@@ -5,8 +5,9 @@ import { PostDetailsComponent } from '../post-details/post-details.component';
 import { PostEditComponent } from '../post-edit/post-edit.component';
 import { PostListComponent } from '../post-list/post-list.component';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { CommentComponent } from '../../comments/comment/comment.component';
+import { CommentsModule } from '../../comments/comments.module';
+import { PostRoutnigModule } from './posts-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -14,12 +15,12 @@ import { CommentComponent } from '../../comments/comment/comment.component';
     PostCreateComponent,
     PostEditComponent,
     PostDetailsComponent,
-    CommentComponent
   ],
   imports: [
     CommonModule,
     FormsModule, 
-    RouterModule,
+    PostRoutnigModule,
+    CommentsModule
   ]
 })
 export class PostsModule { }

@@ -22,9 +22,9 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
     this.route.url.subscribe((segmentArr: UrlSegment[]) => {
       if (segmentArr.length === 1) {
-        this.allPosts$ = this.postService.getAll() 
+        this.allPosts$ = this.postService.getUserPosts()
       } else {
-       this.allPosts$ = this.postService.getUserPosts()
+        this.allPosts$ = this.postService.getAll() 
       }
     })
   }
