@@ -1,0 +1,7 @@
+header {
+    position: relative;
+  }
+  
+  .logo, .header {
+    font-size: 3em;
+  }

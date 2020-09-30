@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { PostService } from '../services/post.service';
-import { CommentService } from '../services/comment.service';
+import { CommentService } from 'src/app/core/services/comment.service';
+import { PostService } from 'src/app/core/services/post.service';
 
 @Component({
   selector: 'app-post-details',

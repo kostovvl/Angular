@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from '../services/post.service';
+import { PostService } from 'src/app/core/services/post.service';
+
 
 @Component({
   selector: 'app-post-edit',

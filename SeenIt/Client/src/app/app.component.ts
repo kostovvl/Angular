@@ -1,6 +1,7 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './core/services/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,7 @@ export class AppComponent implements DoCheck {
 
   logout() {
     this.authService.logout()
-      .subscribe(() => {
-        localStorage.clear();
         this.router.navigate([ '/login' ])
-      })
+      
   }
 }
