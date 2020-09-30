@@ -11,15 +11,10 @@
       <input type="submit" [disabled]="f.invalid" value="Add Comment" id="btnPostComment">
     </form>
   </div>
-  <ng-template [ngIf]="comments">
-    <article *ngFor="let commentInfo of comments" class="post post-content">
-      <p>{{commentInfo['content']}}</p>
-      <div class="info">
-        submitted by {{commentInfo['author']}} |
-        <button *ngIf="isAuthor()" (click)="deleteComment(commentInfo['_id'])" class="deleteLink">
-          delete
-        </button>
-      </div>
-    </article>
-  </ng-template>
+  <div *ngFor="let commentInfo of comments$ | async">
+    <app-comment
+    [commentInfo] = "commentInfo"
+    (deleteEvent) = "deleteComment($event)"
+    ></app-comment>
+  </div>
 </section>

@@ -16,7 +16,7 @@ export class CommentService {
   ) { }
 
   getAllForPost(postId: string) {
-    return this.http.get<Object[]>(this.all_for_post + postId)
+    return this.http.get<Comment[]>(this.all_for_post + postId)
   }
 
   postComment(body: Object) {

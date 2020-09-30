@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { PostService } from 'src/app/core/services/post.service';
 import Post from '../models/post.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-details',
@@ -13,7 +14,7 @@ import Post from '../models/post.model';
 export class PostDetailsComponent implements OnInit {
   @ViewChild('f') createCommentForm: NgForm;
   post: Post;
-  comments: Object[];
+  comments$: Observable<Comment[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,18 +28,12 @@ export class PostDetailsComponent implements OnInit {
     this.postService.getDetails(id)
       .subscribe((data) => {
         this.post = data;
-        this.commentService.getAllForPost(this.post['id'])
-          .subscribe((data) => {
-            this.comments = data;
-          });
+      this.comments$ =  this.commentService.getAllForPost(this.post['id']);
       });
   }
 
   loadComments() {
-    this.commentService.getAllForPost(this.post['_id'])
-      .subscribe((data) => {
-        this.comments = data;
-      });
+    this.comments$ = this.commentService.getAllForPost(this.post['id'])
   }
 
   deleteComment(id: string) {

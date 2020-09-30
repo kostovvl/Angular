@@ -1,3 +1,7 @@
-<p>
-  comment works!
-</p>
+<p>{{commentInfo['body']}}</p>
+<div class="info">
+  submitted by {{commentInfo['author']}} |
+  <button *ngIf="isAuthor()" (click)="deleteComment(commentInfo['id'])" class="deleteLink">
+    delete
+  </button>
+</div>
