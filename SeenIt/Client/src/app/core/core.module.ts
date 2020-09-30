@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { CommentService } from './services/comment.service';
 import { PostService } from './services/post.service';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -12,7 +14,8 @@ import { PostService } from './services/post.service';
   providers: [
     AuthService, 
     CommentService,
-    PostService
+    PostService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
   ]
 })
 export class CoreModule { }

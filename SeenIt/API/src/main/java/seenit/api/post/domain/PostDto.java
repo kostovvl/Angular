@@ -5,6 +5,7 @@ public class PostDto {
     public String title;
     public String body;
     public String imageUrl;
+    public String author;
     public long creatorId;
 
 
@@ -41,6 +42,14 @@ public class PostDto {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public long getCreatorId() {

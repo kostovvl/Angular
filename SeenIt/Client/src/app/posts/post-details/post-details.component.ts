@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { PostService } from 'src/app/core/services/post.service';
+import Post from '../models/post.model';
 
 @Component({
   selector: 'app-post-details',
@@ -11,7 +12,7 @@ import { PostService } from 'src/app/core/services/post.service';
 })
 export class PostDetailsComponent implements OnInit {
   @ViewChild('f') createCommentForm: NgForm;
-  post: Object;
+  post: Post;
   comments: Object[];
 
   constructor(
@@ -26,7 +27,7 @@ export class PostDetailsComponent implements OnInit {
     this.postService.getDetails(id)
       .subscribe((data) => {
         this.post = data;
-        this.commentService.getAllForPost(this.post['_id'])
+        this.commentService.getAllForPost(this.post['id'])
           .subscribe((data) => {
             this.comments = data;
           });
@@ -49,8 +50,9 @@ export class PostDetailsComponent implements OnInit {
 
   postComment() {
     const body = this.createCommentForm.value;
-    body['postId'] = this.post['_id'];
+    body['postId'] = this.post['id'];
     body['author'] = localStorage.getItem('username');
+    body['creatorId'] = localStorage.getItem('userId');
 
     this.commentService
       .postComment(this.createCommentForm.value)
@@ -61,7 +63,7 @@ export class PostDetailsComponent implements OnInit {
   }
 
   isAuthor() {
-    return this.post['_acl']['creator'] === localStorage.getItem('userId');
+    return this.post['creatorId'] === localStorage.getItem('userId');
   }
 
   deletePost(id: string) {

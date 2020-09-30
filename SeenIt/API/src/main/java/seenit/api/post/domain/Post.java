@@ -14,6 +14,7 @@ public class Post extends BaseEntity {
     public String title;
     public String body;
     public String imageUrl;
+    public String author;
     public UserEntity creatorId;
     public Set<Comment> comments;
 
@@ -45,6 +46,15 @@ public class Post extends BaseEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Column(name = "author")
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @ManyToOne()

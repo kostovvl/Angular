@@ -6,6 +6,7 @@ public class CommentDto {
     public String body;
     public long postId;
     public long creatorId;
+    public String author;
 
     public CommentDto() {
     }
@@ -40,5 +41,13 @@ public class CommentDto {
 
     public void setCreatorId(long creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

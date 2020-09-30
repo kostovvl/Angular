@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { PostService } from 'src/app/core/services/post.service';
+import Post from '../models/post.model';
 
 
 @Component({
@@ -9,7 +11,8 @@ import { PostService } from 'src/app/core/services/post.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  allPosts: Object[];
+  
+  allPosts$: Observable<Post[]>;
 
   constructor(
     private postService: PostService,
@@ -20,37 +23,19 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
     this.route.url.subscribe((segmentArr: UrlSegment[]) => {
       if (segmentArr.length === 1) {
-        this.postService.getAll()
-          .subscribe((data) => {
-            this.allPosts = data;
-          });
+         this.allPosts$ = this.postService.getAll();
       } else {
-        this.postService.getUserPosts()
-          .subscribe((data) => {
-            this.allPosts = data;
-          });
+        this.allPosts$ = this.postService.getUserPosts();
       }
     })
   }
 
-  onDeletePost(id: string) {
-    this.postService.deletePost(id)
-      .subscribe(() => {
-        this.postService.getAll()
-          .subscribe((data) => {
-            this.allPosts = data;
-          });
-      })
-  }
-
-  isAuthor(post: Object) {
-    return post['_acl']['creator'] === localStorage.getItem('userId');
-  }
+ 
 
   deletePost(id: string) {
     this.postService.deletePost(id)
       .subscribe(() => {
-        this.router.navigate(['/posts']);
+        this.allPosts$ = this.postService.getAll();
       })
   }
 }

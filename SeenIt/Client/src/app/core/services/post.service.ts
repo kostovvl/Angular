@@ -1,45 +1,48 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Post from 'src/app/posts/models/post.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private readonly BASE_URL = `https://baas.kinvey.com/appdata/`;
-  private readonly ALL_POSTS = `hui`;
-  private readonly CREATE_POST = `${this.BASE_URL}/posts`;
+  private readonly create_post = 'http://localhost:8080/posts/create'
+  private readonly all_posts = 'http://localhost:8080/posts/all'
+  private readonly user_posts = 'http://localhost:8080/posts/user/'
+  private readonly delete_post = 'http://localhost:8080/posts/delete/'
+  private readonly details_post = 'http://localhost:8080/posts/details/'
 
   constructor(
     private http: HttpClient
   ) { }
 
   getAll() {
-    return this.http.get<Object[]>(this.ALL_POSTS);
+    return this.http.get<Post[]>(this.all_posts);
   }
 
   createPost(body: Object) {
-    return this.http.post(this.CREATE_POST, body);
+    return this.http.post<Post>(this.create_post, body);
   }
 
   getById(id: string) {
-    return this.http.get<Object>(this.CREATE_POST + `/${id}`);
+    return this.http.get<Object>('hui');
   }
 
   getDetails(id: string) {
-    return this.http.get<Object>(this.CREATE_POST + `/${id}`);
+    return this.http.get<Post>(this.details_post + id);
   }
 
   editPost(body: Object, id: string) {
-    return this.http.put(this.CREATE_POST + `/${id}`, body);
+    return this.http.put('hi', body);
   }
 
   deletePost(id: string) {
-    return this.http.delete(this.CREATE_POST + `/${id}`);
+    return this.http.delete(this.delete_post + id);
   }
 
   getUserPosts() {
-    return this.http
-      .get<Object[]>(`hui`);
+    const userId = localStorage.getItem('userId')
+    return this.http.get<Post[]>(this.user_posts + userId);
   }
 }

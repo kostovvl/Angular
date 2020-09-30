@@ -36,9 +36,9 @@ export class AuthService {
   }
 
   saveUserInfo(res: Object) {
-    localStorage.setItem('username', res['username']);
+    localStorage.setItem('username', res['user']);
     localStorage.setItem('roles', res['roles'])
-    localStorage.setItem('token', res['authtoken']);
+    localStorage.setItem('token', res['token']);
     localStorage.setItem('userId', res['id']);
   }
 }

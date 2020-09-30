@@ -7,7 +7,7 @@ import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { CommentsModule } from '../comments/comments.module';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,12 +21,13 @@ import { Router, RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     CommentsModule
-  ], exports: [
+  ], 
+  exports: [
     PostCreateComponent, 
     PostDetailsComponent, 
     PostEditComponent,
     PostListComponent,
-    PostComponent
+    PostComponent, 
   ]
 })
 export class PostsModule { }

@@ -12,7 +12,8 @@ public class Comment extends BaseEntity {
 
     public String body;
     public Post postId;
-    private UserEntity creatorId;
+    public UserEntity creatorId;
+    public String author;
 
     public Comment() {
     }
@@ -46,5 +47,13 @@ public class Comment extends BaseEntity {
 
     public void setCreatorId(UserEntity creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
