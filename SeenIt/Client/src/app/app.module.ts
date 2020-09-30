@@ -7,19 +7,22 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { LoginComponent } from './components/authentication/login/login.component';
-import { RegisterComponent } from './components/authentication/register/register.component';
-import { CoreModule } from './core/core/core.module';
-import { SharedModule } from './components/common/shared.module';
-
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostCreateComponent } from './post-create/post-create.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-  
+    PostListComponent,
+    PostCreateComponent,
+    PostEditComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,11 +30,11 @@ import { SharedModule } from './components/common/shared.module';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    CoreModule,
-    SharedModule
+    ToastrModule.forRoot()
   ],
-
+  providers: [
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
