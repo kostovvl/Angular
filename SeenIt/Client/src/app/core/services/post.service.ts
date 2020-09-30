@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PostService {
   private readonly BASE_URL = `https://baas.kinvey.com/appdata/`;
-  private readonly ALL_POSTS = `${this.BASE_URL}/posts?query={}&sort={"_kmd.ect": -1}`;
+  private readonly ALL_POSTS = `hui`;
   private readonly CREATE_POST = `${this.BASE_URL}/posts`;
 
   constructor(
@@ -40,6 +40,6 @@ export class PostService {
 
   getUserPosts() {
     return this.http
-      .get<Object[]>(`${this.BASE_URL}/posts?query={"author":"${localStorage.getItem('username')}"}&sort={"_kmd.ect": -1}`);
+      .get<Object[]>(`hui`);
   }
 }

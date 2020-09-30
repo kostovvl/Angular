@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly BASE_URL = `https://baas.kinvey.com/user/`;
+  private readonly register_url = 'http://localhost:8080/auth/register';
+  private readonly signin_url = 'http://localhost:8080/auth/login'
 
   constructor(
     private http: HttpClient
@@ -18,14 +19,15 @@ export class AuthService {
   }
 
   signUp(body: Object) {
-    return this.http.post(this.BASE_URL, body,);
+    return this.http.post(this.register_url, body);
   }
 
   signIn(body: Object) {
-    return this.http.post(`${this.BASE_URL}/login`, body);
+    return this.http.post(this.signin_url, body);
   }
 
   logout() {
+    localStorage.clear();
     // return this.http.post(`${this.BASE_URL}/_logout`);
   }
 
@@ -35,7 +37,8 @@ export class AuthService {
 
   saveUserInfo(res: Object) {
     localStorage.setItem('username', res['username']);
-    localStorage.setItem('token', res['_kmd']['authtoken']);
-    localStorage.setItem('userId', res['_id']);
+    localStorage.setItem('roles', res['roles'])
+    localStorage.setItem('token', res['authtoken']);
+    localStorage.setItem('userId', res['id']);
   }
 }

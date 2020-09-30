@@ -8,24 +8,15 @@ import { AuthService } from './core/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements DoCheck {
-  date: Date = new Date();
-  username: string = '';
-  isLoggedIn: boolean;
+export class AppComponent  {
+
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  ngDoCheck() {
-    this.username = localStorage.getItem('username');
-    this.isLoggedIn = this.authService.isAuthenticated();
-  }
+  
 
-  logout() {
-    this.authService.logout()
-        this.router.navigate([ '/login' ])
-      
-  }
+  
 }
