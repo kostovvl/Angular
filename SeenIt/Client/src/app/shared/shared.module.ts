@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { PostsModule } from '../posts/posts.module';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { RouterModule } from '@angular/router';
+import { PostsModule } from '../posts/posts.module';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +17,6 @@ import { RouterModule } from '@angular/router';
     CommonModule, 
     RouterModule,
     AuthenticationModule,
-    PostsModule
   ], 
   exports: [
     HeaderComponent,
