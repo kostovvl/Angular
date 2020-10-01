@@ -23,6 +23,7 @@ export class PostEditComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.postService.getById(id)
       .subscribe((data) => {
+        console.log(data)
         this.post = data;
       });
   }
@@ -31,7 +32,7 @@ export class PostEditComponent implements OnInit {
     const body = this.editPostForm.value;
     body['author'] = localStorage.getItem('username');
 
-    this.postService.editPost(body, this.post['_id'])
+    this.postService.editPost(body, this.post['id'])
       .subscribe(() => {
         this.router.navigate([ '/posts' ]);
       })

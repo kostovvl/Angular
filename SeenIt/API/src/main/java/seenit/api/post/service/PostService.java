@@ -83,6 +83,14 @@ public class PostService {
                 }).orElse(null);
     }
 
+    public PostDto editPost(long postId, PostDto editedPost) {
+        Post forEdit = this.postRepository.getOne(postId);
+        forEdit.setTitle(editedPost.getTitle());
+        forEdit.setImageUrl(editedPost.getImageUrl());
+        forEdit.setBody(editedPost.getBody());
+        return this.mapper.map(this.postRepository.saveAndFlush(forEdit), PostDto.class);
+    }
+
     @Transactional
     public void deletePost(long postId, String username) {
         UserEntity userEntity = this.userEntityRepository.findByUsername(username).orElse(null);

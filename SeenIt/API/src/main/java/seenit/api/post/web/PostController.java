@@ -52,6 +52,17 @@ public class PostController {
         }
     }
 
+    @PutMapping("edit/{postId}")
+    public ResponseEntity<?> editPost(@PathVariable(name = "postId") long postId,
+                                      @RequestBody() PostDto editedPost) {
+        try {
+            PostDto result = this.postService.editPost(postId, editedPost);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping("/delete/{postId}")
     public ResponseEntity<?> deletePost(@PathVariable(name = "postId") long postId, Principal principal) {
         try {

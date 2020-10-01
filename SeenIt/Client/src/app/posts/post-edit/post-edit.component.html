@@ -7,13 +7,13 @@
     <ng-template [ngIf]="post">
       <form #f="ngForm" (ngSubmit)="editPost()" id="editPostForm" class="submitForm">
         <label>Link URL:</label>
-        <input required [(ngModel)]="post.url" name="url" type="text">
+        <input required [(ngModel)]="post.imageUdr" name="imageUrl" type="text">
         <label>Link Title:</label>
         <input required [(ngModel)]="post.title" name="title" type="text" value="{{post.title}}">
         <label>Link Thumbnail Image (optional):</label>
         <input required [(ngModel)]="post.imageUrl" name="imageUrl" type="text">
         <label>Description (optional):</label>
-        <textarea required [(ngModel)]="post.description" name="description"></textarea>
+        <textarea required [(ngModel)]="post.body" name="body"></textarea>
         <input id="btnEditPost" [disabled]="f.invalid" type="submit" value="Edit Post">
       </form>
     </ng-template>

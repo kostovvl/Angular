@@ -12,6 +12,8 @@ export class PostService {
   private readonly user_posts = 'http://localhost:8080/posts/user/'
   private readonly delete_post = 'http://localhost:8080/posts/delete/'
   private readonly details_post = 'http://localhost:8080/posts/details/'
+  private readonly edit_post = 'http://localhost:8080/posts/edit/'
+
 
   constructor(
     private http: HttpClient
@@ -26,7 +28,7 @@ export class PostService {
   }
 
   getById(id: string) {
-    return this.http.get<Object>('hui');
+    return this.http.get<Comment>(this.details_post + id);
   }
 
   getDetails(id: string) {
@@ -34,7 +36,7 @@ export class PostService {
   }
 
   editPost(body: Object, id: string) {
-    return this.http.put('hi', body);
+    return this.http.put(this.edit_post + id, body);
   }
 
   deletePost(id: string) {
