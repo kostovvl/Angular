@@ -1,6 +1,6 @@
 <section id="viewCatalog">
   <div class="artickle">
-    <div *ngFor="let post of allPosts$ | async">
+    <div *ngFor="let post of allPosts$ | async" class="post" >
       <app-post
        [post] = "post"
       (deletePostEvent) = deletePost($event)></app-post>

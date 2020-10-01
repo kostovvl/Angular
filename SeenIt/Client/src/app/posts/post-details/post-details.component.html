@@ -1,5 +1,5 @@
 <section id="viewComments">
-  <ng-template [ngIf]="post">
+  <ng-template [ngIf]="post" class="post">
    <app-post
    [post] = "post"
    ></app-post>
@@ -11,7 +11,7 @@
       <input type="submit" [disabled]="f.invalid" value="Add Comment" id="btnPostComment">
     </form>
   </div>
-  <div *ngFor="let commentInfo of comments$ | async">
+  <div *ngFor="let commentInfo of comments$ | async" class="post post-content">
     <app-comment
     [commentInfo] = "commentInfo"
     (deleteEvent) = "deleteComment($event)"
