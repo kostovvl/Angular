@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Comment extends BaseEntity {
 
     private String content;
+    private boolean approved;
     private String creatorName;
     private long creatorId;
     private Post post;
@@ -21,6 +22,15 @@ public class Comment extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Column(name = "is_approved")
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     @Column(name = "creator_name")

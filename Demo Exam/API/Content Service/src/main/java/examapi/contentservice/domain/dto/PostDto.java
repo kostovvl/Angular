@@ -8,6 +8,7 @@ public class PostDto extends BaseDto {
     private String content;
     private LocalDateTime addedOn;
     private LocalDateTime lastUpdated;
+    private boolean approved;
     private String creatorName;
     private long creatorId;
     private long categoryId;
@@ -45,6 +46,14 @@ public class PostDto extends BaseDto {
 
     public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public String getCreatorName() {

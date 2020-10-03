@@ -5,6 +5,7 @@ import examapi.contentservice.domain.entity.Post;
 public class CommentDto extends BaseDto {
 
     private String content;
+    private boolean approved;
     private String creatorName;
     private long creatorId;
     private long postId;
@@ -18,6 +19,14 @@ public class CommentDto extends BaseDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public String getCreatorName() {
