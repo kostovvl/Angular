@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/posts")
-public class PostController extends BaseController {
+public class PostController {
 }

@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/comments")
-public class CommentController extends BaseController {
+public class CommentController {
 }
