@@ -26,12 +26,12 @@ public class CategoryService {
         return this.mapper.map(this.categoryRepository.saveAndFlush(category), CategoryDto.class);
     }
 
-    public void updateCategory(CategoryDto updatedCategory) {
-        Category category = this.categoryRepository.findByName(updatedCategory.getName())
-                .orElseThrow(IllegalArgumentException::new);
+    public void updateCategory(long categoryId, CategoryDto updatedCategory) {
+        Category category = this.categoryRepository.getOne(categoryId);
 
         category.setName(updatedCategory.getName());
         this.categoryRepository.saveAndFlush(category);
+
     }
 
     public void deleteCategory(long categoryId) {

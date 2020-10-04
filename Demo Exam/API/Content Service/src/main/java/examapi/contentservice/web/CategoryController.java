@@ -6,10 +6,7 @@ import examapi.contentservice.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller()
 @RequestMapping("/categories")
@@ -33,6 +30,26 @@ public class CategoryController {
             return new ResponseEntity<>(categoryDto, HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @PutMapping("/update/{categoryId}/{apiKey}")
+    public ResponseEntity<?> updateCategory(@PathVariable(name = "categoryId") long categoryId,
+                                            @PathVariable(name = "apiKey") String apiKey
+                                            ,@RequestBody CategoryDto updateCategoryDto) {
+        try {
+            this.apiKey.checkKey(apiKey);
+            this.categoryService.updateCategory(categoryId, updateCategoryDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @PostMapping("/delete/{categoryId}/{apiKey}")
+    public ResponseEntity<?> deleteCategory(@PathVariable(name = "categoryId") long categoryId
+                                            ,@PathVariable(name = "apiKey") String apiKey) {
+       return new ResponseEntity<>("Method not implemented", HttpStatus.OK);
     }
 
 }
