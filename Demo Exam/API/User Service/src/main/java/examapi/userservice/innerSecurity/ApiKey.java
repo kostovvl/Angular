@@ -13,6 +13,6 @@ public class ApiKey {
 
     public void setKey(String key) {
         this.key = key;
-        System.out.println("Key" + key + "received!");
+        System.out.println("Key " + key + " received!");
     }
 }

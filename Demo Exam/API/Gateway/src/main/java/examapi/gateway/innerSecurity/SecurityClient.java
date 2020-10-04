@@ -21,7 +21,8 @@ public class SecurityClient {
     }
 
     public UserEntity findByUsername(String username) {
-        return this.restTemplate.getForObject(Global.User_Service_Url + "login", UserEntity.class);
+        return this.restTemplate.getForObject(Global.User_Service_Url + "login/" + username + "/" + this.apiKey.getKey(),
+                UserEntity.class);
     }
 
     public void sendKeys() {
