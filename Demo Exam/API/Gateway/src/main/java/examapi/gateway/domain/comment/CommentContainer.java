@@ -4,12 +4,9 @@ import java.util.List;
 
 public class CommentContainer {
 
+    public CommentContainer() {}
+
     public List<Comment> all;
-
-    public CommentContainer() {
-
-    }
-
 
     public List<Comment> getAll() {
         return all;

@@ -39,13 +39,7 @@ public class CommentController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/approve/{commentId}/{apiKey}")
-    public ResponseEntity<?> approve(@PathVariable(name = "commentId") long commentId,
-                                     @PathVariable(name = "apiKey") String apiKey) {
-        this.apiKey.checkKey(apiKey);
-        this.commentService.approveComment(commentId);
-        return new ResponseEntity<>(true, HttpStatus.OK);
-    }
+
 
     @GetMapping("/getForPost/{postId}/{apiKey}")
     public ResponseEntity<?> getForPost (@PathVariable(name = "postId") long postId,
@@ -53,6 +47,14 @@ public class CommentController {
         this.apiKey.checkKey(apiKey);
         AllCommentsDto result = new AllCommentsDto(this.commentService.getByPost(postId));
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PutMapping("/approve/{commentId}/{apiKey}")
+    public ResponseEntity<?> approve(@PathVariable(name = "commentId") long commentId,
+                                     @PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
+        this.commentService.approveComment(commentId);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{commentId}/{apiKey}")

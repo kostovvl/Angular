@@ -48,16 +48,18 @@ public class CommentService {
         return updatedComment;
     }
 
-    public void approveComment(long id) {
-        Comment comment = this.commentRepository.getOne(id);
-        comment.setApproved(true);
-    }
+
 
     public List<CommentDto> getByPost(long postId) {
         return this.commentRepository.getCommentsForPost(postId)
                 .stream()
                 .map(c -> this.mapper.map(c, CommentDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public void approveComment(long id) {
+        Comment comment = this.commentRepository.getOne(id);
+        comment.setApproved(true);
     }
 
     @Transactional
