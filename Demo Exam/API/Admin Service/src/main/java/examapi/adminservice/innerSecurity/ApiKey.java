@@ -15,4 +15,10 @@ public class ApiKey {
         this.key = key;
         System.out.println("Key" + this.key + "received!");
     }
+
+    public void checkKey(String apiKey) {
+        if (!this.key.equals(apiKey)) {
+            throw new IllegalArgumentException("Unauthorized!");
+        }
+    }
 }

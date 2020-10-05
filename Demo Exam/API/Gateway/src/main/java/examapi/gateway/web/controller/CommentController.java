@@ -2,8 +2,8 @@ package examapi.gateway.web.controller;
 
 import examapi.gateway.domain.comment.Comment;
 import examapi.gateway.domain.comment.CommentContainer;
+import examapi.gateway.web.client.AdminClient;
 import examapi.gateway.web.client.CommentClient;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     private final CommentClient commentClient;
+    private final AdminClient adminClient;
 
-    public CommentController(CommentClient commentClient) {
+    public CommentController(CommentClient commentClient, AdminClient adminClient) {
         this.commentClient = commentClient;
+        this.adminClient = adminClient;
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Comment comment) {
         Comment result = this.commentClient.create(comment);
+        this.adminClient.addCommentForApproval(result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

@@ -46,9 +46,7 @@ public class PostService {
         existingPosts.add(post);
         category.setPosts(existingPosts); //Moje da trqbva da flush-na category - to
 
-        this.postRepository.saveAndFlush(post);
-
-        return newPost;
+        return this.mapper.map(this.postRepository.saveAndFlush(post), PostDto.class);
     }
 
     public PostDto update(long postId, PostDto updated) {

@@ -2,6 +2,7 @@ package examapi.gateway.web.controller;
 
 import examapi.gateway.domain.post.Post;
 import examapi.gateway.domain.post.PostContainer;
+import examapi.gateway.web.client.AdminClient;
 import examapi.gateway.web.client.PostClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostClient postClient;
+    private final AdminClient adminClient;
 
-    public PostController(PostClient postClient) {
+    public PostController(PostClient postClient, AdminClient adminClient) {
         this.postClient = postClient;
+        this.adminClient = adminClient;
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Post post) {
         Post result = this.postClient.create(post);
+        this.adminClient.addPostForApproval(post);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

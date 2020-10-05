@@ -36,9 +36,9 @@ public class CommentService {
 
         comment.setPost(post);
         comment.setApproved(false);
-        // Maybe will have to save the post...
+
         this.commentRepository.saveAndFlush(comment);
-        return newComment;
+        return this.mapper.map(this.commentRepository.saveAndFlush(comment), CommentDto.class);
     }
 
     public CommentDto updateComment(long id, CommentDto updatedComment) {

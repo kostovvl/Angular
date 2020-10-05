@@ -45,6 +45,8 @@ public class PostClient {
                     + postId + "/"  + this.apiKey.getKey(), Post.class);
     }
 
+    //approve methood - put
+
     public void delete (long postId) {
         this.restTemplate.delete(Global.Content_Service_Url + "posts/delete/"
         + postId + "/" + this.apiKey.getKey());

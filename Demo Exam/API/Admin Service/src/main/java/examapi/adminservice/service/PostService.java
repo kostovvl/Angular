@@ -1,5 +1,6 @@
 package examapi.adminservice.service;
 
+import examapi.adminservice.domain.Post;
 import examapi.adminservice.repository.PostsRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +11,13 @@ public class PostService {
 
     public PostService(PostsRepository postsRepository) {
         this.postsRepository = postsRepository;
+    }
+
+    public void add(Post post) {
+        this.postsRepository.saveAndFlush(post);
+    }
+
+    public void delete(long postId) {
+        this.postsRepository.deleteById(postId);
     }
 }
