@@ -13,7 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("select p from Post as p where p.approved = true")
     List<Post> findAllApproved();
 
-    @Query("select p from Post as p where p.approved = true and p.category.id =: categoryId")
+    @Query("select p from Post as p where p.approved = true and p.category.id = :categoryId")
     List<Post> findAllApprovedByCategory(long categoryId);
 
 }

@@ -6,6 +6,10 @@ public class CommentContainer {
 
     public CommentContainer() {}
 
+    public CommentContainer(List<Comment> comments) {
+        this.all = comments;
+    }
+
     public List<Comment> all;
 
     public List<Comment> getAll() {

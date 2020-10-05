@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    @Query("select c from Comment as c where c.post.id =: id and c.approved = true")
+    @Query("select c from Comment as c where c.post.id = :postId and c.approved = true")
     List<Comment> getCommentsForPost(long postId);
 
 }

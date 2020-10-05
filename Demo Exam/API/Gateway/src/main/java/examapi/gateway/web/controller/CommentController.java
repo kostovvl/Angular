@@ -1,10 +1,11 @@
 package examapi.gateway.web.controller;
 
 import examapi.gateway.domain.comment.Comment;
+import examapi.gateway.domain.comment.CommentContainer;
 import examapi.gateway.web.client.CommentClient;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
@@ -23,6 +24,13 @@ public class CommentController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/getForPost/{postId}")
+    public ResponseEntity<?> getForPost(@PathVariable(name = "postId") long postId) {
+        CommentContainer result = new CommentContainer(this.commentClient.getForPost(postId).getAll());
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     @PutMapping("/update/{commentId}")
     public ResponseEntity<?> update(@PathVariable(name = "commentId") long commentId,
                                     @RequestBody() Comment comment) {
@@ -30,11 +38,6 @@ public class CommentController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/approve/{commentId}")
-    public ResponseEntity<?> approve(@PathVariable(name = "commentId") long commentId) {
-        this.commentClient.approve(commentId);
-        return new ResponseEntity<>(true, HttpStatus.OK);
-    }
 
     @DeleteMapping("/delete/{commentId}")
     public ResponseEntity<?> delete(@PathVariable(name = "commentId") long commentId) {

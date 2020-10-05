@@ -1,14 +1,12 @@
 package examapi.contentservice.web;
 
 import examapi.contentservice.domain.dto.CommentDto;
-import examapi.contentservice.domain.entity.AllCommentsDto;
+import examapi.contentservice.domain.dto.AllCommentsDto;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/comments")

@@ -1,4 +1,4 @@
-package examapi.contentservice.domain.entity;
+package examapi.contentservice.domain.dto;
 
 import examapi.contentservice.domain.dto.PostDto;
 

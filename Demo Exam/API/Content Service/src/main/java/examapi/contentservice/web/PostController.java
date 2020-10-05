@@ -1,7 +1,7 @@
 package examapi.contentservice.web;
 
 import examapi.contentservice.domain.dto.PostDto;
-import examapi.contentservice.domain.entity.AllPostsDto;
+import examapi.contentservice.domain.dto.AllPostsDto;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.service.PostService;
 import org.springframework.http.HttpStatus;
@@ -44,7 +44,7 @@ public class PostController {
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
-    @GetMapping("/by_category/{categoryId}/{apiKey}")
+    @GetMapping("/byCategory/{categoryId}/{apiKey}")
     public ResponseEntity<?> all(@PathVariable(name = "categoryId") long categoryId,
                                  @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
@@ -68,7 +68,7 @@ public class PostController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
-    @PutMapping("/approve/{postId}/{apiKey}")
+    @DeleteMapping("/delete/{postId}/{apiKey}")
     public ResponseEntity<?> delete(@PathVariable(name = "postId") long postId,
                                      @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
