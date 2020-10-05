@@ -34,8 +34,8 @@ public class CommentController {
     @PutMapping("/update/{commentId}")
     public ResponseEntity<?> update(@PathVariable(name = "commentId") long commentId,
                                     @RequestBody() Comment comment) {
-        Comment result = this.commentClient.update(commentId, comment);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        this.commentClient.update(commentId, comment);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 

@@ -30,9 +30,9 @@ public class CommentClient {
     }
 
 
-    public Comment update(long commentId, Comment comment) {
-        return this.restTemplate.postForObject(Global.Content_Service_Url + "comments/update/" +
-                commentId + "/" + this.apiKey.getKey(), comment, Comment.class);
+    public void update(long commentId, Comment comment) {
+         this.restTemplate.put(Global.Content_Service_Url + "comments/update/" +
+                commentId + "/" + this.apiKey.getKey(), comment);
     }
 
     public void approve (long commentId) {
@@ -41,7 +41,7 @@ public class CommentClient {
     }
 
     public void delete(long commentId) {
-        this.restTemplate.delete(Global.Content_Service_Url + "comments/delete"
+        this.restTemplate.delete(Global.Content_Service_Url + "comments/delete/"
         + commentId + "/" + this.apiKey.getKey());
     }
 }

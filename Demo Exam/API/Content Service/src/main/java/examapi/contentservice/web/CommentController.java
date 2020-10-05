@@ -2,6 +2,7 @@ package examapi.contentservice.web;
 
 import examapi.contentservice.domain.dto.CommentDto;
 import examapi.contentservice.domain.dto.AllCommentsDto;
+import examapi.contentservice.domain.entity.Comment;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.service.CommentService;
 import org.springframework.http.HttpStatus;
@@ -54,6 +55,7 @@ public class CommentController {
         this.commentService.approveComment(commentId);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
+
 
     @DeleteMapping("/delete/{commentId}/{apiKey}")
     public ResponseEntity<?> delete(@PathVariable(name = "commentId") long commentId,

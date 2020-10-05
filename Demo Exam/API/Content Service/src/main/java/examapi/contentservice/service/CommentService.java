@@ -45,6 +45,8 @@ public class CommentService {
         Comment comment = this.commentRepository.getOne(id);
         comment.setContent(updatedComment.getContent());
 
+        this.commentRepository.saveAndFlush(comment);
+
         return updatedComment;
     }
 
@@ -61,6 +63,7 @@ public class CommentService {
         Comment comment = this.commentRepository.getOne(id);
         comment.setApproved(true);
     }
+
 
     @Transactional
     public void delete(long id) {
