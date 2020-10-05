@@ -29,5 +29,6 @@ public class SecurityClient {
         this.keyGenerator.generateKey();
         this.restTemplate.postForObject(Global.User_Service_Url + "security", this.apiKey.getKey(), String.class);
         this.restTemplate.postForObject(Global.Content_Service_Url + "security", this.apiKey.getKey(), String.class);
+        this.restTemplate.postForObject(Global.Admin_Service_Url + "security", this.apiKey.getKey(), String.class);
     }
 }

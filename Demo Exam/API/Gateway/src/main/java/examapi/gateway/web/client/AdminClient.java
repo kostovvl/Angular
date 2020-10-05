@@ -30,11 +30,11 @@ public class AdminClient {
 
     public void approvePost(long postId) {
         this.restTemplate.put(Global.Admin_Service_Url + "/posts/approve/"
-        + postId + "/" + this.apiKey.getKey(), Object.class);
+        + postId + "/" + this.apiKey.getKey(), String.class);
     }
 
     public void approveComment(long commentId) {
         this.restTemplate.put(Global.Admin_Service_Url + "/comments/approve/"
-                + commentId + "/" + this.apiKey.getKey(), Object.class);
+                + commentId + "/" + this.apiKey.getKey(), String.class);
     }
 }

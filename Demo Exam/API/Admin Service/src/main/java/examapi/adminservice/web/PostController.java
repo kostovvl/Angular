@@ -29,6 +29,7 @@ public class PostController {
     @PutMapping("/approve/{postId}/{apiKey}")
     public void approve(@PathVariable(name = "postId") long postId,
                         @PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
         this.contentClient.approvePost(postId);
         this.postService.delete(postId);
     }

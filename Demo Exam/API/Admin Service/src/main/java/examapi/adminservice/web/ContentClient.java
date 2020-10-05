@@ -18,11 +18,11 @@ public class ContentClient {
     }
 
     public void approvePost(long postId) {
-        this.restTemplate.put(approve_post_url + postId + this.apiKey.getKey(), Object.class);
+        this.restTemplate.put(approve_post_url + postId + "/" + this.apiKey.getKey(), Object.class);
     }
 
     public void approveComment(long commentId) {
-        this.restTemplate.put(approve_comment_url + commentId + this.apiKey.getKey(), Object.class);
+        this.restTemplate.put(approve_comment_url + commentId + "/" + this.apiKey.getKey(), Object.class);
     }
 
 }

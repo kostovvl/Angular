@@ -59,9 +59,10 @@ public class CommentService {
                 .collect(Collectors.toList());
     }
 
-    public void approveComment(long id) {
+    public void approve(long id) {
         Comment comment = this.commentRepository.getOne(id);
         comment.setApproved(true);
+        this.commentRepository.saveAndFlush(comment);
     }
 
 

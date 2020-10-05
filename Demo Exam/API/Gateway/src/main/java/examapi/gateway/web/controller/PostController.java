@@ -23,7 +23,7 @@ public class PostController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Post post) {
         Post result = this.postClient.create(post);
-        this.adminClient.addPostForApproval(post);
+        this.adminClient.addPostForApproval(result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

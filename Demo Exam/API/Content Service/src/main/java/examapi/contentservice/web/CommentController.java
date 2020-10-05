@@ -52,7 +52,7 @@ public class CommentController {
     public ResponseEntity<?> approve(@PathVariable(name = "commentId") long commentId,
                                      @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
-        this.commentService.approveComment(commentId);
+        this.commentService.approve(commentId);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 

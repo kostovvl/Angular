@@ -92,7 +92,8 @@ public class PostService {
 
     public void approve(long postId) {
         Post post = this.postRepository.getOne(postId);
-        post.setApproved(true); // moje da trqbva da go save and flush-na
+        post.setApproved(true);
+        this.postRepository.saveAndFlush(post);
     }
 
     @Transactional

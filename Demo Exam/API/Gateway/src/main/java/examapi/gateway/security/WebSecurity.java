@@ -32,7 +32,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(SIGN_UP_URL).permitAll()
                 .antMatchers( "/furniture/**").hasAnyAuthority("USER")
-                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/admin/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
