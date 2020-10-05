@@ -46,10 +46,12 @@ public class CategoryController {
 
     }
 
-    @PostMapping("/delete/{categoryId}/{apiKey}")
+    @DeleteMapping("/delete/{categoryId}/{apiKey}")
     public ResponseEntity<?> deleteCategory(@PathVariable(name = "categoryId") long categoryId
                                             ,@PathVariable(name = "apiKey") String apiKey) {
-       return new ResponseEntity<>("Method not implemented", HttpStatus.OK);
+        this.apiKey.checkKey(apiKey);
+        this.categoryService.deleteCategory(categoryId);
+       return new ResponseEntity<>( HttpStatus.OK);
     }
 
 }

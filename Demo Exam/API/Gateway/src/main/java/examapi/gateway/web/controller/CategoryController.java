@@ -41,11 +41,9 @@ public class CategoryController {
 
     @DeleteMapping("/delete/{categoryId}")
     public ResponseEntity<?> delete(@PathVariable(name = "categoryId") long categoryId) {
-        boolean result = this.categoryClient.delete(categoryId);
-        if (result) {
+       this.categoryClient.delete(categoryId);
+
             return new ResponseEntity<>(true, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
-        }
+
     }
 }

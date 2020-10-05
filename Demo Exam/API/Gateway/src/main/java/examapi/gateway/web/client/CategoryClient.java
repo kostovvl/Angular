@@ -32,12 +32,10 @@ public class CategoryClient {
         }
     }
 
-    public boolean delete(long categoryId) {
-        try {
-            this.restTemplate.delete(Global.Content_Service_Url + "/categories/" + categoryId + "/" + this.apiKey.getKey());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public void delete(long categoryId) {
+
+            this.restTemplate.delete(Global.Content_Service_Url + "/categories/delete/"
+                    + categoryId + "/" + this.apiKey.getKey());
+
     }
 }
