@@ -23,7 +23,9 @@ public class CategoryService {
 
     public CategoryDto addCategory(CategoryDto newCategory) {
         Category category = this.mapper.map(newCategory, Category.class);
-        return this.mapper.map(this.categoryRepository.saveAndFlush(category), CategoryDto.class);
+        this.categoryRepository.saveAndFlush(category);
+
+        return newCategory;
     }
 
     public void updateCategory(long categoryId, CategoryDto updatedCategory) {

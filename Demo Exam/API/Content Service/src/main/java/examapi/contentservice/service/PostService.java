@@ -1,5 +1,6 @@
 package examapi.contentservice.service;
 
+import examapi.contentservice.domain.dto.PostDto;
 import examapi.contentservice.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -14,4 +15,6 @@ public class PostService {
         this.postRepository = postRepository;
         this.mapper = mapper;
     }
+
+
 }
