@@ -39,7 +39,7 @@ public class CommentController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping("/approve/{commentId}/{apiKey}")
+    @PutMapping("/approve/{commentId}/{apiKey}")
     public ResponseEntity<?> approve(@PathVariable(name = "commentId") long commentId,
                                      @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
