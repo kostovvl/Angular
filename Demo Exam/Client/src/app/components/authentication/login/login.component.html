@@ -1,1 +1,83 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <h1>Login Form</h1>
+        <form [formGroup] = "form" (submit) = register()> 
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input class="form-control" placeholder="Full Name" formControlName = "fullName">
+          </div>
+          <div class="alert alert-danger" *ngIf="f.fullName.errors?.required && f.fullName.touched" >
+              This field is required
+          </div>
+          <div class="alert alert-danger" *ngIf="f.fullName.errors?.pattern" >
+            Name must in the format Example Example
+        </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+            </div>
+            <input class="form-control" placeholder="Email Address" type="email" formControlName = "email" >
+          </div>
+          <div class="alert alert-danger" *ngIf="f.email.errors?.required && f.email.touched" >
+            This field is required
+        </div>
+        <div class="alert alert-danger" *ngIf="f.email.errors?.email" >
+          Name must in the format example@example.com
+      </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+            </div>
+            <select class="custom-select" style="max-width: 120px;" >
+              <option value="{{prefix}}" *ngFor="let prefix of phonePrefixes" >{{prefix}}</option>
+            </select>
+            <input class="form-control" placeholder="Phone number" type="text" formControlName = "phoneNumber">
+          </div>
+          <div class="alert alert-danger" *ngIf="f.phoneNumber.errors?.required && f.phoneNumber.touched" >
+            This field is required
+        </div>
+        <div class="alert alert-danger" *ngIf="f.phoneNumber.errors?.pattern" >
+         Phone must be exactrly 9 digits long.
+      </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+            </div>
+            <select class="form-control" formControlName = "possition" >
+              <option value="{{possition}}" *ngFor="let possition of possitions" >{{possition}}</option>
+            </select>
+          </div>
+          <div class="alert alert-danger" *ngIf="f.possition.errors?.required && f.possition.touched" >
+            This field is required
+        </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input class="form-control" placeholder="Create password" type="password" formControlName = "password" >
+          </div>
+          <div class="alert alert-danger" *ngIf="f.password.errors?.required && f.password.touched" >
+            This field is required
+        </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input class="form-control" placeholder="Repeat password" type="password" formControlName = "confirmPassword" >
+          </div>
+          <div class="alert alert-danger" *ngIf="f.confirmPassword.errors?.confirmedValidator && f.password.touched" >
+            Passwords don't match
+        </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+
