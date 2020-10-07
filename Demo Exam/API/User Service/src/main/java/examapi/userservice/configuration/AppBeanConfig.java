@@ -18,4 +18,5 @@ public class AppBeanConfig {
         return new ApiKey();
     }
 
+
 }

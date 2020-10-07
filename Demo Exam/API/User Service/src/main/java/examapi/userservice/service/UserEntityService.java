@@ -23,12 +23,18 @@ public class UserEntityService {
 
     public UserEntityDto registerUser(UserEntityDto newUser) {
         UserEntity userUser = this.mapper.map(newUser, UserEntity.class);
+        userUser.setRegisteredOn(LocalDateTime.now());
 
         UserEntityRole roleUser = new UserEntityRole("USER");
         roleUser.setUser(userUser);
 
-        userUser.setRegisteredOn(LocalDateTime.now());
-        userUser.setRoles(Set.of(roleUser));
+        if (this.userEntityRepository.count() == 0) {
+            UserEntityRole roleAdmin = new UserEntityRole("ADMIN");
+            roleAdmin.setUser(userUser);
+            userUser.setRoles(Set.of(roleUser, roleAdmin));
+        } else {
+            userUser.setRoles(Set.of(roleUser));
+        }
         return this.mapper.map(this.userEntityRepository.saveAndFlush(userUser), UserEntityDto.class);
     }
 

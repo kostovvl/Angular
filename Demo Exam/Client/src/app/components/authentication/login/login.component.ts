@@ -36,10 +36,6 @@ export class LoginComponent implements OnInit {
    .subscribe( data => {
      console.log(data)
      this.authService.setLoggedUserInfo(data);
-     console.log(this.authService.getUsername());
-     console.log(this.authService.getUserId());
-     console.log(this.authService.getRoles());
-     console.log(this.authService.getToken());
      this.router.navigate(['/home'])
    } )
   }

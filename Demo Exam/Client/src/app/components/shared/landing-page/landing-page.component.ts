@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.username = this.authService.getUsername();
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 
 }
