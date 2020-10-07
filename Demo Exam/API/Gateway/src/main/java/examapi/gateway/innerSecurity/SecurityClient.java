@@ -27,8 +27,12 @@ public class SecurityClient {
 
     public void sendKeys() {
         this.keyGenerator.generateKey();
-        this.restTemplate.postForObject(Global.User_Service_Url + "security", this.apiKey.getKey(), String.class);
-        this.restTemplate.postForObject(Global.Content_Service_Url + "security", this.apiKey.getKey(), String.class);
-        this.restTemplate.postForObject(Global.Admin_Service_Url + "security", this.apiKey.getKey(), String.class);
+        try {
+            this.restTemplate.postForObject(Global.User_Service_Url + "security", this.apiKey.getKey(), String.class);
+            this.restTemplate.postForObject(Global.Content_Service_Url + "security", this.apiKey.getKey(), String.class);
+            this.restTemplate.postForObject(Global.Admin_Service_Url + "security", this.apiKey.getKey(), String.class);
+        } catch (Exception e) {
+            System.out.println("Not all microservices running!");
+        }
     }
 }

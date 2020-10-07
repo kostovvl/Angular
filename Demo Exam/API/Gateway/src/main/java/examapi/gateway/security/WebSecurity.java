@@ -1,5 +1,6 @@
 package examapi.gateway.security;
 
+import examapi.gateway.innerSecurity.SecurityClient;
 import examapi.gateway.service.UserDetailsServiceImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,10 +18,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final SecurityClient securityClient;
 
-    public WebSecurity(UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder) {
+    public WebSecurity(UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder, SecurityClient securityClient) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
+
+        this.securityClient = securityClient;
     }
 
 
@@ -30,6 +34,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
+                .antMatchers(SIGN_UP_URL).permitAll()
                 .antMatchers( "/posts/update/**",
                         "/posts/by_category/**",
                         "/posts/details/**",
@@ -39,7 +44,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), userDetailsService))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), securityClient))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
