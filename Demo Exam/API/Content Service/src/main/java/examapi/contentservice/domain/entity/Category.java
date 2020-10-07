@@ -1,6 +1,7 @@
 package examapi.contentservice.domain.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -8,6 +9,7 @@ import java.util.Set;
 public class Category extends BaseEntity {
 
     private String name;
+    private LocalDateTime createdOn;
     private Set<Post> posts;
 
     public Category() {
@@ -20,6 +22,15 @@ public class Category extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "created_on")
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
     }
 
     @OneToMany(mappedBy = "category", targetEntity = Post.class,

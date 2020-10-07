@@ -11,7 +11,7 @@
         <tr *ngFor="let category of allCategories$ | async let i = index" >
             <th scope="row">{{i + 1}}</th>
             <td>{{category.name}}</td>
-            <td>Column content</td>
+            <td>{{category.createdOn}}</td>
             <td class="btn btn-primary btn-small" (click) = details(category.id)
              role="button" >View Posts</td>
           </tr>

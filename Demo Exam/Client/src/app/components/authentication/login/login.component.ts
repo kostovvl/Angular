@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   login() {
    this.userService.login(this.form.value)
    .subscribe( data => {
-     console.log(data)
      this.authService.setLoggedUserInfo(data);
      this.router.navigate(['/home'])
    } )

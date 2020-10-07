@@ -4,6 +4,7 @@ public class Category {
 
     private long id;
     private String name;
+    private String createdOn;
 
     public Category() {
     }
@@ -22,5 +23,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
     }
 }

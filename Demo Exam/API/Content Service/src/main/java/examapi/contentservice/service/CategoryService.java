@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,7 @@ public class CategoryService {
 
     public CategoryDto addCategory(CategoryDto newCategory) {
         Category category = this.mapper.map(newCategory, Category.class);
+        category.setCreatedOn(LocalDateTime.now());
         this.categoryRepository.saveAndFlush(category);
 
         return newCategory;
@@ -38,7 +41,13 @@ public class CategoryService {
     public List<CategoryDto> getAll() {
         return this.categoryRepository.findAll()
                 .stream()
-                .map(c -> this.mapper.map(c, CategoryDto.class))
+                .map(c -> {
+                    CategoryDto result = this.mapper.map(c, CategoryDto.class);
+                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                     result.setCreatedOn(c.getCreatedOn().format(formatter));
+                    System.out.println();
+                     return result;
+                })
                 .collect(Collectors.toList());
     }
 
