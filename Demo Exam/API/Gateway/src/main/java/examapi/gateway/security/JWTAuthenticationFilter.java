@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examapi.gateway.domain.user.UserEntity;
+import examapi.gateway.service.UserDetailsServiceImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,9 +27,11 @@ import static examapi.gateway.security.SecurityConstraints.*;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService) {
         this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
 
         setFilterProcessesUrl(LOG_IN_URL);
     }
@@ -68,7 +71,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
-        String body = "{\"user\":\"" +  ((User) auth.getPrincipal()).getUsername() + "\", " +
+        String username = ((User) auth.getPrincipal()).getUsername();
+
+        String body = "{\"user\":\"" +  username + "\", " +
+                "\"id\": "+ this.userDetailsService.loadUserByUsername(username)  + ", " +
                 "\"roles\":[" + String.join(", ", roles) + "], \"token\": \"" + token + "\"}";
 
         res.getWriter().write(body);

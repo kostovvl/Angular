@@ -30,12 +30,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers(SIGN_UP_URL).permitAll()
-                .antMatchers( "/furniture/**").hasAnyAuthority("USER")
-                .antMatchers("/admin/**").hasAnyAuthority("USER")
+                .antMatchers( "/posts/update/**",
+                        "/posts/by_category/**",
+                        "/posts/details/**",
+                        "/posts/delete/**").hasAnyAuthority("USER")
+                .antMatchers("/comments/getForPost/**",
+                        "/comments/update/**").hasAnyAuthority("USER")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), userDetailsService))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
