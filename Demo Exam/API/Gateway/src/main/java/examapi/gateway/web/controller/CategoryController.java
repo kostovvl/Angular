@@ -27,6 +27,11 @@ public class CategoryController {
         }
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(this.categoryClient.all(), HttpStatus.OK);
+    }
+
     @PutMapping("/update/{categoryId}")
     public ResponseEntity<?> updateCategory(@PathVariable(name = "categoryId") long categoryId,
                                             @RequestBody Category category) {

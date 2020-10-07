@@ -2,9 +2,12 @@ package examapi.gateway.web.client;
 
 import examapi.gateway.configuration.Global;
 import examapi.gateway.domain.category.Category;
+import examapi.gateway.domain.category.CategoryContainer;
 import examapi.gateway.innerSecurity.ApiKey;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Component
 public class CategoryClient {
@@ -20,6 +23,11 @@ public class CategoryClient {
     public Category createNew(Category category) {
         return this.restTemplate.postForObject(Global.Content_Service_Url + "/categories/create/" + this.apiKey.getKey(),
                 category, Category.class);
+    }
+
+    public List<Category> all () {
+        return this.restTemplate.getForObject(Global.Content_Service_Url + "categories/all/" + this.apiKey.getKey()
+        , CategoryContainer.class).getAll();
     }
 
     public boolean update(long categoryId, Category updated) {

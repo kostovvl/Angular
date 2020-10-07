@@ -1,0 +1,19 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">CreatedOn</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of allCategories$ | async let i = index" >
+            <th scope="row">{{i + 1}}</th>
+            <td>{{category.name}}</td>
+            <td>Column content</td>
+            <td class="btn btn-primary btn-small" (click) = details(category.id)
+             role="button" >View Posts</td>
+          </tr>
+    </tbody>
+</table>    

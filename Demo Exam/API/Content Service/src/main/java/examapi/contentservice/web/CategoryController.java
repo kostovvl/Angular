@@ -1,5 +1,6 @@
 package examapi.contentservice.web;
 
+import examapi.contentservice.domain.dto.AllCategories;
 import examapi.contentservice.domain.dto.CategoryDto;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.service.CategoryService;
@@ -30,6 +31,13 @@ public class CategoryController {
             return new ResponseEntity<>(categoryDto, HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @GetMapping("/all/{apiKey}")
+    public ResponseEntity<?> getAll(@PathVariable(name = "apiKey") String apiKey){
+        this.apiKey.checkKey(apiKey);
+        AllCategories result = new AllCategories(this.categoryService.getAll());
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/update/{categoryId}/{apiKey}")

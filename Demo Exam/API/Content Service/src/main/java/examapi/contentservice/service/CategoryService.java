@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -31,6 +33,13 @@ public class CategoryService {
         this.categoryRepository.saveAndFlush(category);
 
         return newCategory;
+    }
+
+    public List<CategoryDto> getAll() {
+        return this.categoryRepository.findAll()
+                .stream()
+                .map(c -> this.mapper.map(c, CategoryDto.class))
+                .collect(Collectors.toList());
     }
 
     public void updateCategory(long categoryId, CategoryDto updatedCategory) {
