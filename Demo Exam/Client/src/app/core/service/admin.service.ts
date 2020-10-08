@@ -8,6 +8,7 @@ export class AdminService {
 
   private readonly create_category_url = 'http://localhost:8080/admin/category/create'
   private readonly posts_for_approval_url = 'http://localhost:8080/admin/post/all'
+  private readonly comments_for_approval_url = 'http://localhost:8080/admin/comment/all'
   private readonly post_approve_url = 'http://localhost:8080/admin/approve/post/'
   private readonly post_delete_url = 'http://localhost:8080/admin/delete/post/'
 
@@ -19,6 +20,10 @@ export class AdminService {
 
   getAllPostsForApproval() {
     return this.http.get<Object[]>(this.posts_for_approval_url);
+  }
+
+  getAllCommentsForApproval() {
+    return this.http.get<Object[]>(this.comments_for_approval_url);
   }
 
   approvePost(id: number) {

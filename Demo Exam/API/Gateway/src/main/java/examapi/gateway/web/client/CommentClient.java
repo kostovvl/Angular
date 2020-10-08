@@ -35,10 +35,10 @@ public class CommentClient {
                 commentId + "/" + this.apiKey.getKey(), comment);
     }
 
-    public void approve (long commentId) {
-        this.restTemplate.put(Global.Content_Service_Url + "comments/approve/"
-        + commentId + "/" + apiKey.getKey(), Comment.class);
-    }
+    public Comment getById(long id) {
+        return  this.restTemplate.getForObject(Global.Content_Service_Url + "/comments/getById/"
+        + id + "/" + this.apiKey.getKey(), Comment.class);
+        }
 
     public void delete(long commentId) {
         this.restTemplate.delete(Global.Content_Service_Url + "comments/delete/"

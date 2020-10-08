@@ -3,7 +3,7 @@ package examapi.gateway.domain.comment.commentadmin;
 public class CommentAdmin {
 
     private  long id;
-    private String content;
+    private String creatorName;
 
     public CommentAdmin() {
     }
@@ -16,11 +16,11 @@ public class CommentAdmin {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 }

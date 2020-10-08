@@ -40,7 +40,7 @@ public class AdminClient {
     }
 
     public List<CommentAdmin> allCommentsForApproval() {
-        return this.restTemplate.getForObject(Global.Admin_Service_Url + "/comments/all" + this.apiKey,
+        return this.restTemplate.getForObject(Global.Admin_Service_Url + "/comments/all/" + this.apiKey.getKey(),
                 CommentAdminContainer.class).getAll();
     }
 

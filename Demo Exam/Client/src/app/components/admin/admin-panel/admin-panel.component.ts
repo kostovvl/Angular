@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Post from 'src/app/core/model/post.model';
 import { AdminService } from 'src/app/core/service/admin.service'
+import { CommentService } from 'src/app/core/service/comment.service';
 import { PostService } from 'src/app/core/service/post.service';
 
 @Component({
@@ -15,12 +16,15 @@ export class AdminPanelComponent implements OnInit {
 
   form;
   PostsforApproval$: Observable<Object[]>
+  CommentsForApproval$: Observable<Object[]>
   post: Post
+  comment: Comment
 
   constructor(
     private fb: FormBuilder,
     private adminService: AdminService,
     private postService: PostService,
+    private commentService: CommentService,
     private router: Router
     ) { }
 
@@ -29,6 +33,7 @@ export class AdminPanelComponent implements OnInit {
       name: ['', Validators.required]
     })
     this.PostsforApproval$ = this.adminService.getAllPostsForApproval();
+    this.CommentsForApproval$ = this.adminService.getAllCommentsForApproval();
   }
 
   get f() {
@@ -53,8 +58,13 @@ export class AdminPanelComponent implements OnInit {
   }
 
   clearPost() {
-    this.PostsforApproval$ = this.adminService.getAllPostsForApproval();
-    this.post = null;
+    this.ngOnInit();
+  }
+
+  commentDetails(id : number) {
+    this.commentService.getById(id).subscribe(data => {
+      this.comment = data;
+    })
   }
 
 }

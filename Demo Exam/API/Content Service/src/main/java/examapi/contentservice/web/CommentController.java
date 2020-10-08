@@ -2,7 +2,6 @@ package examapi.contentservice.web;
 
 import examapi.contentservice.domain.dto.CommentDto;
 import examapi.contentservice.domain.dto.AllCommentsDto;
-import examapi.contentservice.domain.entity.Comment;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.service.CommentService;
 import org.springframework.http.HttpStatus;
@@ -46,6 +45,13 @@ public class CommentController {
         this.apiKey.checkKey(apiKey);
         AllCommentsDto result = new AllCommentsDto(this.commentService.getByPost(postId));
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/getById/{commentId}/{apiKey}")
+    public ResponseEntity<?>getById(@PathVariable(name = "commentId") long id,
+                                    @PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
+        return new ResponseEntity<>(this.commentService.getById(id), HttpStatus.OK);
     }
 
     @PutMapping("/approve/{commentId}/{apiKey}")

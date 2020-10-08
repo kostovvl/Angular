@@ -50,13 +50,17 @@ public class CommentService {
         return updatedComment;
     }
 
-
-
     public List<CommentDto> getByPost(long postId) {
         return this.commentRepository.getCommentsForPost(postId)
                 .stream()
                 .map(c -> this.mapper.map(c, CommentDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public CommentDto getById(long id) {
+        return this.commentRepository.findById(id)
+                .map(c -> this.mapper.map(c, CommentDto.class))
+                .orElse(null);
     }
 
     public void approve(long id) {
