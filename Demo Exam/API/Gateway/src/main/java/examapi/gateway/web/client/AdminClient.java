@@ -2,10 +2,14 @@ package examapi.gateway.web.client;
 
 import examapi.gateway.configuration.Global;
 import examapi.gateway.domain.comment.Comment;
-import examapi.gateway.domain.post.Post;
+import examapi.gateway.domain.post.postadmin.PostAdmin;
+import examapi.gateway.domain.post.postadmin.PostAdminContainer;
+import examapi.gateway.domain.post.postuser.Post;
 import examapi.gateway.innerSecurity.ApiKey;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Component
 public class AdminClient {
@@ -26,6 +30,11 @@ public class AdminClient {
     public void addCommentForApproval(Comment comment) {
         Comment result =  this.restTemplate.postForObject(Global.Admin_Service_Url + "/comments/add/" +
                 this.apiKey.getKey(), comment, Comment.class);
+    }
+
+    public List<PostAdmin> allForApproval() {
+        return this.restTemplate.getForObject(Global.Admin_Service_Url + "/posts/all/" + this.apiKey.getKey(),
+                PostAdminContainer.class).getAll();
     }
 
     public void approvePost(long postId) {

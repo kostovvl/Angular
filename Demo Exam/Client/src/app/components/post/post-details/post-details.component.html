@@ -1,1 +1,12 @@
-<p>post-details works!</p>
+<div class="card mb-3">
+    <h3 class="card-header">{{post.title}}</h3>
+    <div class="card-body">
+        <p class="card-text">Creator: {{post.creatorName}}</p>
+      <p class="card-text">{{post.content}}</p>
+    </div>
+    <div class="card-body" *ngIf = "isAdmin()">
+      <a class="btn btn-primary" *ngIf="!post.approved" (click) = approvePost()>Approve</a>
+      <a class="btn btn-primary" (click) = deletePost() >Delete</a>
+    </div>
+  </div>
+  

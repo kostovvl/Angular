@@ -1,7 +1,7 @@
 package examapi.gateway.web.controller;
 
-import examapi.gateway.domain.post.Post;
-import examapi.gateway.domain.post.PostContainer;
+import examapi.gateway.domain.post.postuser.Post;
+import examapi.gateway.domain.post.postuser.PostContainer;
 import examapi.gateway.web.client.AdminClient;
 import examapi.gateway.web.client.PostClient;
 import org.springframework.http.HttpStatus;

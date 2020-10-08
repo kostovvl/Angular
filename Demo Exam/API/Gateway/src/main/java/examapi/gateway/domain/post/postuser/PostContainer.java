@@ -1,4 +1,4 @@
-package examapi.gateway.domain.post;
+package examapi.gateway.domain.post.postuser;
 
 import java.util.List;
 

@@ -1,8 +1,11 @@
 package examapi.adminservice.web;
 
+import examapi.adminservice.domain.AllPosts;
 import examapi.adminservice.domain.Post;
 import examapi.adminservice.innerSecurity.ApiKey;
 import examapi.adminservice.service.PostService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,6 +27,13 @@ public class PostController {
                     @RequestBody Post post) {
         this.apiKey.checkKey(apiKey);
         this.postService.add(post);
+    }
+
+    @GetMapping("/all/{apiKey}")
+    public ResponseEntity<?> getAll(@PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
+        AllPosts result = new AllPosts(this.postService.getAll());
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/approve/{postId}/{apiKey}")

@@ -30,6 +30,11 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/post/all")
+    public ResponseEntity<?> getAllPostsForApproval(){
+        return new ResponseEntity<>(this.adminClient.allForApproval(), HttpStatus.OK);
+    }
+
     @PutMapping("/approve/post/{postId}")
     public ResponseEntity<?> approvePost(@PathVariable(name = "postId") long postId) {
         this.adminClient.approvePost(postId);

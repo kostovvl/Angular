@@ -1,13 +1,11 @@
 package examapi.gateway.web.client;
 
 import examapi.gateway.configuration.Global;
-import examapi.gateway.domain.post.Post;
-import examapi.gateway.domain.post.PostContainer;
+import examapi.gateway.domain.post.postuser.Post;
+import examapi.gateway.domain.post.postuser.PostContainer;
 import examapi.gateway.innerSecurity.ApiKey;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Component
 public class PostClient {
