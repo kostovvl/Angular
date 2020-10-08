@@ -13,6 +13,8 @@ import { PostService } from 'src/app/core/service/post.service';
 export class PostDetailsComponent implements OnInit {
 
   @Input('post') post: Post;
+  @Output('approve') approveEvent: EventEmitter<string> = new EventEmitter;
+  @Output('delete') deleteEvent: EventEmitter<string> = new EventEmitter;
 
 
   constructor(
@@ -31,14 +33,14 @@ export class PostDetailsComponent implements OnInit {
 
   approvePost() {
      this.adminService.approvePost(this.post.id).subscribe(data => {
-      this.router.navigate([ '/admin' ]);
+      this.approveEvent.emit('approved');
      });
      
   }
 
   deletePost(id: number) {
-    return this.postService.delete(id).subscribe(data => {
-      this.router.navigate( ['/admin'] );
+    return this.postService.delete(this.post.id).subscribe(data => {
+      this.deleteEvent.emit('deleted');
     })
   }
 

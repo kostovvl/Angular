@@ -35,6 +35,10 @@ export class AdminPanelComponent implements OnInit {
     return this.form.controls;
   }
 
+  set p(Object) {
+    this.post = null;
+  }
+
   submit() {
     this.adminService.createCategory(this.form.value)
     .subscribe(data => {
@@ -46,6 +50,11 @@ export class AdminPanelComponent implements OnInit {
     this.postService.postDetails(id).subscribe(data => {
       this.post = data;
     })
+  }
+
+  clearPost() {
+    this.PostsforApproval$ = this.adminService.getAllForApproval();
+    this.post = null;
   }
 
 }

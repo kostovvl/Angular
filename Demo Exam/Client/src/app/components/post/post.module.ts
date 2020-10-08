@@ -4,6 +4,7 @@ import { PostCreateComponent } from './post-create/post-create.component';
 import { PostAllComponent } from './post-all/post-all.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminPanelComponent } from '../admin/admin-panel/admin-panel.component';
 
 
 
@@ -11,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [PostCreateComponent, PostAllComponent, PostDetailsComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     PostCreateComponent, PostAllComponent, PostDetailsComponent

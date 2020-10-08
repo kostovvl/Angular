@@ -44,7 +44,10 @@
     </div>
 
       <app-post-details  *ngIf="post"
-      [post] = "post" > 
+      [post] = "post" 
+      (approve) = clearPost()
+      (delete) = clearPost()
+      > 
       </app-post-details>
    
 
