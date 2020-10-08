@@ -9,7 +9,7 @@ export class AuthService {
 
   setLoggedUserInfo(userData: Object) {
     localStorage.setItem('username', userData['user']);
-    localStorage.setItem('id', userData['user']);
+    localStorage.setItem('id', userData['id']);
     localStorage.setItem('roles', userData['roles'])
     localStorage.setItem('token', userData['token'])
   } 

@@ -21,7 +21,7 @@
       <div *ngIf ="isAuthenticated()" >
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]= "['/register']">Create Post</a>
+          <a class="nav-link" [routerLink]= "['/posts/create']">Create Post</a>
         </li>
         <li class="nav-item" *ngIf ="isAdmin()">
           <a class="nav-link" [routerLink]= "['/admin']">Admin Panel</a>

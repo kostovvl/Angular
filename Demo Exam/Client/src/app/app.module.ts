@@ -4,6 +4,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { CoreModule } from './core/core.module';
 import { AdminModule } from './components/admin/admin.module';
+import { PostModule } from 'src/app/components/post/post.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AuthenticationModule,
-    AdminModule
+    AdminModule,
+    PostModule
   ],
   providers: [],
   bootstrap: [AppComponent]

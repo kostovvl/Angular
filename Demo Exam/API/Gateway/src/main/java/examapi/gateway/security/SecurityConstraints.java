@@ -8,6 +8,7 @@ public class SecurityConstraints {
     public static final String HEADER_STRING = "Authorization";
     public static final String SIGN_UP_URL = "/auth/register";
     public static final String LOG_IN_URL = "/auth/login";
+    public static final String ALL_CATEGORIES_URL = "/categories/all";
 
 
 }

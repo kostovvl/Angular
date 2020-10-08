@@ -40,7 +40,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
 
-        if (!urI.equals(SIGN_UP_URL)) {
+        if (!urI.equals(SIGN_UP_URL) && !urI.equals(ALL_CATEGORIES_URL)) {
             UsernamePasswordAuthenticationToken authentication = getAuthentication(req, userDetailsService);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {

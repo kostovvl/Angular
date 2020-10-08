@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static examapi.gateway.security.SecurityConstraints.ALL_CATEGORIES_URL;
 import static examapi.gateway.security.SecurityConstraints.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -34,7 +35,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers(SIGN_UP_URL).permitAll()
+                .antMatchers(SIGN_UP_URL, ALL_CATEGORIES_URL).permitAll()
                 .antMatchers( "/posts/update/**",
                         "/posts/by_category/**",
                         "/posts/details/**",
