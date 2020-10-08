@@ -1,4 +1,5 @@
-<div class="card border-primary mb-3 " style="max-width: 20rem;">
+<div class="card border-primary mb-3 " style="max-width: 20rem;"
+*ngIf="post">
     <div class="card-header">
         <h4>Title: {{post.title}}</h4>
         </div>
@@ -7,13 +8,15 @@
       <p class="card-text">{{post.content}}</p>
     <div>
         <p>Write Comment</p>
+        <form [formGroup] = "form" (submit) = submit()>
         <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
             </div>
-            <input class="form-control"  formControlName = "username">
+            <input class="form-control"  formControlName = "content">
             <button type="submit" class="btn btn-small"> submit </button>
         </div>
+      </form>
     </div>
     <p>Comments:</p>
 </div>
