@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Post from 'src/app/core/model/post.model';
 import { PostService } from 'src/app/core/service/post.service';
@@ -15,12 +15,17 @@ export class PostAllComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     let categoryId = this.route.snapshot.params['id'];
     this.allPosts$ = this.postService.byCategory(categoryId);
+  }
+
+  openPost(id: number) {
+    this.router.navigate(['post/details/', id])
   }
 
 }

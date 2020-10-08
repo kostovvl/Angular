@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminPanelComponent},
   {path: 'posts/create', component: PostCreateComponent },
   {path: 'posts/all/:id', component: PostAllComponent}, 
-  {path: 'posts/details/:id', component: PostDetailsComponent}
+  {path: 'post/details/:id', component: PostDetailsComponent}
 ];
 
 @NgModule({

@@ -12,7 +12,7 @@
             <th scope="row">{{i + 1}}</th>
             <td>{{post.title}}</td>
             <td>{{post.creatorName}}</td>
-            <td class="btn btn-primary btn-small" [routerLink]= "['/posts/details', post.id]"
+            <td class="btn btn-primary btn-small" (click) = openPost(post.id)
              role="button" >Details</td>
           </tr>
     </tbody>
