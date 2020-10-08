@@ -28,7 +28,7 @@ export class AdminPanelComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required]
     })
-    this.PostsforApproval$ = this.adminService.getAllForApproval();
+    this.PostsforApproval$ = this.adminService.getAllPostsForApproval();
   }
 
   get f() {
@@ -53,7 +53,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   clearPost() {
-    this.PostsforApproval$ = this.adminService.getAllForApproval();
+    this.PostsforApproval$ = this.adminService.getAllPostsForApproval();
     this.post = null;
   }
 

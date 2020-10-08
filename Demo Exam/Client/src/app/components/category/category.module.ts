@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
-import { CategoryDetailsComponent } from './category-details/category-details.component';
+
 
 
 
 @NgModule({
-  declarations: [AllCategoriesComponent, CategoryDetailsComponent],
+  declarations: [AllCategoriesComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    AllCategoriesComponent, CategoryDetailsComponent
+    AllCategoriesComponent
   ]
 })
 export class CategoryModule { }

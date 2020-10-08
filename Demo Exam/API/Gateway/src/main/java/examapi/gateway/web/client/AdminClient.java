@@ -46,4 +46,9 @@ public class AdminClient {
         this.restTemplate.put(Global.Admin_Service_Url + "/comments/approve/"
                 + commentId + "/" + this.apiKey.getKey(), String.class);
     }
+
+    public void deletePost(long postId) {
+        this.restTemplate.delete(Global.Admin_Service_Url + "/posts/delete/"
+                + postId + "/" + this.apiKey.getKey());
+    }
 }

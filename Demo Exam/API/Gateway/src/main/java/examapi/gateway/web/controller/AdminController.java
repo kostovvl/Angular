@@ -41,6 +41,12 @@ public class AdminController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/post/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable(name = "postId") long postId) {
+        this.adminClient.deletePost(postId);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
 
     @PutMapping("/approve/comment/{commentId}")
     public ResponseEntity<?> approveComment(@PathVariable(name = "commentId") long commentId) {

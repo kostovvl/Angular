@@ -9,6 +9,7 @@ public class ContentClient {
 
     private final static String approve_post_url = "http://localhost:8082/posts/approve/";
     private final static String approve_comment_url = "http://localhost:8082/comments/approve/";
+    private final static String delete_post_url = "http://localhost:8082/posts/delete/";
     private final RestTemplate restTemplate;
     private final ApiKey apiKey;
 
@@ -25,4 +26,8 @@ public class ContentClient {
         this.restTemplate.put(approve_comment_url + commentId + "/" + this.apiKey.getKey(), Object.class);
     }
 
+    public void delete (long postId) {
+        this.restTemplate.delete(delete_post_url
+                + postId + "/" + this.apiKey.getKey());
+    }
 }

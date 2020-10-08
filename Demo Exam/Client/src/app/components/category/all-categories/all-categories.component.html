@@ -12,7 +12,7 @@
             <th scope="row">{{i + 1}}</th>
             <td>{{category.name}}</td>
             <td>{{category.createdOn}}</td>
-            <td class="btn btn-primary btn-small" (click) = details(category.id)
+            <td class="btn btn-primary btn-small" [routerLink]= "['/posts/all', category.id]"
              role="button" >View Posts</td>
           </tr>
     </tbody>

@@ -43,12 +43,12 @@
         </div>
     </div>
 
-      <app-post-details  *ngIf="post"
+      <app-post-details-admin  *ngIf="post"
       [post] = "post" 
       (approve) = clearPost()
       (delete) = clearPost()
       > 
-      </app-post-details>
+      </app-post-details-admin>
    
 
 
