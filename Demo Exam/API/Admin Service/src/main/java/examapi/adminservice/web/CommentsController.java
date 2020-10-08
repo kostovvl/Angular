@@ -1,8 +1,11 @@
 package examapi.adminservice.web;
 
+import examapi.adminservice.domain.AllComments;
 import examapi.adminservice.domain.Comment;
 import examapi.adminservice.innerSecurity.ApiKey;
 import examapi.adminservice.service.CommentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,5 +33,12 @@ public class CommentsController {
                         @PathVariable(name = "apiKey") String apiKey) {
         this.contentClient.approveComment(commentId);
         this.commentService.delete(commentId);
+    }
+
+    @GetMapping("/all/{apiKey}")
+    public ResponseEntity<?> getall(@PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
+        AllComments result = new AllComments(this.commentService.getAll());
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

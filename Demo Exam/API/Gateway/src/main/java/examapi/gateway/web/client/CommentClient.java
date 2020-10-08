@@ -1,8 +1,8 @@
 package examapi.gateway.web.client;
 
 import examapi.gateway.configuration.Global;
-import examapi.gateway.domain.comment.Comment;
-import examapi.gateway.domain.comment.CommentContainer;
+import examapi.gateway.domain.comment.commentuser.Comment;
+import examapi.gateway.domain.comment.commentuser.CommentContainer;
 import examapi.gateway.innerSecurity.ApiKey;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

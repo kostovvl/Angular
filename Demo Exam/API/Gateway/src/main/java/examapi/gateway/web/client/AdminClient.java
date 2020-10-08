@@ -1,7 +1,9 @@
 package examapi.gateway.web.client;
 
 import examapi.gateway.configuration.Global;
-import examapi.gateway.domain.comment.Comment;
+import examapi.gateway.domain.comment.commentadmin.CommentAdmin;
+import examapi.gateway.domain.comment.commentadmin.CommentAdminContainer;
+import examapi.gateway.domain.comment.commentuser.Comment;
 import examapi.gateway.domain.post.postadmin.PostAdmin;
 import examapi.gateway.domain.post.postadmin.PostAdminContainer;
 import examapi.gateway.domain.post.postuser.Post;
@@ -32,9 +34,14 @@ public class AdminClient {
                 this.apiKey.getKey(), comment, Comment.class);
     }
 
-    public List<PostAdmin> allForApproval() {
+    public List<PostAdmin> allPostsForApproval() {
         return this.restTemplate.getForObject(Global.Admin_Service_Url + "/posts/all/" + this.apiKey.getKey(),
                 PostAdminContainer.class).getAll();
+    }
+
+    public List<CommentAdmin> allCommentsForApproval() {
+        return this.restTemplate.getForObject(Global.Admin_Service_Url + "/comments/all" + this.apiKey,
+                CommentAdminContainer.class).getAll();
     }
 
     public void approvePost(long postId) {

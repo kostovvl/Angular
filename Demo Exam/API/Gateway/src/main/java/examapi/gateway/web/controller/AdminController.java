@@ -32,7 +32,12 @@ public class AdminController {
 
     @GetMapping("/post/all")
     public ResponseEntity<?> getAllPostsForApproval(){
-        return new ResponseEntity<>(this.adminClient.allForApproval(), HttpStatus.OK);
+        return new ResponseEntity<>(this.adminClient.allPostsForApproval(), HttpStatus.OK);
+    }
+
+    @GetMapping("/comment/all")
+    public ResponseEntity<?> getAllCommentsForApproval() {
+        return new ResponseEntity<>(this.adminClient.allCommentsForApproval(), HttpStatus.OK);
     }
 
     @PutMapping("/approve/post/{postId}")

@@ -1,7 +1,7 @@
 package examapi.gateway.web.controller;
 
-import examapi.gateway.domain.comment.Comment;
-import examapi.gateway.domain.comment.CommentContainer;
+import examapi.gateway.domain.comment.commentuser.Comment;
+import examapi.gateway.domain.comment.commentuser.CommentContainer;
 import examapi.gateway.web.client.AdminClient;
 import examapi.gateway.web.client.CommentClient;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package examapi.gateway.domain.comment;
+package examapi.gateway.domain.comment.commentuser;
 
 import java.util.List;
 
