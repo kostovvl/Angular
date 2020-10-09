@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Post from 'src/app/core/model/post.model';
 import Comment from 'src/app/core/model/comment.model'
 import { AuthService } from 'src/app/core/service/auth.service';
@@ -24,7 +24,8 @@ export class PostDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private authService: AuthService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -51,7 +52,20 @@ export class PostDetailsComponent implements OnInit {
     .subscribe(data => {
       this.ngOnInit();
     })
+  }
 
+  isAuthor(postCreatord: string) {
+    return postCreatord == this.authService.getUserId(); 
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
+  delete(postId : number) {
+    let categoryId = this.post.categoryId;
+    this.postService.delete(postId)
+    .subscribe(data => {this.router.navigate(['posts/all/', categoryId]) })
   }
 
 }

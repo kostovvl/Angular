@@ -6,7 +6,10 @@
     <div class="card-body">
       <h6 class="card-title">Creator: {{post.creatorName}}</h6>
       <p class="card-text">{{post.content}}</p>
-    <div>
+      <div *ngIf= "isAuthor(post.creatorId) || isAdmin()">
+        <button  class="btn btn-small" (click) = delete(post.id) > delete </button>
+      </div>
+    <div  >
         <p>Write Comment</p>
         <form [formGroup] = "form" (submit) = submit()>
         <div class="form-group input-group">

@@ -11,7 +11,7 @@ export class PostService {
   private readonly post_details_url = 'http://localhost:8080/posts/details/'
   private readonly post_delete_url = 'http://localhost:8080/posts/delete/'
   private readonly all_posts_for_category = 'http://localhost:8080/posts/by_category/'
-
+  
   constructor(private http: HttpClient) { }
 
   submit(form: Object) {
