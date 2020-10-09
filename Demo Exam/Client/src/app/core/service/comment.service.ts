@@ -9,7 +9,8 @@ export class CommentService {
 
   private readonly create_comment_url = 'http://localhost:8080/comments/create'
   private readonly get_by_Id_url = 'http://localhost:8080/comments/getById/'
-  private readonly get_for_post = 'http://localhost:8080/comments/getForPost/'
+  private readonly get_for_post_url = 'http://localhost:8080/comments/getForPost/'
+  private readonly delete_url = 'http://localhost:8080/comments/delete/'
 
   constructor(private http: HttpClient) { }
 
@@ -21,8 +22,12 @@ export class CommentService {
     return this.http.get<Comment>(this.get_by_Id_url + id);
   }
 
-  getForPost(id : number) {
-    return this.http.get<Comment[]>(this.get_for_post + id)
+  getForPost(id: number) {
+    return this.http.get<Comment[]>(this.get_for_post_url + id)
+  }
+
+  delete(id: number) {
+    return this.http.delete<Object>(this.delete_url + id);
   }
 
 }

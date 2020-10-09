@@ -1,8 +1,8 @@
-<div class="card">
+<div class="card border-primary mb-3" style="max-width: 120rem;">
+  <div class="card-header">Creator: {{comment.creatorName}}</div>
     <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">{{comment.creatorName}}</h6>
       <p class="card-text">{{comment.content}}</p>
-      <!-- <a class="btn btn-primary btn-small" (click) = approvePost() role="button">Aprove</a>
-      <a class="btn btn-primary btn-small" (click) = deletePost() role="button">Delete</a> -->
+      <a class="btn btn-sm" (click) = editComment() role="button">Edit</a>
+      <a class="btn btn-sm" (click) = deleteComment(comment.id) role="button">Delete</a>
     </div>
   </div>

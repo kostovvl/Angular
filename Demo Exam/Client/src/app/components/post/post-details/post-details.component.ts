@@ -62,10 +62,15 @@ export class PostDetailsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
-  delete(postId : number) {
+  deletePost(postId : number) {
     let categoryId = this.post.categoryId;
     this.postService.delete(postId)
     .subscribe(data => {this.router.navigate(['posts/all/', categoryId]) })
+  }
+
+  deleteComment(commentId: number) {
+    this.commentService.delete(commentId).subscribe(data => {})
+    this.ngOnInit();
   }
 
 }

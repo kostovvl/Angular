@@ -23,7 +23,6 @@ public class CommentController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Comment comment) {
         Comment result = this.commentClient.create(comment);
-        this.adminClient.addCommentForApproval(result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
