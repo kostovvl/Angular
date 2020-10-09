@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Post from 'src/app/core/model/post.model';
+import Comment from 'src/app/core/model/comment.model';
 import { AdminService } from 'src/app/core/service/admin.service'
 import { CommentService } from 'src/app/core/service/comment.service';
 import { PostService } from 'src/app/core/service/post.service';
@@ -55,14 +56,18 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  clearPage() {
-    this.ngOnInit();
-  }
+ 
 
   commentDetails(id : number) {
     this.commentService.getById(id).subscribe(data => {
       this.comment = data;
     })
+  }
+
+  clearPage() {
+    this.post = null;
+    this.comment = null;
+    this.ngOnInit();
   }
 
 }

@@ -31,7 +31,7 @@ public class CommentController {
     public ResponseEntity<?> getForPost(@PathVariable(name = "postId") long postId) {
         CommentContainer result = new CommentContainer(this.commentClient.getForPost(postId).getAll());
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")

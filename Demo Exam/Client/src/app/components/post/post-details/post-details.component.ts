@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import Post from 'src/app/core/model/post.model';
+import Comment from 'src/app/core/model/comment.model'
 import { AuthService } from 'src/app/core/service/auth.service';
 import { PostService } from 'src/app/core/service/post.service';
 import { CommentService } from 'src/app/core/service/comment.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-details',
@@ -14,7 +16,8 @@ import { CommentService } from 'src/app/core/service/comment.service';
 export class PostDetailsComponent implements OnInit {
 
   post: Post;
-  form
+  comments$ : Observable<Comment[]>;
+  form;
 
   constructor(
     private postService: PostService,
@@ -35,9 +38,8 @@ export class PostDetailsComponent implements OnInit {
         creatorId: [this.authService.getUserId()],
         postId: [this.post.id]
       })
-    })
-
-   
+      this.comments$ = this.commentService.getForPost(this.post.id);
+    })  
   }
 
   get f() {
