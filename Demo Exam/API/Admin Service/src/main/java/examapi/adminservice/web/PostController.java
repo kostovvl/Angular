@@ -48,7 +48,7 @@ public class PostController {
     public void delete(@PathVariable(name = "postId") long postId,
                        @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
-        this.contentClient.delete(postId);
+        this.contentClient.deletePost(postId);
         this.postService.delete(postId);
     }
 

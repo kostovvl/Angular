@@ -40,9 +40,7 @@ export class AdminPanelComponent implements OnInit {
     return this.form.controls;
   }
 
-  set p(Object) {
-    this.post = null;
-  }
+  
 
   submit() {
     this.adminService.createCategory(this.form.value)
@@ -57,7 +55,7 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  clearPost() {
+  clearPage() {
     this.ngOnInit();
   }
 

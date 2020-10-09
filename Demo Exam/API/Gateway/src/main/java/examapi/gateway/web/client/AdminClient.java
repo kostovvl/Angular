@@ -49,13 +49,18 @@ public class AdminClient {
         + postId + "/" + this.apiKey.getKey(), String.class);
     }
 
+    public void deletePost(long postId) {
+        this.restTemplate.delete(Global.Admin_Service_Url + "/posts/delete/"
+                + postId + "/" + this.apiKey.getKey());
+    }
+
     public void approveComment(long commentId) {
         this.restTemplate.put(Global.Admin_Service_Url + "/comments/approve/"
                 + commentId + "/" + this.apiKey.getKey(), String.class);
     }
 
-    public void deletePost(long postId) {
-        this.restTemplate.delete(Global.Admin_Service_Url + "/posts/delete/"
-                + postId + "/" + this.apiKey.getKey());
+    public void deleteComment(long commentId) {
+        this.restTemplate.delete(Global.Admin_Service_Url + "/comments/delete/"
+        + commentId + "/" + this.apiKey.getKey());
     }
 }

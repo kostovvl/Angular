@@ -45,10 +45,16 @@
 
       <app-post-details-admin  *ngIf="post"
       [post] = "post" 
-      (approve) = clearPost()
-      (delete) = clearPost()
+      (approve) = clearPage()
+      (delete) = clearPage()
       > 
       </app-post-details-admin>
-   
+
+      <app-comment-details-admi *ngIf="comment"
+      [comment] = "comment"
+      (approve) = clearPage()
+      (delete) = clearPage()
+      >
+      </app-comment-details-admi>
 
 

@@ -28,6 +28,13 @@ public class CommentsController {
         this.commentService.add(comment);
     }
 
+    @GetMapping("/all/{apiKey}")
+    public ResponseEntity<?> getAll(@PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
+        AllComments result = new AllComments(this.commentService.getAll());
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     @PutMapping("/approve/{commentId}/{apiKey}")
     public void approve(@PathVariable(name = "commentId") long commentId,
                         @PathVariable(name = "apiKey") String apiKey) {
@@ -35,10 +42,13 @@ public class CommentsController {
         this.commentService.delete(commentId);
     }
 
-    @GetMapping("/all/{apiKey}")
-    public ResponseEntity<?> getall(@PathVariable(name = "apiKey") String apiKey) {
+    @DeleteMapping("/delete/{commentId}/{apiKey}")
+    public void delete(@PathVariable(name = "commentId") long commentId,
+                        @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
-        AllComments result = new AllComments(this.commentService.getAll());
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        this.commentService.delete(commentId);
+        this.contentClient.deleteComment(commentId);
     }
+
+
 }
