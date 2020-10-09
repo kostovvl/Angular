@@ -38,5 +38,8 @@ export class AuthService {
     return localStorage.getItem('roles').includes('ADMIN');
   }
   
+  isNotAuthenticated() {
+    return localStorage.getItem('token') === null;
+  }
 
 }
