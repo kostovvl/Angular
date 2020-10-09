@@ -14,6 +14,9 @@
             <td>{{category.createdOn}}</td>
             <td class="btn btn-primary btn-small" [routerLink]= "['/posts/all', category.id]"
              role="button" >View Posts</td>
+             <td *ngIf="canDelete()" class="btn btn-primary btn-small"
+             (click) = delete(category.id)
+             role="button" >Delete</td>
           </tr>
     </tbody>
 </table>    
