@@ -47,7 +47,6 @@ export class PostEditComponent implements OnInit {
   }
 
   submit() {
-    debugger
     this.postService.edit(this.post.id, this.form.value)
     .subscribe(data => {
       let postId = this.post.id;

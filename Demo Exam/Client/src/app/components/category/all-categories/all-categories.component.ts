@@ -49,22 +49,6 @@ export class AllCategoriesComponent implements OnInit {
     })
   }
 
-  toUpdate(categoryName: string) {
-    this.update = true;
-    this.updateCategoryName = categoryName;
-    this.form = this.fb.group({
-      name: ['']
-    })
-  }
-
-  get f() {
-    return this.form.controls;
-  }
-
-  submit(id: number) {
-    console.log(this.form.value)
-    this.categoryService.update(id, this.form.value)
-    .subscribe(data => {this.update = false})
-  }
+ 
 
 }
