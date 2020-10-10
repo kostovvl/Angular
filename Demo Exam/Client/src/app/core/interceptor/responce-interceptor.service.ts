@@ -24,8 +24,7 @@ export class ResponceInterceptorService  implements HttpInterceptor {
       if (err['url'].endsWith('login')) {
         this.toaster.error('Wrong credentials');
       } else {
-        console.log(err['message'])
-        this.toaster.error(err.message)
+        this.toaster.error(err.error)
       }
       throw err;
     })

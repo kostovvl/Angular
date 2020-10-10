@@ -23,13 +23,13 @@ public class UserController {
 
    @PostMapping("/register")
    public ResponseEntity<?> registerUser(@RequestBody UserEntity newUser) {
-      newUser.setPassword(this.passwordEncoder.encode(newUser.getPassword()));
-      UserEntity result = this.userClient.postForNewUser(newUser);
-      System.out.println();
-      if (result != null) {
+     try{
+        newUser.setPassword(this.passwordEncoder.encode(newUser.getPassword()));
+        UserEntity result = this.userClient.postForNewUser(newUser);
       return new ResponseEntity<>(result, HttpStatus.OK);
-      } else {
-         return new ResponseEntity<>("someShit", HttpStatus.BAD_REQUEST);
+      } catch (Exception e){
+         return new ResponseEntity<>("User with such Username " +
+                 "already exists!", HttpStatus.BAD_REQUEST);
       }
    }
 }
