@@ -5,6 +5,8 @@ import { AuthenticationModule } from './components/authentication/authentication
 import { CoreModule } from './core/core.module';
 import { AdminModule } from './components/admin/admin.module';
 import { PostModule } from 'src/app/components/post/post.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,12 +17,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
     AuthenticationModule,
     AdminModule,
-    PostModule
+    PostModule,
+    ToastrModule.forRoot(),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,15 +22,11 @@ public class UserController {
     @PostMapping("/register/{apiKey}")
     public ResponseEntity<?> registerUser(@PathVariable(name = "apiKey") String key,
                                           @RequestBody UserEntityDto newUser) {
-        try {
+
             checkKey(key);
             UserEntityDto result = this.userEntityService.registerUser(newUser);
             return new ResponseEntity<>(result, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+
     }
 
     @GetMapping("/login/{username}/{apiKey}")

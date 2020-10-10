@@ -25,10 +25,11 @@ public class UserController {
    public ResponseEntity<?> registerUser(@RequestBody UserEntity newUser) {
       newUser.setPassword(this.passwordEncoder.encode(newUser.getPassword()));
       UserEntity result = this.userClient.postForNewUser(newUser);
+      System.out.println();
       if (result != null) {
       return new ResponseEntity<>(result, HttpStatus.OK);
       } else {
-         return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
+         return new ResponseEntity<>("someShit", HttpStatus.BAD_REQUEST);
       }
    }
 }

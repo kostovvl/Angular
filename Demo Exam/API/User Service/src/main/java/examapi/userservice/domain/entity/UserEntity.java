@@ -28,7 +28,7 @@ public class UserEntity {
         this.id = id;
     }
 
-    @Column(name = "usernanme")
+    @Column(name = "usernanme", unique = true)
     public String getUsername() {
         return username;
     }
