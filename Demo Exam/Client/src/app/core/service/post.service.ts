@@ -9,6 +9,7 @@ export class PostService {
 
   private readonly submit_post_url = 'http://localhost:8080/posts/create'
   private readonly post_details_url = 'http://localhost:8080/posts/details/'
+  private readonly post_edit_url = 'http://localhost:8080/posts/update/'
   private readonly post_delete_url = 'http://localhost:8080/posts/delete/'
   private readonly all_posts_for_category = 'http://localhost:8080/posts/by_category/'
   
@@ -20,6 +21,10 @@ export class PostService {
 
   postDetails(id: number){
     return this.http.get<Post>(this.post_details_url + id)
+  }
+
+  edit(id: number, form: Object) {
+    return this.http.put(this.post_edit_url + id, form)
   }
 
   delete(id: number) {

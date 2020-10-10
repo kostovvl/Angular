@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,6 +10,7 @@ import { AllCategoriesComponent } from './all-categories/all-categories.componen
   declarations: [AllCategoriesComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     AllCategoriesComponent

@@ -14,9 +14,35 @@
             <td>{{category.createdOn}}</td>
             <td class="btn btn-primary btn-small" [routerLink]= "['/posts/all', category.id]"
              role="button" >View Posts</td>
-             <td *ngIf="canDelete()" class="btn btn-primary btn-small"
+             <td *ngIf="canUpdate()" class="btn btn-primary btn-small"
              (click) = delete(category.id)
              role="button" >Delete</td>
+             <td *ngIf="canUpdate()" class="btn btn-primary btn-small"
+             (click) = toUpdate(category.name)
+             role="button" >Update</td>
+             <div class="container"  *ngIf= "update" >
+              <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                  <h1 class="text-center">Update Category </h1>
+                  <form  [formGroup] = "form" (submit) = submit(category.id)> 
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                      </div>
+                      <input class="form-control" placeholder="{{updateCategoryName}}" formControlName = "name">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f.name.errors?.required && f.name.touched" >
+                        This field is required
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block"> Update </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-lg-4"></div>
+              </div>
+            </div>
           </tr>
     </tbody>
 </table>    

@@ -10,6 +10,7 @@ import { PostDetailsComponent } from './components/post/post-details/post-detail
 import { UnAuthGuard } from 'src/app/core/guard/unAuth.guard';
 import { AdminGuard } from 'src/app/core/guard/admin.guard';
 import { AuthGuard } from 'src/app/core/guard/auth.guard';
+import { PostEditComponent } from './components/post/post-edit/post-edit.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'posts/create', component: PostCreateComponent, canActivate: [AuthGuard] },
   {path: 'posts/all/:id', component: PostAllComponent}, 
-  {path: 'post/details/:id', component: PostDetailsComponent}
+  {path: 'post/details/:id', component: PostDetailsComponent},
+  {path: 'post/edit/:id', component: PostEditComponent }
 ];
 
 @NgModule({

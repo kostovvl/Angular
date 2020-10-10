@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/core/service/category.service';
 import Category from 'src/app/core/model/category.model';
 import { AuthService } from 'src/app/core/service/auth.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-all-categories',
@@ -12,19 +13,26 @@ import { AuthService } from 'src/app/core/service/auth.service';
 export class AllCategoriesComponent implements OnInit {
 
   allCategories$ : Observable<Category[]>
+  update;
+  form;
+  updateCategoryName: string;
+  category: Category;
+
 
   constructor(
     private categoryService: CategoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private fb: FormBuilder
     ) { }
 
   ngOnInit(): void {
 
     this.allCategories$ = this.categoryService.all();
+   
 
   }
 
-  canDelete() {
+  canUpdate() {
     if (this.authService.isAuthenticated()) {
       if (this.authService.isAdmin()) {
         return true;
@@ -34,14 +42,29 @@ export class AllCategoriesComponent implements OnInit {
     return false;
   }
 
-
-
   delete(id: number) {
     this.categoryService.delete(id)
     .subscribe(data => {
       this.ngOnInit();
     })
-    
+  }
+
+  toUpdate(categoryName: string) {
+    this.update = true;
+    this.updateCategoryName = categoryName;
+    this.form = this.fb.group({
+      name: ['']
+    })
+  }
+
+  get f() {
+    return this.form.controls;
+  }
+
+  submit(id: number) {
+    console.log(this.form.value)
+    this.categoryService.update(id, this.form.value)
+    .subscribe(data => {this.update = false})
   }
 
 }

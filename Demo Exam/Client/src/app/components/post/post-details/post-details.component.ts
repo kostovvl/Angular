@@ -62,6 +62,15 @@ export class PostDetailsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+  edit(id: number) {
+    this.router.navigate([ '/post/edit/', id])
+  }
+
+  editComment(data: string[]) {
+    this.commentService.edit(data)
+    .subscribe(data => {this.ngOnInit()})
+  }
+
   deletePost(postId : number) {
     let categoryId = this.post.categoryId;
     this.postService.delete(postId)
