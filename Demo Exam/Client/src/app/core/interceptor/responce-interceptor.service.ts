@@ -14,7 +14,7 @@ export class ResponceInterceptorService  implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(tap((success) => {
       if (success instanceof HttpResponse) {
-        if (success.url.endsWith('login') || success.url.endsWith('signup') ||
+        if (success.url.endsWith('login') || success.url.endsWith('register') ||
          success.url.endsWith('/create') || success.url.includes('delete')) {
           this.toaster.success('success')
         }
@@ -23,7 +23,11 @@ export class ResponceInterceptorService  implements HttpInterceptor {
     }), catchError((err) => {
       if (err['url'].endsWith('login')) {
         this.toaster.error('Wrong credentials');
-      } else {
+      } else if(err.status === 403){
+        this.toaster.error('Session Expired! Please Login again')
+      }
+      else {
+        console.log(err)
         this.toaster.error(err.error)
       }
       throw err;

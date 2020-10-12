@@ -16,16 +16,7 @@ public class CategoryController {
         this.categoryClient = categoryClient;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createCategory(@RequestBody Category category) {
 
-        try {
-            Category response = this.categoryClient.createNew(category);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>( "Such Category Already Exists!",  HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {

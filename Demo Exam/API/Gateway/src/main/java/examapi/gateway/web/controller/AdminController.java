@@ -26,7 +26,7 @@ public class AdminController {
             Category response = this.categoryClient.createNew(category);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>( "Such category already exists!" , HttpStatus.BAD_REQUEST);
         }
     }
 
