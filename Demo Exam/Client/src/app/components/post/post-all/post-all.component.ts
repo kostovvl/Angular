@@ -25,7 +25,7 @@ export class PostAllComponent implements OnInit {
   }
 
   openPost(id: number) {
-    this.router.navigate(['post/details/', id])
+    this.router.navigate(['posts/details/', id])
   }
 
 }

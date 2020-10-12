@@ -63,7 +63,7 @@ export class PostDetailsComponent implements OnInit {
   }
 
   edit(id: number) {
-    this.router.navigate([ '/post/edit/', id])
+    this.router.navigate([ '/posts/edit/', id])
   }
 
   editComment(data: string[]) {

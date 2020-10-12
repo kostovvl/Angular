@@ -23,7 +23,6 @@ import { AppComponent } from './app.component';
     SharedModule,
     AuthenticationModule,
     AdminModule,
-    PostModule,
     ToastrModule.forRoot(),
     
   ],
