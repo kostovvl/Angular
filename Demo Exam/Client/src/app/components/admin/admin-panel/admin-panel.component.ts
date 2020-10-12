@@ -34,7 +34,7 @@ export class AdminPanelComponent implements OnInit {
       name: ['', Validators.required]
     })
     this.PostsforApproval$ = this.adminService.getAllPostsForApproval();
-    this.CommentsForApproval$ = this.adminService.getAllCommentsForApproval();
+    // this.CommentsForApproval$ = this.adminService.getAllCommentsForApproval();
   }
 
   get f() {
