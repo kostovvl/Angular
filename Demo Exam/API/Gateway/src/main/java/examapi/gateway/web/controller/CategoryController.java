@@ -23,7 +23,7 @@ public class CategoryController {
             Category response = this.categoryClient.createNew(category);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>( "Such Category Already Exists!",  HttpStatus.BAD_REQUEST);
         }
     }
 

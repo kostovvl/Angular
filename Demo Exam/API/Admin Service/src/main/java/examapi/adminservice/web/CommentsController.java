@@ -25,6 +25,7 @@ public class CommentsController {
     @PostMapping("/add/{apiKey}")
     public void add(@PathVariable(name = "apiKey") String apiKey,
                     @RequestBody Comment comment) {
+        this.apiKey.checkKey(apiKey);
         this.commentService.add(comment);
     }
 
@@ -38,6 +39,7 @@ public class CommentsController {
     @PutMapping("/approve/{commentId}/{apiKey}")
     public void approve(@PathVariable(name = "commentId") long commentId,
                         @PathVariable(name = "apiKey") String apiKey) {
+        this.apiKey.checkKey(apiKey);
         this.contentClient.approveComment(commentId);
         this.commentService.delete(commentId);
     }
