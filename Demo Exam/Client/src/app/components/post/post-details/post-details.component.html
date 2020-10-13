@@ -7,8 +7,8 @@
       <h6 class="card-title">Creator: {{post.creatorName}}</h6>
       <p class="card-text">{{post.content}}</p>
       <div *ngIf= "isAuthor(post.creatorId) || isAdmin()">
-        <button  class="btn btn-sm" (click) = deletePost(post.id) > delete </button>
         <button  class="btn btn-sm" (click) = edit(post.id) > edit </button>
+        <button  class="btn btn-sm" (click) = deletePost(post.id) > delete </button>
       </div>
     <div  >
         <p>Write Comment</p>
