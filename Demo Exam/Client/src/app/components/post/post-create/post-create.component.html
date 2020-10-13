@@ -18,7 +18,9 @@
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
             </div>
-            <input class="form-control" placeholder="Content" type="textarea" formControlName = "content" >
+            <textarea class="textarea"  rows="3"
+            placeholder="Content" formControlName = "content"></textarea>
+            
           </div>
           <div class="alert alert-danger" *ngIf="f.content.errors?.required && f.content.touched" >
             This field is required

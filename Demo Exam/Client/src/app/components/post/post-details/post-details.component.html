@@ -1,4 +1,4 @@
-<div class="card border-primary mb-3 " style="max-width: 120rem;"
+<div class="card border-primary mb-3 text-center" style="max-width: 120rem;"
 *ngIf="post">
     <div class="card-header">
         <h4>Title: {{post.title}}</h4>
@@ -7,19 +7,18 @@
       <h6 class="card-title">Creator: {{post.creatorName}}</h6>
       <p class="card-text">{{post.content}}</p>
       <div *ngIf= "isAuthor(post.creatorId) || isAdmin()">
-        <button  class="btn btn-small" (click) = deletePost(post.id) > delete </button>
-        <button  class="btn btn-small" (click) = edit(post.id) > edit </button>
+        <button  class="btn btn-sm" (click) = deletePost(post.id) > delete </button>
+        <button  class="btn btn-sm" (click) = edit(post.id) > edit </button>
       </div>
     <div  >
         <p>Write Comment</p>
         <form [formGroup] = "form" (submit) = submit()>
         <div class="form-group input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-            </div>
-            <input class="form-control"  formControlName = "content">
-            <button type="submit" class="btn btn-sm"> submit </button>
+           
+            <textarea class="textarea"  rows="3"
+            formControlName = "content"></textarea>
         </div>
+        <button type="submit" class="btn btn-sm"> submit </button>
       </form>
     </div>
     <p>Comments:</p>

@@ -1,22 +1,24 @@
-<table class="table table-hover">
+<h3 class="text-center">Categories</h3>
+<table class="table">
     <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">CreatedOn</th>
-        <th scope="col"></th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let category of allCategories$ | async let i = index" >
-            <th scope="row">{{i + 1}}</th>
-            <td>{{category.name}}</td>
-            <td>{{category.createdOn}}</td>
-            <td class="btn btn-primary btn-small" [routerLink]= "['/posts/all', category.id]"
+            <td scope="row">{{i + 1}}</td>
+            <td scope="row">{{category.name}}</td>
+            <td scope="row" >{{category.createdOn}}</td>
+            <td scope="row" class="btn btn-primary btn-sm" [routerLink]= "['/posts/all', category.id]"
              role="button" >View Posts</td>
-             <td *ngIf="canUpdate()" class="btn btn-primary btn-small"
+             <td scope="row" *ngIf="canUpdate()" class="btn btn-primary btn-sm"
              (click) = delete(category.id)
              role="button" >Delete</td>
-          </tr>
+        </tr>
     </tbody>
-</table>    
+</table>   
+
