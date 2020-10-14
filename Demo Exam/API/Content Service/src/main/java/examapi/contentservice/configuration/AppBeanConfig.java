@@ -1,5 +1,6 @@
 package examapi.contentservice.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import examapi.contentservice.innerSecurity.ApiKey;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -22,5 +23,10 @@ public class AppBeanConfig {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 }
