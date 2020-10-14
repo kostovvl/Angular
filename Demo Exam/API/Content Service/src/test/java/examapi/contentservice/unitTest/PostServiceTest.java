@@ -112,13 +112,13 @@ public class PostServiceTest {
     @Test
     public void should_Return_By_Id() {
         //assert
-        when(this.postRepository.findById((long)1)).thenReturn(Optional.of(post1));
+        when(this.postRepository.findById((long)1)).thenReturn(Optional.of(this.post1));
 
         //act
         PostDto result = this.postService.getById(1);
 
         //assert
-        Assertions.assertEquals("Title 1", result.getTitle());
+        Assertions.assertEquals(this.post1.getTitle(), result.getTitle());
     }
 
 
