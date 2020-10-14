@@ -1,5 +1,7 @@
 package examapi.adminservice.integrationTest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import examapi.adminservice.domain.AllComments;
 import examapi.adminservice.domain.Comment;
 import examapi.adminservice.innerSecurity.ApiKey;
 import examapi.adminservice.repository.CommentRepository;
@@ -11,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,6 +27,9 @@ public class CommentControllerTest {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     private ApiKey apiKey;
@@ -67,11 +73,13 @@ public class CommentControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
 
-        this.mockMvc.perform(MockMvcRequestBuilders
+        MvcResult result =  this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/comments/all/" + apiPass)
-        ).andExpect(status().isOk());
+        ).andExpect(status().isOk()).andReturn();
 
-        Assertions.assertEquals(2, this.commentRepository.count());
+        AllComments result1 = this.objectMapper.readValue(result.getResponse().getContentAsString(), AllComments.class);
+
+        Assertions.assertEquals(2, result1.getAll().size());
     }
 
     @Test
