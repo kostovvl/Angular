@@ -16,9 +16,7 @@ public class CommentService {
     }
 
     public void add(Comment comment) {
-
         this.commentRepository.saveAndFlush(comment);
-
     }
 
     public List<Comment> getAll() {
@@ -26,8 +24,6 @@ public class CommentService {
     }
 
     public void delete(long commentId) {
-
         this.commentRepository.deleteById(commentId);
-
     }
 }
