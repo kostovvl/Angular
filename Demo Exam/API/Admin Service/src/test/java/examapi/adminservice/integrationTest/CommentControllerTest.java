@@ -59,17 +59,23 @@ public class CommentControllerTest {
     @Test()
     public void should_Return_All_Comments() throws Exception {
         //arrange
+        Comment comment1 = new Comment();
+        comment1.setId(1);
+        comment1.setCreatorName("Creator1");
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/comments/add/" + apiPass)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"id\" : 1, \"creatorName\" : \"Vlado\"}")
+                .content(this.objectMapper.writeValueAsString(comment1))
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
 
+        Comment comment2 = new Comment();
+        comment1.setId(2);
+        comment1.setCreatorName("Creator2");
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/comments/add/" + apiPass)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\" : 2, \"creatorName\" : \"Ignat\"}")
+                .content(this.objectMapper.writeValueAsString(comment2))
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
 
@@ -77,8 +83,11 @@ public class CommentControllerTest {
                 .get("/comments/all/" + apiPass)
         ).andExpect(status().isOk()).andReturn();
 
-        AllComments result1 = this.objectMapper.readValue(result.getResponse().getContentAsString(), AllComments.class);
+        //act
+        AllComments result1 = this.objectMapper.readValue(result.getResponse().getContentAsString(),
+                AllComments.class);
 
+        //assert
         Assertions.assertEquals(2, result1.getAll().size());
     }
 

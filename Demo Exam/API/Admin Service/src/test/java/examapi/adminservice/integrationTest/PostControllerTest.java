@@ -2,6 +2,7 @@ package examapi.adminservice.integrationTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import examapi.adminservice.domain.AllPosts;
+import examapi.adminservice.domain.Post;
 import examapi.adminservice.innerSecurity.ApiKey;
 import examapi.adminservice.repository.PostsRepository;
 import org.junit.jupiter.api.Assertions;
@@ -59,16 +60,22 @@ public class PostControllerTest {
     @Test
     public void should_return_all() throws Exception {
         //assert
+        Post post1 = new Post();
+        post1.setId(1);
+        post1.setTitle("TestPost1");
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/posts/add/" + apiPass)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\" : 1, \"title\":\"TestPost1\"}")
+                .content(this.objectMapper.writeValueAsString(post1))
         ).andExpect(status().isOk());
 
+        Post post2 = new Post();
+        post1.setId(2);
+        post1.setTitle("TestPost2");
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/posts/add/" + apiPass)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\" : 2, \"title\":\"TestPost2\"}")
+                .content(this.objectMapper.writeValueAsString(post2))
         ).andExpect(status().isOk());
 
 
