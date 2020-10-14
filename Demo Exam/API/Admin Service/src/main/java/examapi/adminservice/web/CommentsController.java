@@ -48,8 +48,8 @@ public class CommentsController {
     public void delete(@PathVariable(name = "commentId") long commentId,
                         @PathVariable(name = "apiKey") String apiKey) {
         this.apiKey.checkKey(apiKey);
-        this.commentService.delete(commentId);
         this.contentClient.deleteComment(commentId);
+        this.commentService.delete(commentId);
     }
 
 
