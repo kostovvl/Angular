@@ -33,8 +33,7 @@ public class Category extends BaseEntity {
         this.createdOn = createdOn;
     }
 
-    @OneToMany(mappedBy = "category", targetEntity = Post.class,
-    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     public Set<Post> getPosts() {
         return posts;
     }
