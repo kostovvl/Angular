@@ -25,12 +25,15 @@ public class AdminClient {
     }
 
     public void addPostForApproval(Post post) {
-      Post result =  this.restTemplate.postForObject(Global.Admin_Service_Url + "/posts/add/" +
-                this.apiKey.getKey(), post, Post.class);
+        PostAdmin toApprove = new PostAdmin();
+        toApprove.setId(post.getId());
+        toApprove.setTitle(post.getTitle());
+      this.restTemplate.postForObject(Global.Admin_Service_Url + "/posts/add/" +
+                this.apiKey.getKey(), toApprove, PostAdmin.class);
     }
 
     public void addCommentForApproval(Comment comment) {
-        Comment result =  this.restTemplate.postForObject(Global.Admin_Service_Url + "/comments/add/" +
+          this.restTemplate.postForObject(Global.Admin_Service_Url + "/comments/add/" +
                 this.apiKey.getKey(), comment, Comment.class);
     }
 

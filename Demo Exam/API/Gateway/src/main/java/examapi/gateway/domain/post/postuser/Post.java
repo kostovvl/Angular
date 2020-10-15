@@ -1,14 +1,11 @@
 package examapi.gateway.domain.post.postuser;
 
-import java.time.LocalDateTime;
 
 public class Post {
 
     private long id;
     private String title;
     private String content;
-    private LocalDateTime addedOn;
-    private LocalDateTime lastUpdated;
     private boolean approved;
     private String creatorName;
     private long creatorId;
@@ -39,22 +36,6 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public LocalDateTime getAddedOn() {
-        return addedOn;
-    }
-
-    public void setAddedOn(LocalDateTime addedOn) {
-        this.addedOn = addedOn;
-    }
-
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     public boolean isApproved() {
