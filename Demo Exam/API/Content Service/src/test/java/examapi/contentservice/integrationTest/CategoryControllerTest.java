@@ -8,10 +8,7 @@ import examapi.contentservice.domain.entity.Category;
 import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.repository.CategoryRepository;
 import examapi.contentservice.service.CategoryService;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,6 +51,11 @@ public class CategoryControllerTest {
 
         this.category2 = new CategoryDto();
         this.category2.setName("Category 2");
+    }
+
+    @AfterEach
+    public void setDown(){
+        this.categoryRepository.deleteAll();
     }
 
     @Test

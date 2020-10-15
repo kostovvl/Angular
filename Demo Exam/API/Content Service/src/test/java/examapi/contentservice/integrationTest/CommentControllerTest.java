@@ -87,7 +87,12 @@ public class CommentControllerTest {
         this.comment2.setContent("Content 2");
         this.comment2.setApproved(true);
         this.comment2.setPostId(post2Id);
+    }
 
+    @AfterEach
+    public void setDown() {
+        this.commentRepository.deleteAll();
+        this.postRepository.deleteAll();
     }
 
     @Transactional

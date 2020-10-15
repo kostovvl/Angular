@@ -9,6 +9,7 @@ import examapi.contentservice.innerSecurity.ApiKey;
 import examapi.contentservice.repository.CategoryRepository;
 import examapi.contentservice.repository.CommentRepository;
 import examapi.contentservice.repository.PostRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,9 +37,6 @@ public class PostControllerTest {
 
     @Autowired
     private PostRepository postRepository;
-
-    @Autowired
-    private CommentRepository commentRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -76,6 +74,12 @@ public class PostControllerTest {
         this.post2 = new PostDto();
         this.post2.setTitle("Post 2");
         this.post2.setCategoryId(this.categoryRepository.findByName(this.category2.getName()).orElse(null).getId());
+    }
+
+    @AfterEach
+    public void setDown() {
+        this.postRepository.deleteAll();
+        this.categoryRepository.deleteAll();
     }
 
     @Test
