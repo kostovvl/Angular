@@ -32,11 +32,13 @@ public class CommentService {
         Comment comment = this.mapper.map(newComment, Comment.class);
 
         Set<Comment> existingPostComments = post.getComments();
+        System.out.println();
         existingPostComments.add(comment);
 
         comment.setPost(post);
         comment.setApproved(true);
 
+        this.postRepository.save(post);
         this.commentRepository.saveAndFlush(comment);
         return this.mapper.map(this.commentRepository.saveAndFlush(comment), CommentDto.class);
     }
