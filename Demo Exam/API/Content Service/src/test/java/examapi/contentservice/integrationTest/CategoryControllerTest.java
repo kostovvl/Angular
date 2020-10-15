@@ -50,11 +50,9 @@ public class CategoryControllerTest {
         this.apiKey.setKey(apiPass);
 
         this.category1 = new CategoryDto();
-        this.category1.setId(1);
         this.category1.setName("Category 1");
 
         this.category2 = new CategoryDto();
-        this.category2.setId(2);
         this.category2.setName("Category 2");
     }
 
@@ -112,15 +110,16 @@ public class CategoryControllerTest {
                 .content(this.objectMapper.writeValueAsString(this.category1))
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
+        long id = this.categoryRepository.findByName(this.category1.getName()).orElse(null).getId();
 
         //act
         this.mockMvc.perform(MockMvcRequestBuilders
-                .put("/categories/update/" + this.category1.getId() + "/" + apiPass)
+                .put("/categories/update/" + id + "/" + apiPass)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(this.category2))
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
-        Category result = this.categoryRepository.findById((long)1).orElse(null);
+        Category result = this.categoryRepository.findById(id).orElse(null);
 
         //assert
         Assertions.assertEquals(this.category2.getName(), result.getName());
@@ -135,10 +134,11 @@ public class CategoryControllerTest {
                 .content(this.objectMapper.writeValueAsString(this.category1))
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
+        long id = this.categoryRepository.findByName(this.category1.getName()).orElse(null).getId();
 
         //act
         this.mockMvc.perform(MockMvcRequestBuilders
-                .delete("/categories/delete/" + this.category1.getId() + "/" + apiPass)
+                .delete("/categories/delete/" + id + "/" + apiPass)
         ).andExpect(status().isOk());
 
         //assert
