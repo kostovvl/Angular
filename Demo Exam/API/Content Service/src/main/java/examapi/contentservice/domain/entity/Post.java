@@ -94,8 +94,7 @@ public class Post extends BaseEntity{
         this.category = category;
     }
 
-    @OneToMany(mappedBy = "post", targetEntity = Comment.class,
-    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     public Set<Comment> getComments() {
         return comments;
     }

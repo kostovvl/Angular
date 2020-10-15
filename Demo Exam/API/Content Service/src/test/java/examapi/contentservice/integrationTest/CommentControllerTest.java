@@ -56,8 +56,9 @@ public class CommentControllerTest {
 
     @BeforeEach
     public void setUp_Posts() {
-        this.postRepository.deleteAll();
         this.commentRepository.deleteAll();
+        this.postRepository.deleteAll();
+
         this.apiKey.setKey(apiPass);
 
         this.post1 = new Post();
@@ -103,8 +104,6 @@ public class CommentControllerTest {
 
         Assertions.assertEquals(1, this.commentRepository.count());
 
-        this.postRepository.deleteAll();
-        this.commentRepository.deleteAll();
     }
 
     @Test
@@ -130,8 +129,7 @@ public class CommentControllerTest {
         //assert
         Assertions.assertEquals(this.comment2.getContent(), result.getContent());
 
-        this.postRepository.deleteAll();
-        this.commentRepository.deleteAll();
+
     }
 
     @Test
@@ -163,8 +161,7 @@ public class CommentControllerTest {
         //assert
         Assertions.assertEquals(this.comment1.getContent(), recieved.getContent());
 
-        this.postRepository.deleteAll();
-        this.commentRepository.deleteAll();
+
     }
 
     @Test
@@ -188,8 +185,7 @@ public class CommentControllerTest {
         //assert
         Assertions.assertEquals(this.comment1.getContent(), result1.getContent());
 
-        this.postRepository.deleteAll();
-        this.commentRepository.deleteAll();
+
     }
 
     //They Are automatically approved because I shutdown this feature
@@ -213,8 +209,7 @@ public class CommentControllerTest {
         //assert
         Assertions.assertTrue(seeded.isApproved());
 
-        this.postRepository.deleteAll();
-        this.commentRepository.deleteAll();
+
     }
 
     @Test
@@ -238,8 +233,6 @@ public class CommentControllerTest {
 
         //assert
         Assertions.assertEquals(0, this.commentRepository.count());
-
-
     }
 
 }
