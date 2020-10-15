@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,15 +29,9 @@ public class CommentService {
     public CommentDto createComment(CommentDto newComment) {
         Post post = this.postRepository.getOne(newComment.getPostId());
         Comment comment = this.mapper.map(newComment, Comment.class);
-
-//        Set<Comment> existingPostComments = post.getComments();
-//        System.out.println();
-//        existingPostComments.add(comment);
-//
         comment.setPost(post);
         comment.setApproved(true);
-//
-//        this.commentRepository.saveAndFlush(comment);
+
         return this.mapper.map(this.commentRepository.saveAndFlush(comment), CommentDto.class);
     }
 
@@ -73,16 +66,6 @@ public class CommentService {
 
     @Transactional
     public void delete(long id) {
-        Comment comment = this.commentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-//        Post post = this.postRepository.getOne(comment.getPost().getId());
-//
-//        Set<Comment> existingPostComments = post.getComments();
-//
-//        existingPostComments = existingPostComments.stream()
-//                .filter(c -> c.getId() != id)
-//                .collect(Collectors.toSet());
-//        post.setComments(existingPostComments);
-
         this.commentRepository.deleteById(id);
     }
 

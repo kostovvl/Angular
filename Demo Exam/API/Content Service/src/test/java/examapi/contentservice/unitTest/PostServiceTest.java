@@ -63,8 +63,6 @@ public class PostServiceTest {
         this.post1.setId(1);
         this.post1.setTitle("Title 1");
         this.post1.setContent("Content 1");
-        this.post1.setAddedOn(LocalDateTime.now());
-        this.post1.setLastUpdated(LocalDateTime.now());
         this.post1.setCategory(category1);
 
 
@@ -72,8 +70,6 @@ public class PostServiceTest {
         this.post2.setId(1);
         this.post2.setTitle("Title 2");
         this.post2.setContent("Content 2");
-        this.post2.setAddedOn(LocalDateTime.now());
-        this.post2.setLastUpdated(LocalDateTime.now());
         this.post2.setCategory(category2);
 
     }

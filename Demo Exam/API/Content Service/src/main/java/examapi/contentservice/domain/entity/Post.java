@@ -10,8 +10,6 @@ public class Post extends BaseEntity{
 
     private String title;
     private String content;
-    private LocalDateTime addedOn;
-    private LocalDateTime lastUpdated;
     private boolean approved;
     private String creatorName;
     private long creatorId;
@@ -37,24 +35,6 @@ public class Post extends BaseEntity{
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @Column(name = "added_on")
-    public LocalDateTime getAddedOn() {
-        return addedOn;
-    }
-
-    public void setAddedOn(LocalDateTime addedOn) {
-        this.addedOn = addedOn;
-    }
-
-    @Column(name = "last_updated")
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     @Column(name = "is_approved")

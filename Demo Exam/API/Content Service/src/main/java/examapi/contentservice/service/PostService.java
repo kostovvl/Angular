@@ -37,14 +37,8 @@ public class PostService {
         Post post = this.mapper.map(newPost, Post.class);
         Category category = this.categoryRepository.getOne(newPost.getCategoryId());
 
-        post.setAddedOn(LocalDateTime.now());
-        post.setLastUpdated(LocalDateTime.now());
         post.setApproved(false);
         post.setCategory(category);
-
-        Set<Post> existingPosts = category.getPosts();
-        existingPosts.add(post);
-        category.setPosts(existingPosts); //Moje da trqbva da flush-na category - to
 
         return this.mapper.map(this.postRepository.saveAndFlush(post), PostDto.class);
     }
@@ -52,7 +46,6 @@ public class PostService {
     public PostDto update(long postId, PostDto updated) {
         Post post = this.postRepository.getOne(postId);
 
-        post.setLastUpdated(LocalDateTime.now());
         post.setContent(updated.getContent());
         post.setTitle(updated.getTitle());
 
@@ -99,16 +92,7 @@ public class PostService {
     @Transactional
     public void delete(long postId) {
         Post post = this.postRepository.getOne(postId);
-        Category category = this.categoryRepository.getOne(post.getCategory().getId());
-
         post.getComments().forEach(c -> this.commentRepository.deleteById(c.getId()));
-
-        Set<Post> existingPostsInCategory = category.getPosts();
-        existingPostsInCategory = existingPostsInCategory
-                .stream()
-                .filter(p -> p.getId() != postId)
-                .collect(Collectors.toSet());
-        category.setPosts(existingPostsInCategory);
 
         this.postRepository.deleteById(postId);
     }
