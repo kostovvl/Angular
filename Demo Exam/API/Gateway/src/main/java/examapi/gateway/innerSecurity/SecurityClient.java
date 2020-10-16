@@ -3,6 +3,7 @@ package examapi.gateway.innerSecurity;
 import examapi.gateway.configuration.Global;
 import examapi.gateway.domain.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,6 +26,7 @@ public class SecurityClient {
                 UserEntity.class);
     }
 
+    @Scheduled(cron = "0 */5 * ? * *")
     public void sendKeys() {
         this.keyGenerator.generateKey();
         try {
